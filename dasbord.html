@@ -1,0 +1,2697 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelas XI-7 VALLORIX - SMA Negeri 1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --danger-color: #ef4444;
+            --warning-color: #f59e0b;
+            --info-color: #3b82f6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .class-website {
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .class-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 30px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .class-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .class-avatar {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .class-details h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .class-details p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 30px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Navigation */
+        .class-nav {
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            overflow-x: auto;
+        }
+
+        .nav-item {
+            padding: 20px 25px;
+            text-decoration: none;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            color: var(--primary-color);
+            background: var(--bg-light);
+        }
+
+        .nav-item.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background: rgba(79, 70, 229, 0.05);
+        }
+
+        .nav-item i {
+            font-size: 1.1rem;
+        }
+
+        /* Main Content */
+        .class-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Dashboard Styles */
+        .welcome-banner {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .welcome-text h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .welcome-text p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .class-announcement {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .announcement-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .announcement-header i {
+            color: var(--warning-color);
+            font-size: 1.2rem;
+        }
+
+        .announcement-header h3 {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+        }
+
+        .announcement-content p {
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+
+        .edit-announcement-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .edit-announcement-btn:hover {
+            color: var(--primary-color);
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .stats-section, .schedule-section, .assignments-section, .activity-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .stats-section {
+            grid-column: 1 / -1;
+        }
+
+        .stats-section h3, .schedule-section h3, .assignments-section h3, .activity-section h3 {
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-size: 1.3rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .stat-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            background: var(--bg-light);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card.present { border-left-color: var(--secondary-color); }
+        .stat-card.sick { border-left-color: var(--warning-color); }
+        .stat-card.permission { border-left-color: var(--info-color); }
+        .stat-card.absent { border-left-color: var(--danger-color); }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .stat-card.present .stat-icon { background: var(--secondary-color); }
+        .stat-card.sick .stat-icon { background: var(--warning-color); }
+        .stat-card.permission .stat-icon { background: var(--info-color); }
+        .stat-card.absent .stat-icon { background: var(--danger-color); }
+
+        .stat-info h4 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-info span {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Schedule Items */
+        .today-schedule {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .schedule-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .schedule-item:hover {
+            transform: translateX(5px);
+        }
+
+        .schedule-item.current {
+            border-color: var(--primary-color);
+            background: rgba(79, 70, 229, 0.05);
+        }
+
+        .schedule-time {
+            font-weight: 600;
+            color: var(--text-dark);
+            min-width: 100px;
+        }
+
+        .schedule-details {
+            flex: 1;
+        }
+
+        .schedule-details h4 {
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .schedule-details p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .schedule-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        .schedule-item.current .schedule-status {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Assignments */
+        .assignments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .assignment-item {
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            border-left: 4px solid var(--info-color);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .assignment-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .assignment-item.urgent {
+            border-left-color: var(--danger-color);
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .assignment-item.completed {
+            border-left-color: var(--secondary-color);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .assignment-subject {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .assignment-title {
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .assignment-deadline {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .assignment-item.urgent .assignment-deadline {
+            color: var(--danger-color);
+        }
+
+        /* Activity List */
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: 10px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .activity-item:hover {
+            transform: translateX(5px);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-content p {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .activity-time {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Tab Header */
+        .tab-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .tab-header h2 {
+            color: var(--text-dark);
+            font-size: 1.8rem;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover, .btn-secondary.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        /* Attendance Table */
+        .attendance-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .date-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .date-selector label {
+            font-weight: 500;
+        }
+
+        .date-selector input {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        .view-options {
+            display: flex;
+            gap: 5px;
+        }
+
+        .attendance-table-container {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .attendance-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .attendance-table th {
+            background: var(--bg-light);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .attendance-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .attendance-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .attendance-table tr:hover {
+            background: var(--bg-light);
+        }
+
+        /* Status Badges */
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-present { background: #d1fae5; color: #065f46; }
+        .status-sick { background: #fef3c7; color: #92400e; }
+        .status-permission { background: #dbeafe; color: #1e40af; }
+        .status-absent { background: #fee2e2; color: #991b1b; }
+        .status-not-filled { background: #f3f4f6; color: #6b7280; }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 25px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-header h3 {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .close-btn:hover {
+            background: var(--bg-light);
+            color: var(--danger-color);
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        /* Students Attendance List */
+        .students-attendance-list h4 {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .attendance-student-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .student-attendance-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .student-avatar-small {
+            width: 35px;
+            height: 35px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .attendance-options-small {
+            display: flex;
+            gap: 8px;
+        }
+
+        .attendance-btn-small {
+            padding: 6px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .attendance-btn-small.active {
+            color: white;
+        }
+
+        .attendance-btn-small.present.active { background: var(--secondary-color); border-color: var(--secondary-color); }
+        .attendance-btn-small.sick.active { background: var(--warning-color); border-color: var(--warning-color); }
+        .attendance-btn-small.permission.active { background: var(--info-color); border-color: var(--info-color); }
+        .attendance-btn-small.absent.active { background: var(--danger-color); border-color: var(--danger-color); }
+
+        /* Students Grid */
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .student-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .student-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .student-avatar-large {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 auto 15px;
+        }
+
+        .student-card h4 {
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .student-nis {
+            color: var(--text-light);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .student-contact {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Teachers Grid */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .teacher-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .teacher-avatar {
+            width: 70px;
+            height: 70px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        .teacher-info h4 {
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .teacher-subject {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .teacher-qualification {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Weekly Schedule */
+        .weekly-schedule {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .schedule-days {
+            display: grid;
+            grid-template-columns: 120px repeat(6, 1fr);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .day-header {
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .day-header:first-child {
+            background: var(--primary-dark);
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 120px repeat(6, 1fr);
+        }
+
+        .schedule-cell {
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            min-height: 80px;
+        }
+
+        .schedule-cell.time {
+            background: var(--bg-light);
+            font-weight: 600;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .schedule-lesson {
+            background: rgba(79, 70, 229, 0.1);
+            border: 1px solid var(--primary-color);
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .schedule-lesson:hover {
+            transform: scale(1.02);
+        }
+
+        .schedule-lesson h5 {
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .schedule-lesson p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Search Box */
+        .search-box {
+            position: relative;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 300px;
+        }
+
+        .search-box i {
+            color: var(--text-light);
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 1rem;
+        }
+
+        /* Assignment Detailed */
+        .assignment-item-detailed {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--info-color);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .assignment-item-detailed:hover {
+            transform: translateY(-3px);
+        }
+
+        .assignment-item-detailed.urgent {
+            border-left-color: var(--danger-color);
+        }
+
+        .assignment-item-detailed.completed {
+            border-left-color: var(--secondary-color);
+        }
+
+        .assignment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .assignment-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .assignment-status.urgent {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .assignment-status.active {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .assignment-status.completed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .assignment-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .assignment-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .btn-small:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Assignment Filters */
+        .assignment-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Export Button */
+        .export-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .export-btn:hover {
+            background: #0da271;
+            transform: translateY(-1px);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            z-index: 2000;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.4s ease;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .toast.error {
+            background: var(--danger-color);
+        }
+
+        /* Empty State */
+        .empty-placeholder {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+            border: 1px dashed var(--border-color);
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .empty-placeholder i {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .welcome-banner {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .class-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-stats {
+                justify-content: center;
+            }
+            
+            .nav-container {
+                justify-content: flex-start;
+            }
+            
+            .tab-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .attendance-controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .students-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .teachers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .schedule-days, .schedule-grid {
+                grid-template-columns: 80px repeat(6, 1fr);
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .class-details h1 {
+                font-size: 2rem;
+            }
+            
+            .schedule-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .schedule-time {
+                min-width: auto;
+            }
+            
+            .attendance-table {
+                font-size: 0.8rem;
+            }
+            
+            .attendance-table th,
+            .attendance-table td {
+                padding: 10px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="class-website">
+        <!-- Header -->
+        <header class="class-header">
+            <div class="header-content">
+                <div class="class-info">
+                    <div class="class-avatar">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="class-details">
+                        <h1>Kelas XI-7 VALLORIX</h1>
+                        <p>SMA Negeri 1 Kota Contoh • Tahun Ajaran 2024/2025</p>
+                    </div>
+                </div>
+                <div class="header-stats">
+                    <div class="stat">
+                        <span class="stat-number">36</span>
+                        <span class="stat-label">Siswa</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">Mapel</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Guru</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Navigation -->
+        <nav class="class-nav">
+            <div class="nav-container">
+                <a href="#dashboard" class="nav-item active" data-tab="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#attendance" class="nav-item" data-tab="attendance">
+                    <i class="fas fa-clipboard-check"></i>
+                    <span>Absensi</span>
+                </a>
+                <a href="#schedule" class="nav-item" data-tab="schedule">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Jadwal</span>
+                </a>
+                <a href="#students" class="nav-item" data-tab="students">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Siswa</span>
+                </a>
+                <a href="#teachers" class="nav-item" data-tab="teachers">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Guru</span>
+                </a>
+                <a href="#assignments" class="nav-item" data-tab="assignments">
+                    <i class="fas fa-tasks"></i>
+                    <span>Tugas</span>
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Main Content -->
+        <main class="class-main">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <div class="welcome-banner">
+                    <div class="welcome-text">
+                        <h2>Selamat Datang di Kelas XI-7 VALLORIX! 🎓</h2>
+                        <p>Platform digital untuk pembelajaran dan manajemen kelas</p>
+                    </div>
+                    <div class="class-announcement">
+                        <div class="announcement-header">
+                            <i class="fas fa-bullhorn"></i>
+                            <h3>Pengumuman</h3>
+                            <button class="edit-announcement-btn" onclick="app.editAnnouncement()">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </div>
+                        <div class="announcement-content">
+                            <p id="announcementText">Persiapan Ujian Tengah Semester akan dimulai minggu depan. Mari persiapkan dengan baik!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-grid">
+                    <!-- Quick Stats -->
+                    <div class="stats-section">
+                        <h3>Statistik Hari Ini</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card present" onclick="app.showAttendanceDetails('present')">
+                                <div class="stat-icon">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h4 id="presentCount">0</h4>
+                                    <span>Hadir</span>
+                                </div>
+                            </div>
+                            <div class="stat-card sick" onclick="app.showAttendanceDetails('sick')">
+                                <div class="stat-icon">
+                                    <i class="fas fa-procedures"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h4 id="sickCount">0</h4>
+                                    <span>Sakit</span>
+                                </div>
+                            </div>
+                            <div class="stat-card permission" onclick="app.showAttendanceDetails('permission')">
+                                <div class="stat-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h4 id="permissionCount">0</h4>
+                                    <span>Izin</span>
+                                </div>
+                            </div>
+                            <div class="stat-card absent" onclick="app.showAttendanceDetails('absent')">
+                                <div class="stat-icon">
+                                    <i class="fas fa-user-times"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h4 id="absentCount">36</h4>
+                                    <span>Alpha</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Today's Schedule -->
+                    <div class="schedule-section">
+                        <h3>Jadwal Hari Ini</h3>
+                        <div class="today-schedule">
+                            <div class="schedule-item current">
+                                <div class="schedule-time">07:00 - 08:30</div>
+                                <div class="schedule-details">
+                                    <h4>Matematika</h4>
+                                    <p>Bu Sari, S.Pd • Ruang 201</p>
+                                </div>
+                                <div class="schedule-status">Berlangsung</div>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="schedule-time">08:30 - 10:00</div>
+                                <div class="schedule-details">
+                                    <h4>Fisika</h4>
+                                    <p>Pak Budi, M.Pd • Lab Fisika</p>
+                                </div>
+                                <div class="schedule-status">Selanjutnya</div>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="schedule-time">10:00 - 11:30</div>
+                                <div class="schedule-details">
+                                    <h4>Kimia</h4>
+                                    <p>Bu Dewi, S.Pd • Lab Kimia</p>
+                                </div>
+                                <div class="schedule-status">Akan Datang</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Upcoming Assignments -->
+                    <div class="assignments-section">
+                        <h3>Tugas Mendatang</h3>
+                        <div class="assignments-list" id="dashboardAssignmentsList">
+                            <!-- Tugas akan dimuat secara dinamis -->
+                        </div>
+                    </div>
+                    <!-- Recent Activity -->
+                    <div class="activity-section">
+                        <h3>Aktivitas Terbaru</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-clipboard-check"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p>Absensi pagi telah diinput</p>
+                                    <span class="activity-time">08:00 • 28 siswa hadir</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p>Tugas Matematika dikumpulkan</p>
+                                    <span class="activity-time">Kemarin • 25 siswa mengumpulkan</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-comment"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p>Pengumuman baru dari Wali Kelas</p>
+                                    <span class="activity-time">2 hari lalu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Attendance Tab -->
+            <div id="attendance" class="tab-content">
+                <div class="tab-header">
+                    <h2>Absensi Kelas XI-7 VALLORIX</h2>
+                    <div>
+                        <button class="export-btn" onclick="app.exportAttendance()">
+                            <i class="fas fa-file-export"></i>
+                            Ekspor Data
+                        </button>
+                        <button class="btn-primary" onclick="app.showAttendanceModal()">
+                            <i class="fas fa-plus"></i>
+                            Input Absensi
+                        </button>
+                    </div>
+                </div>
+                <div class="attendance-controls">
+                    <div class="date-selector">
+                        <label for="attendanceDate">Pilih Tanggal:</label>
+                        <input type="date" id="attendanceDate">
+                    </div>
+                    <div class="view-options">
+                        <button class="btn-secondary active">Harian</button>
+                        <button class="btn-secondary">Mingguan</button>
+                        <button class="btn-secondary">Bulanan</button>
+                    </div>
+                </div>
+                <div class="attendance-table-container">
+                    <table class="attendance-table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Siswa</th>
+                                <th>NIS</th>
+                                <th>Status</th>
+                                <th>Waktu</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceTableBody">
+                            <!-- Attendance data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="attendance-summary">
+                    <div class="summary-card">
+                        <h4>Ringkasan Kehadiran</h4>
+                        <div class="summary-stats">
+                            <div class="summary-item">
+                                <span class="label">Total Siswa:</span>
+                                <span class="value" id="totalStudentsSummary">36</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Hadir:</span>
+                                <span class="value present" id="presentCountSummary">0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Tidak Hadir:</span>
+                                <span class="value absent" id="absentCountSummary">36</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Schedule Tab -->
+            <div id="schedule" class="tab-content">
+                <div class="tab-header">
+                    <h2>Jadwal Pelajaran XI-7 VALLORIX</h2>
+                    <div class="schedule-actions">
+                        <button class="btn-secondary">
+                            <i class="fas fa-print"></i>
+                            Cetak Jadwal
+                        </button>
+                    </div>
+                </div>
+                <div class="weekly-schedule">
+                    <div class="schedule-days">
+                        <div class="day-header">Waktu</div>
+                        <div class="day-header active">Senin</div>
+                        <div class="day-header">Selasa</div>
+                        <div class="day-header">Rabu</div>
+                        <div class="day-header">Kamis</div>
+                        <div class="day-header">Jumat</div>
+                        <div class="day-header">Sabtu</div>
+                    </div>
+                    <div class="schedule-grid" id="scheduleGrid">
+                        <!-- Schedule will be loaded here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Students Tab -->
+            <div id="students" class="tab-content">
+                <div class="tab-header">
+                    <h2>Data Siswa XI-7 VALLORIX</h2>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Cari siswa..." id="studentSearch">
+                    </div>
+                </div>
+                <div class="students-grid" id="studentsGrid">
+                    <!-- Students will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Teachers Tab -->
+            <div id="teachers" class="tab-content">
+                <div class="tab-header">
+                    <h2>Guru Pengajar XI-7 VALLORIX</h2>
+                </div>
+                <div class="teachers-grid" id="teachersGrid">
+                    <!-- Teachers will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Assignments Tab -->
+            <div id="assignments" class="tab-content">
+                <div class="tab-header">
+                    <h2>Tugas & Pekerjaan Rumah</h2>
+                    <button class="btn-primary" onclick="app.showAssignmentModal()">
+                        <i class="fas fa-plus"></i>
+                        Tambah Tugas
+                    </button>
+                </div>
+                <div class="assignments-container">
+                    <div class="assignment-filters">
+                        <button class="filter-btn active" data-filter="all">Semua</button>
+                        <button class="filter-btn" data-filter="active">Aktif</button>
+                        <button class="filter-btn" data-filter="urgent">Mendesak</button>
+                        <button class="filter-btn" data-filter="completed">Selesai</button>
+                    </div>
+                    <div class="assignments-list-detailed" id="assignmentsList">
+                        <!-- Assignments will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Attendance Modal -->
+    <div id="attendanceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Input Absensi Harian</h3>
+                <button class="close-btn" onclick="app.closeModal('attendanceModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="attendanceForm">
+                    <div class="form-group">
+                        <label for="modalDate">Tanggal</label>
+                        <input type="date" id="modalDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalSubject">Mata Pelajaran</label>
+                        <select id="modalSubject" required>
+                            <option value="">Pilih Mapel</option>
+                            <option value="matematika">Matematika</option>
+                            <option value="fisika">Fisika</option>
+                            <option value="kimia">Kimia</option>
+                            <option value="biologi">Biologi</option>
+                            <option value="bindo">Bahasa Indonesia</option>
+                            <option value="bing">Bahasa Inggris</option>
+                            <option value="tik">TIK Lanjut</option>
+                            <option value="sosiologi">Sosiologi Lanjut</option>
+                            <option value="ekonomi">Ekonomi Lanjut</option>
+                            <option value="bahasa_jepang">Bahasa Jepang Lanjut</option>
+                        </select>
+                    </div>
+                    <div class="students-attendance-list">
+                        <h4>Daftar Siswa</h4>
+                        <div id="attendanceStudentsList">
+                            <!-- Students list for attendance -->
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary full-width">
+                        <i class="fas fa-save"></i>
+                        Simpan Absensi
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Assignment Modal -->
+    <div id="assignmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="assignmentModalTitle">Tambah Tugas Baru</h3>
+                <button class="close-btn" onclick="app.closeModal('assignmentModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="assignmentForm">
+                    <input type="hidden" id="assignmentId">
+                    <div class="form-group">
+                        <label for="assignmentSubject">Mata Pelajaran</label>
+                        <select id="assignmentSubject" required>
+                            <option value="">Pilih Mapel</option>
+                            <option value="matematika">Matematika</option>
+                            <option value="fisika">Fisika</option>
+                            <option value="kimia">Kimia</option>
+                            <option value="biologi">Biologi</option>
+                            <option value="bindo">Bahasa Indonesia</option>
+                            <option value="bing">Bahasa Inggris</option>
+                            <option value="tik">TIK Lanjut</option>
+                            <option value="sosiologi">Sosiologi Lanjut</option>
+                            <option value="ekonomi">Ekonomi Lanjut</option>
+                            <option value="bahasa_jepang">Bahasa Jepang Lanjut</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignmentTitle">Judul Tugas</label>
+                        <input type="text" id="assignmentTitle" placeholder="Masukkan judul tugas" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignmentDescription">Deskripsi</label>
+                        <textarea id="assignmentDescription" rows="3" placeholder="Masukkan deskripsi tugas"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignmentDeadline">Deadline</label>
+                        <input type="date" id="assignmentDeadline" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignmentType">Jenis Tugas</label>
+                        <select id="assignmentType" required>
+                            <option value="pr">Pekerjaan Rumah</option>
+                            <option value="ulangan">Ulangan</option>
+                            <option value="proyek">Proyek</option>
+                            <option value="lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignmentStatus">Status</label>
+                        <select id="assignmentStatus" required>
+                            <option value="active">Aktif</option>
+                            <option value="urgent">Mendesak</option>
+                            <option value="completed">Selesai</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary full-width">
+                        <i class="fas fa-save"></i>
+                        Simpan Tugas
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Announcement Modal -->
+    <div id="announcementModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Pengumuman</h3>
+                <button class="close-btn" onclick="app.closeModal('announcementModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="announcementForm">
+                    <div class="form-group">
+                        <label for="announcementTextInput">Isi Pengumuman</label>
+                        <textarea id="announcementTextInput" rows="4" placeholder="Masukkan pengumuman baru"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary full-width">
+                        <i class="fas fa-save"></i>
+                        Simpan Pengumuman
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class ClassWebsite {
+            constructor() {
+                this.currentClass = 'XI-7 VALLORIX';
+                this.students = this.loadStudents();
+                this.teachers = this.loadTeachers();
+                this.schedule = this.loadSchedule();
+                this.attendance = this.loadAttendance();
+                this.assignments = this.loadAssignments();
+                this.announcement = this.loadAnnouncement();
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.loadDashboard();
+                this.loadAttendanceTab();
+                this.loadScheduleTab();
+                this.loadStudentsTab();
+                this.loadTeachersTab();
+                this.loadAssignmentsTab();
+                this.updateAnnouncement();
+            }
+
+            bindEvents() {
+                // Navigation
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.switchTab(item.dataset.tab);
+                    });
+                });
+
+                // Attendance form
+                document.getElementById('attendanceForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.submitAttendance();
+                });
+
+                // Assignment form
+                document.getElementById('assignmentForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.submitAssignment();
+                });
+
+                // Announcement form
+                document.getElementById('announcementForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.saveAnnouncement();
+                });
+
+                // Date change for attendance
+                document.getElementById('attendanceDate').addEventListener('change', (e) => {
+                    this.loadAttendanceData(e.target.value);
+                });
+
+                // Student search
+                document.getElementById('studentSearch').addEventListener('input', (e) => {
+                    this.filterStudents(e.target.value);
+                });
+
+                // Assignment filters
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.filterAssignments(e.target.dataset.filter);
+                    });
+                });
+            }
+
+            loadStudents() {
+                return [
+                    { id: 1, name: 'Ahmad Rizki', nis: '2024001', email: 'ahmad1@email.com', phone: '081234567890' },
+                    { id: 2, name: 'Sari Dewi', nis: '2024002', email: 'sari2@email.com', phone: '081234567891' },
+                    { id: 3, name: 'Budi Santoso', nis: '2024003', email: 'budi3@email.com', phone: '081234567892' },
+                    { id: 4, name: 'Maya Sari', nis: '2024004', email: 'maya4@email.com', phone: '081234567893' },
+                    { id: 5, name: 'Rizki Pratama', nis: '2024005', email: 'rizki5@email.com', phone: '081234567894' },
+                    { id: 6, name: 'Dewi Lestari', nis: '2024006', email: 'dewi6@email.com', phone: '081234567895' },
+                    { id: 7, name: 'Andi Wijaya', nis: '2024007', email: 'andi7@email.com', phone: '081234567896' },
+                    { id: 8, name: 'Siti Nurhaliza', nis: '2024008', email: 'siti8@email.com', phone: '081234567897' },
+                    { id: 9, name: 'Eko Prasetya', nis: '2024009', email: 'eko9@email.com', phone: '081234567898' },
+                    { id: 10, name: 'Lina Kusuma', nis: '2024010', email: 'lina10@email.com', phone: '081234567899' },
+                    { id: 11, name: 'Fajar Nugroho', nis: '2024011', email: 'fajar11@email.com', phone: '081234567800' },
+                    { id: 12, name: 'Intan Permata', nis: '2024012', email: 'intan12@email.com', phone: '081234567801' },
+                    { id: 13, name: 'Guntur Prakasa', nis: '2024013', email: 'guntur13@email.com', phone: '081234567802' },
+                    { id: 14, name: 'Heni Susanti', nis: '2024014', email: 'heni14@email.com', phone: '081234567803' },
+                    { id: 15, name: 'Irfan Maulana', nis: '2024015', email: 'irfan15@email.com', phone: '081234567804' },
+                    { id: 16, name: 'Jihan Aulia', nis: '2024016', email: 'jihan16@email.com', phone: '081234567805' },
+                    { id: 17, name: 'Krisna Adi', nis: '2024017', email: 'krisna17@email.com', phone: '081234567806' },
+                    { id: 18, name: 'Lintang Sari', nis: '2024018', email: 'lintang18@email.com', phone: '081234567807' },
+                    { id: 19, name: 'Maulana Yusuf', nis: '2024019', email: 'maulana19@email.com', phone: '081234567808' },
+                    { id: 20, name: 'Nadia Putri', nis: '2024020', email: 'nadia20@email.com', phone: '081234567809' },
+                    { id: 21, name: 'Oka Pratama', nis: '2024021', email: 'oka21@email.com', phone: '081234567810' },
+                    { id: 22, name: 'Putri Lestari', nis: '2024022', email: 'putri22@email.com', phone: '081234567811' },
+                    { id: 23, name: 'Rama Kusuma', nis: '2024023', email: 'rama23@email.com', phone: '081234567812' },
+                    { id: 24, name: 'Siska Anggraini', nis: '2024024', email: 'siska24@email.com', phone: '081234567813' },
+                    { id: 25, name: 'Taufik Hidayat', nis: '2024025', email: 'taufik25@email.com', phone: '081234567814' },
+                    { id: 26, name: 'Umi Kalsum', nis: '2024026', email: 'umi26@email.com', phone: '081234567815' },
+                    { id: 27, name: 'Vicky Prasetya', nis: '2024027', email: 'vicky27@email.com', phone: '081234567816' },
+                    { id: 28, name: 'Wulan Sari', nis: '2024028', email: 'wulan28@email.com', phone: '081234567817' },
+                    { id: 29, name: 'Xavier Adi', nis: '2024029', email: 'xavier29@email.com', phone: '081234567818' },
+                    { id: 30, name: 'Yuni Astuti', nis: '2024030', email: 'yuni30@email.com', phone: '081234567819' },
+                    { id: 31, name: 'Zaki Prasetyo', nis: '2024031', email: 'zaki31@email.com', phone: '081234567820' },
+                    { id: 32, name: 'Anisa Khoirunnisa', nis: '2024032', email: 'anisa32@email.com', phone: '081234567821' },
+                    { id: 33, name: 'Bayu Setiawan', nis: '2024033', email: 'bayu33@email.com', phone: '081234567822' },
+                    { id: 34, name: 'Citra Dewi', nis: '2024034', email: 'citra34@email.com', phone: '081234567823' },
+                    { id: 35, name: 'Dian Prasetya', nis: '2024035', email: 'dian35@email.com', phone: '081234567824' },
+                    { id: 36, name: 'Eva Lestari', nis: '2024036', email: 'eva36@email.com', phone: '081234567825' }
+                ];
+            }
+
+            loadTeachers() {
+                return [
+                    { 
+                        id: 1, 
+                        name: 'Bu Sari, S.Pd', 
+                        subject: 'Matematika', 
+                        qualification: 'S1 Pendidikan Matematika',
+                        email: 'sari@sekolah.sch.id',
+                        phone: '081234567800'
+                    },
+                    { 
+                        id: 2, 
+                        name: 'Pak Budi, M.Pd', 
+                        subject: 'Fisika', 
+                        qualification: 'S2 Pendidikan Fisika',
+                        email: 'budi@sekolah.sch.id',
+                        phone: '081234567801'
+                    },
+                    { 
+                        id: 3, 
+                        name: 'Bu Dewi, S.Pd', 
+                        subject: 'Kimia', 
+                        qualification: 'S1 Pendidikan Kimia',
+                        email: 'dewi@sekolah.sch.id',
+                        phone: '081234567802'
+                    },
+                    { 
+                        id: 4, 
+                        name: 'Pak Andi, S.Pd', 
+                        subject: 'Biologi', 
+                        qualification: 'S1 Pendidikan Biologi',
+                        email: 'andi@sekolah.sch.id',
+                        phone: '081234567803'
+                    },
+                    { 
+                        id: 5, 
+                        name: 'Bu Rini, M.Pd', 
+                        subject: 'Bahasa Indonesia', 
+                        qualification: 'S2 Pendidikan Bahasa Indonesia',
+                        email: 'rini@sekolah.sch.id',
+                        phone: '081234567804'
+                    },
+                    { 
+                        id: 6, 
+                        name: 'Bu Maya, S.Pd', 
+                        subject: 'Bahasa Inggris', 
+                        qualification: 'S1 Pendidikan Bahasa Inggris',
+                        email: 'maya@sekolah.sch.id',
+                        phone: '081234567805'
+                    },
+                    { 
+                        id: 7, 
+                        name: 'Pak Joko, S.Kom', 
+                        subject: 'TIK Lanjut', 
+                        qualification: 'S1 Teknik Informatika',
+                        email: 'joko@sekolah.sch.id',
+                        phone: '081234567806'
+                    },
+                    { 
+                        id: 8, 
+                        name: 'Bu Sinta, S.Sos', 
+                        subject: 'Sosiologi Lanjut', 
+                        qualification: 'S1 Sosiologi',
+                        email: 'sinta@sekolah.sch.id',
+                        phone: '081234567807'
+                    },
+                    { 
+                        id: 9, 
+                        name: 'Pak Rudi, S.E', 
+                        subject: 'Ekonomi Lanjut', 
+                        qualification: 'S1 Ekonomi',
+                        email: 'rudi@sekolah.sch.id',
+                        phone: '081234567808'
+                    },
+                    { 
+                        id: 10, 
+                        name: 'Bu Yuki, S.Pd', 
+                        subject: 'Bahasa Jepang Lanjut', 
+                        qualification: 'S1 Pendidikan Bahasa Jepang',
+                        email: 'yuki@sekolah.sch.id',
+                        phone: '081234567809'
+                    }
+                ];
+            }
+
+            loadSchedule() {
+                return {
+                    'Senin': [
+                        { time: '07:00-08:30', subject: 'Matematika', teacher: 'Bu Sari, S.Pd', room: 'Ruang 201' },
+                        { time: '08:30-10:00', subject: 'Fisika', teacher: 'Pak Budi, M.Pd', room: 'Lab Fisika' },
+                        { time: '10:00-11:30', subject: 'Kimia', teacher: 'Bu Dewi, S.Pd', room: 'Lab Kimia' },
+                        { time: '13:00-14:30', subject: 'TIK Lanjut', teacher: 'Pak Joko, S.Kom', room: 'Lab Komputer' }
+                    ],
+                    'Selasa': [
+                        { time: '07:00-08:30', subject: 'Biologi', teacher: 'Pak Andi, S.Pd', room: 'Lab Biologi' },
+                        { time: '08:30-10:00', subject: 'Bahasa Indonesia', teacher: 'Bu Rini, M.Pd', room: 'Ruang 201' },
+                        { time: '10:00-11:30', subject: 'Sosiologi Lanjut', teacher: 'Bu Sinta, S.Sos', room: 'Ruang 202' }
+                    ],
+                    'Rabu': [
+                        { time: '07:00-08:30', subject: 'Matematika', teacher: 'Bu Sari, S.Pd', room: 'Ruang 201' },
+                        { time: '08:30-10:00', subject: 'Fisika', teacher: 'Pak Budi, M.Pd', room: 'Lab Fisika' },
+                        { time: '10:00-11:30', subject: 'Bahasa Inggris', teacher: 'Bu Maya, S.Pd', room: 'Ruang 203' }
+                    ],
+                    'Kamis': [
+                        { time: '07:00-08:30', subject: 'Kimia', teacher: 'Bu Dewi, S.Pd', room: 'Lab Kimia' },
+                        { time: '08:30-10:00', subject: 'Biologi', teacher: 'Pak Andi, S.Pd', room: 'Lab Biologi' },
+                        { time: '10:00-11:30', subject: 'Ekonomi Lanjut', teacher: 'Pak Rudi, S.E', room: 'Ruang 204' }
+                    ],
+                    'Jumat': [
+                        { time: '07:00-08:30', subject: 'Bahasa Indonesia', teacher: 'Bu Rini, M.Pd', room: 'Ruang 201' },
+                        { time: '08:30-10:00', subject: 'Bahasa Jepang Lanjut', teacher: 'Bu Yuki, S.Pd', room: 'Ruang 205' }
+                    ],
+                    'Sabtu': [
+                        { time: '07:00-09:00', subject: 'Ekstrakurikuler', teacher: 'Various', room: 'Lapangan' }
+                    ]
+                };
+            }
+
+            loadAttendance() {
+                const saved = localStorage.getItem('attendanceData');
+                return saved ? JSON.parse(saved) : { records: [] };
+            }
+
+            loadAssignments() {
+                const saved = localStorage.getItem('assignmentData');
+                return saved ? JSON.parse(saved) : { assignments: [] };
+            }
+
+            loadAnnouncement() {
+                const saved = localStorage.getItem('announcementData');
+                return saved ? JSON.parse(saved) : { text: "Persiapan Ujian Tengah Semester akan dimulai minggu depan. Mari persiapkan dengan baik!" };
+            }
+
+            saveAttendance() {
+                localStorage.setItem('attendanceData', JSON.stringify(this.attendance));
+            }
+
+            saveAssignments() {
+                localStorage.setItem('assignmentData', JSON.stringify(this.assignments));
+            }
+
+            saveAnnouncementData() {
+                localStorage.setItem('announcementData', JSON.stringify(this.announcement));
+            }
+
+            switchTab(tabName) {
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                // Remove active class from all nav items
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                // Show selected tab
+                document.getElementById(tabName).classList.add('active');
+                // Activate corresponding nav item
+                document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+            }
+
+            loadDashboard() {
+                // Update stats based on today's attendance
+                const today = new Date().toISOString().split('T')[0];
+                const todayAttendance = this.attendance.records.filter(record => record.date === today);
+                
+                let presentCount = 0;
+                let sickCount = 0;
+                let permissionCount = 0;
+                let absentCount = 0;
+                
+                // Reset counts
+                this.students.forEach(student => {
+                    const record = todayAttendance.find(r => r.studentId == student.id);
+                    if (record) {
+                        switch(record.status) {
+                            case 'present': presentCount++; break;
+                            case 'sick': sickCount++; break;
+                            case 'permission': permissionCount++; break;
+                            case 'absent': absentCount++; break;
+                        }
+                    } else {
+                        absentCount++; // Jika tidak ada record, dianggap alpha
+                    }
+                });
+                
+                // Update the dashboard stats
+                document.getElementById('presentCount').textContent = presentCount;
+                document.getElementById('sickCount').textContent = sickCount;
+                document.getElementById('permissionCount').textContent = permissionCount;
+                document.getElementById('absentCount').textContent = absentCount;
+
+                // Load upcoming assignments for dashboard
+                this.loadUpcomingAssignments();
+            }
+
+            // NEW: Load upcoming assignments for dashboard
+            loadUpcomingAssignments() {
+                const dashboardAssignmentsList = document.getElementById('dashboardAssignmentsList');
+                const today = new Date();
+                
+                // Filter assignments that are active or urgent and not completed
+                const upcomingAssignments = this.assignments.assignments
+                    .filter(assignment => {
+                        const deadline = new Date(assignment.deadline);
+                        return (assignment.status === 'active' || assignment.status === 'urgent') && deadline >= today;
+                    })
+                    .sort((a, b) => new Date(a.deadline) - new Date(b.deadline))
+                    .slice(0, 3); // Show only 3 upcoming assignments
+
+                if (upcomingAssignments.length > 0) {
+                    dashboardAssignmentsList.innerHTML = upcomingAssignments.map(assignment => `
+                        <div class="assignment-item ${assignment.status}">
+                            <div class="assignment-subject">${assignment.subject}</div>
+                            <div class="assignment-title">${assignment.title}</div>
+                            <div class="assignment-deadline">
+                                <i class="fas fa-clock"></i>
+                                Deadline: ${this.formatDateForDisplay(assignment.deadline)}
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    dashboardAssignmentsList.innerHTML = `
+                        <div class="empty-placeholder">
+                            <i class="fas fa-tasks"></i>
+                            <p>Tidak ada tugas mendatang.</p>
+                        </div>
+                    `;
+                }
+            }
+
+            // NEW: Format date for display
+            formatDateForDisplay(dateString) {
+                const date = new Date(dateString);
+                const today = new Date();
+                const diffTime = date - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                if (diffDays === 0) {
+                    return "Hari Ini";
+                } else if (diffDays === 1) {
+                    return "Besok";
+                } else if (diffDays <= 7) {
+                    return `${diffDays} Hari Lagi`;
+                } else {
+                    return date.toLocaleDateString('id-ID');
+                }
+            }
+
+            showAttendanceDetails(status) {
+                const statusMap = {
+                    'present': 'Hadir',
+                    'sick': 'Sakit',
+                    'permission': 'Izin',
+                    'absent': 'Alpha'
+                };
+                
+                const today = new Date().toISOString().split('T')[0];
+                const studentsWithStatus = this.attendance.records
+                    .filter(record => record.date === today && record.status === status)
+                    .map(record => record.studentName);
+                
+                if (studentsWithStatus.length > 0) {
+                    alert(`Siswa dengan status ${statusMap[status]} hari ini:\n\n${studentsWithStatus.join('\n')}`);
+                } else {
+                    alert(`Tidak ada siswa dengan status ${statusMap[status]} hari ini.`);
+                }
+            }
+
+            loadAttendanceTab() {
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('attendanceDate').value = today;
+                this.loadAttendanceData(today);
+            }
+
+            loadAttendanceData(date) {
+                const tableBody = document.getElementById('attendanceTableBody');
+                const dayRecords = this.attendance.records.filter(record => record.date === date);
+
+                // Hitung jumlah kehadiran untuk ringkasan
+                let presentCount = 0;
+                let sickCount = 0;
+                let permissionCount = 0;
+                let absentCount = 0;
+                
+                // Reset counts
+                this.students.forEach(student => {
+                    const record = dayRecords.find(r => r.studentId == student.id);
+                    if (record) {
+                        switch(record.status) {
+                            case 'present': presentCount++; break;
+                            case 'sick': sickCount++; break;
+                            case 'permission': permissionCount++; break;
+                            case 'absent': absentCount++; break;
+                        }
+                    } else {
+                        absentCount++; // Jika tidak ada record, dianggap alpha
+                    }
+                });
+
+                const totalStudents = this.students.length;
+
+                // Update ringkasan
+                document.getElementById('totalStudentsSummary').textContent = totalStudents;
+                document.getElementById('presentCountSummary').textContent = presentCount;
+                document.getElementById('absentCountSummary').textContent = sickCount + permissionCount + absentCount;
+
+                // Bangun HTML berdasarkan daftar semua siswa
+                const tableRows = this.students.map((student, index) => {
+                    // Cari record absensi untuk siswa ini pada tanggal ini
+                    const record = dayRecords.find(r => r.studentId == student.id);
+
+                    if (record) {
+                        // Jika ditemukan, tampilkan statusnya
+                        return `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${record.studentName}</td>
+                                <td>${record.nis}</td>
+                                <td>
+                                    <span class="status-badge status-${record.status}">
+                                        ${this.getStatusText(record.status)}
+                                    </span>
+                                </td>
+                                <td>${record.time || 'N/A'}</td>
+                                <td>${record.notes || '-'}</td>
+                            </tr>
+                        `;
+                    } else {
+                        // Jika tidak ditemukan, tampilkan status "Belum diisi"
+                        return `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${student.name}</td>
+                                <td>${student.nis}</td>
+                                <td><span class="status-badge status-not-filled">Belum diisi</span></td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        `;
+                    }
+                }).join('');
+
+                tableBody.innerHTML = tableRows;
+            }
+
+            loadScheduleTab() {
+                const scheduleGrid = document.getElementById('scheduleGrid');
+                const times = ['07:00-08:30', '08:30-10:00', '10:00-11:30', '11:30-13:00', '13:00-14:30'];
+                const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+                let scheduleHTML = '';
+                
+                times.forEach(time => {
+                    scheduleHTML += `<div class="schedule-cell time">${time}</div>`;
+                    days.forEach(day => {
+                        const lessons = this.schedule[day]?.filter(lesson => lesson.time === time) || [];
+                        scheduleHTML += `
+                            <div class="schedule-cell">
+                                ${lessons.map(lesson => `
+                                    <div class="schedule-lesson" onclick="app.showLessonDetails('${lesson.subject}', '${lesson.teacher}', '${lesson.room}')">
+                                        <h5>${lesson.subject}</h5>
+                                        <p>${lesson.teacher}</p>
+                                        <small>${lesson.room}</small>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    });
+                });
+                scheduleGrid.innerHTML = scheduleHTML;
+            }
+
+            showLessonDetails(subject, teacher, room) {
+                alert(`Detail Pelajaran:\n\nMata Pelajaran: ${subject}\nGuru: ${teacher}\nRuangan: ${room}`);
+            }
+
+            loadStudentsTab() {
+                const studentsGrid = document.getElementById('studentsGrid');
+                studentsGrid.innerHTML = this.students.map(student => `
+                    <div class="student-card" onclick="app.showStudentDetails(${student.id})">
+                        <div class="student-avatar-large">
+                            ${student.name.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <h4>${student.name}</h4>
+                        <div class="student-nis">NIS: ${student.nis}</div>
+                        <div class="student-contact">
+                            <div><i class="fas fa-envelope"></i> ${student.email}</div>
+                            <div><i class="fas fa-phone"></i> ${student.phone}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            showStudentDetails(studentId) {
+                const student = this.students.find(s => s.id === studentId);
+                if (student) {
+                    alert(`Detail Siswa:\n\nNama: ${student.name}\nNIS: ${student.nis}\nEmail: ${student.email}\nTelepon: ${student.phone}`);
+                }
+            }
+
+            loadTeachersTab() {
+                const teachersGrid = document.getElementById('teachersGrid');
+                teachersGrid.innerHTML = this.teachers.map(teacher => `
+                    <div class="teacher-card" onclick="app.showTeacherDetails(${teacher.id})">
+                        <div class="teacher-avatar">
+                            ${teacher.name.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <div class="teacher-info">
+                            <h4>${teacher.name}</h4>
+                            <div class="teacher-subject">${teacher.subject}</div>
+                            <div class="teacher-qualification">${teacher.qualification}</div>
+                            <div class="teacher-contact">
+                                <small><i class="fas fa-envelope"></i> ${teacher.email}</small><br>
+                                <small><i class="fas fa-phone"></i> ${teacher.phone}</small>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            showTeacherDetails(teacherId) {
+                const teacher = this.teachers.find(t => t.id === teacherId);
+                if (teacher) {
+                    alert(`Detail Guru:\n\nNama: ${teacher.name}\nMata Pelajaran: ${teacher.subject}\nKualifikasi: ${teacher.qualification}\nEmail: ${teacher.email}\nTelepon: ${teacher.phone}`);
+                }
+            }
+
+            loadAssignmentsTab() {
+                const assignmentsList = document.getElementById('assignmentsList');
+                const assignments = this.assignments.assignments.length > 0 ? 
+                    this.assignments.assignments : 
+                    [
+                        {
+                            id: 1,
+                            subject: 'Matematika',
+                            title: 'Tugas Trigonometri - Bab 5',
+                            deadline: '2024-10-12',
+                            status: 'urgent',
+                            description: 'Kerjakan soal nomor 1-10 halaman 125',
+                            type: 'pr'
+                        },
+                        {
+                            id: 2,
+                            subject: 'Fisika',
+                            title: 'Laporan Praktikum Hukum Newton',
+                            deadline: '2024-10-15',
+                            status: 'active',
+                            description: 'Buat laporan hasil praktikum kelompok',
+                            type: 'proyek'
+                        },
+                        {
+                            id: 3,
+                            subject: 'Kimia',
+                            title: 'Tabel Periodik Unsur',
+                            deadline: '2024-10-08',
+                            status: 'completed',
+                            description: 'Hafalkan 20 unsur pertama tabel periodik',
+                            type: 'ulangan'
+                        }
+                    ];
+                
+                this.assignments.assignments = assignments;
+                this.saveAssignments();
+                
+                assignmentsList.innerHTML = assignments.map(assignment => `
+                    <div class="assignment-item-detailed ${assignment.status}">
+                        <div class="assignment-header">
+                            <div class="assignment-subject">${assignment.subject}</div>
+                            <div class="assignment-status ${assignment.status}">
+                                ${this.getAssignmentStatusText(assignment.status)}
+                            </div>
+                        </div>
+                        <div class="assignment-title">${assignment.title}</div>
+                        <div class="assignment-description">${assignment.description}</div>
+                        <div class="assignment-footer">
+                            <div class="assignment-deadline">
+                                <i class="fas fa-clock"></i>
+                                Deadline: ${new Date(assignment.deadline).toLocaleDateString('id-ID')}
+                            </div>
+                            <div class="assignment-type">
+                                <i class="fas fa-tag"></i>
+                                ${this.getAssignmentTypeText(assignment.type)}
+                            </div>
+                        </div>
+                        <div class="assignment-actions">
+                            <button class="btn-small" onclick="app.editAssignment(${assignment.id})">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn-small" onclick="app.deleteAssignment(${assignment.id})">
+                                <i class="fas fa-trash"></i> Hapus
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            showAssignmentModal(assignmentId = null) {
+                const modal = document.getElementById('assignmentModal');
+                const title = document.getElementById('assignmentModalTitle');
+                const form = document.getElementById('assignmentForm');
+                
+                if (assignmentId) {
+                    // Edit mode
+                    title.textContent = 'Edit Tugas';
+                    const assignment = this.assignments.assignments.find(a => a.id === assignmentId);
+                    if (assignment) {
+                        document.getElementById('assignmentId').value = assignment.id;
+                        document.getElementById('assignmentSubject').value = assignment.subject;
+                        document.getElementById('assignmentTitle').value = assignment.title;
+                        document.getElementById('assignmentDescription').value = assignment.description;
+                        document.getElementById('assignmentDeadline').value = assignment.deadline;
+                        document.getElementById('assignmentType').value = assignment.type;
+                        document.getElementById('assignmentStatus').value = assignment.status;
+                    }
+                } else {
+                    // Add mode
+                    title.textContent = 'Tambah Tugas Baru';
+                    form.reset();
+                    // Set default deadline to tomorrow
+                    const tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    document.getElementById('assignmentDeadline').value = tomorrow.toISOString().split('T')[0];
+                }
+                
+                modal.style.display = 'block';
+            }
+
+            editAssignment(assignmentId) {
+                this.showAssignmentModal(assignmentId);
+            }
+
+            deleteAssignment(assignmentId) {
+                if (confirm('Apakah Anda yakin ingin menghapus tugas ini?')) {
+                    this.assignments.assignments = this.assignments.assignments.filter(a => a.id !== assignmentId);
+                    this.saveAssignments();
+                    this.loadAssignmentsTab();
+                    this.loadUpcomingAssignments(); // Update dashboard assignments
+                    this.showToast('Tugas berhasil dihapus!');
+                }
+            }
+
+            showAttendanceModal() {
+                const modal = document.getElementById('attendanceModal');
+                modal.style.display = 'block';
+                // Set today's date
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('modalDate').value = today;
+                // Load students for attendance - menampilkan semua siswa
+                this.loadAttendanceStudents();
+            }
+
+            closeModal(modalId) {
+                document.getElementById(modalId).style.display = 'none';
+            }
+
+            loadAttendanceStudents() {
+                const modalDate = document.getElementById('modalDate').value;
+                const modalSubject = document.getElementById('modalSubject').value;
+                const container = document.getElementById('attendanceStudentsList');
+
+                // Ambil data absensi sebelumnya untuk tanggal dan mata pelajaran ini
+                const previousAttendance = this.attendance.records.filter(record => 
+                    record.date === modalDate && record.subject === modalSubject
+                );
+
+                container.innerHTML = this.students.map(student => {
+                    // Cek apakah ada data absensi sebelumnya untuk siswa ini
+                    const previousRecord = previousAttendance.find(record => record.studentId == student.id);
+                    const previousStatus = previousRecord ? previousRecord.status : null;
+
+                    return `
+                        <div class="attendance-student-item" data-student-id="${student.id}" ${previousStatus ? `data-selected-status="${previousStatus}"` : ''}>
+                            <div class="student-attendance-info">
+                                <div class="student-avatar-small">
+                                    ${student.name.split(' ').map(n => n[0]).join('')}
+                                </div>
+                                <div>
+                                    <div class="student-name">${student.name}</div>
+                                    <div class="student-nis">NIS: ${student.nis}</div>
+                                </div>
+                            </div>
+                            <div class="attendance-options-small">
+                                <button type="button" class="attendance-btn-small present ${previousStatus === 'present' ? 'active' : ''}" data-status="present">H</button>
+                                <button type="button" class="attendance-btn-small sick ${previousStatus === 'sick' ? 'active' : ''}" data-status="sick">S</button>
+                                <button type="button" class="attendance-btn-small permission ${previousStatus === 'permission' ? 'active' : ''}" data-status="permission">I</button>
+                                <button type="button" class="attendance-btn-small absent ${previousStatus === 'absent' ? 'active' : ''}" data-status="absent">A</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Tambahkan event listeners untuk tombol absensi
+                container.querySelectorAll('.attendance-btn-small').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const studentItem = e.target.closest('.attendance-student-item');
+                        const status = e.target.dataset.status;
+                        // Hapus kelas aktif dari semua tombol dalam item siswa ini
+                        studentItem.querySelectorAll('.attendance-btn-small').forEach(b => {
+                            b.classList.remove('active');
+                        });
+                        // Tambahkan kelas aktif ke tombol yang diklik
+                        e.target.classList.add('active');
+                        // Simpan status yang dipilih ke atribut data
+                        studentItem.dataset.selectedStatus = status;
+                    });
+                });
+            }
+
+            submitAttendance() {
+                const date = document.getElementById('modalDate').value;
+                const subject = document.getElementById('modalSubject').value;
+                const studentItems = document.querySelectorAll('.attendance-student-item');
+
+                if (studentItems.length === 0) {
+                    this.showToast('Tidak ada siswa untuk diinputkan absensinya!', 'error');
+                    return;
+                }
+
+                // Hapus data absensi sebelumnya untuk tanggal dan mata pelajaran yang sama
+                this.attendance.records = this.attendance.records.filter(record => 
+                    !(record.date === date && record.subject === subject)
+                );
+
+                // Loop semua siswa untuk menyimpan statusnya
+                studentItems.forEach(item => {
+                    const studentId = item.dataset.studentId;
+                    const selectedStatus = item.dataset.selectedStatus || 'absent'; // Default ke absent jika tidak dipilih
+                    const student = this.students.find(s => s.id == studentId);
+
+                    // Tambahkan record baru
+                    this.attendance.records.push({
+                        id: Date.now() + studentId,
+                        date: date,
+                        subject: subject,
+                        studentId: studentId,
+                        studentName: student.name,
+                        nis: student.nis,
+                        status: selectedStatus,
+                        time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
+                        timestamp: new Date().toISOString()
+                    });
+                });
+
+                this.saveAttendance();
+                this.closeModal('attendanceModal');
+                this.loadAttendanceData(date);
+                this.loadDashboard(); // Update dashboard stats
+                this.showToast('Absensi berhasil disimpan!');
+            }
+
+            submitAssignment() {
+                const id = document.getElementById('assignmentId').value;
+                const subject = document.getElementById('assignmentSubject').value;
+                const title = document.getElementById('assignmentTitle').value;
+                const description = document.getElementById('assignmentDescription').value;
+                const deadline = document.getElementById('assignmentDeadline').value;
+                const type = document.getElementById('assignmentType').value;
+                const status = document.getElementById('assignmentStatus').value;
+                
+                if (id) {
+                    // Edit existing assignment
+                    const assignmentIndex = this.assignments.assignments.findIndex(a => a.id == id);
+                    if (assignmentIndex !== -1) {
+                        this.assignments.assignments[assignmentIndex] = {
+                            id: parseInt(id),
+                            subject,
+                            title,
+                            description,
+                            deadline,
+                            type,
+                            status,
+                            updated: new Date().toISOString()
+                        };
+                    }
+                } else {
+                    // Add new assignment
+                    const newAssignment = {
+                        id: Date.now(),
+                        subject: subject,
+                        title: title,
+                        description: description,
+                        deadline: deadline,
+                        type: type,
+                        status: status,
+                        created: new Date().toISOString()
+                    };
+
+                    if (!this.assignments.assignments) {
+                        this.assignments.assignments = [];
+                    }
+                    
+                    this.assignments.assignments.push(newAssignment);
+                }
+                
+                this.saveAssignments();
+                this.closeModal('assignmentModal');
+                this.loadAssignmentsTab();
+                this.loadUpcomingAssignments(); // Update dashboard assignments
+                this.showToast('Tugas berhasil disimpan!');
+            }
+
+            filterStudents(query) {
+                const filteredStudents = this.students.filter(student => 
+                    student.name.toLowerCase().includes(query.toLowerCase()) ||
+                    student.nis.includes(query)
+                );
+                const studentsGrid = document.getElementById('studentsGrid');
+                studentsGrid.innerHTML = filteredStudents.map(student => `
+                    <div class="student-card" onclick="app.showStudentDetails(${student.id})">
+                        <div class="student-avatar-large">
+                            ${student.name.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <h4>${student.name}</h4>
+                        <div class="student-nis">NIS: ${student.nis}</div>
+                        <div class="student-contact">
+                            <div><i class="fas fa-envelope"></i> ${student.email}</div>
+                            <div><i class="fas fa-phone"></i> ${student.phone}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            filterAssignments(filter) {
+                const assignmentsList = document.getElementById('assignmentsList');
+                let filteredAssignments = this.assignments.assignments;
+                
+                if (filter !== 'all') {
+                    filteredAssignments = filteredAssignments.filter(a => a.status === filter);
+                }
+                
+                assignmentsList.innerHTML = filteredAssignments.map(assignment => `
+                    <div class="assignment-item-detailed ${assignment.status}">
+                        <div class="assignment-header">
+                            <div class="assignment-subject">${assignment.subject}</div>
+                            <div class="assignment-status ${assignment.status}">
+                                ${this.getAssignmentStatusText(assignment.status)}
+                            </div>
+                        </div>
+                        <div class="assignment-title">${assignment.title}</div>
+                        <div class="assignment-description">${assignment.description}</div>
+                        <div class="assignment-footer">
+                            <div class="assignment-deadline">
+                                <i class="fas fa-clock"></i>
+                                Deadline: ${new Date(assignment.deadline).toLocaleDateString('id-ID')}
+                            </div>
+                            <div class="assignment-type">
+                                <i class="fas fa-tag"></i>
+                                ${this.getAssignmentTypeText(assignment.type)}
+                            </div>
+                        </div>
+                        <div class="assignment-actions">
+                            <button class="btn-small" onclick="app.editAssignment(${assignment.id})">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="btn-small" onclick="app.deleteAssignment(${assignment.id})">
+                                <i class="fas fa-trash"></i> Hapus
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // FIXED: Announcement methods
+            editAnnouncement() {
+                const modal = document.getElementById('announcementModal');
+                document.getElementById('announcementTextInput').value = this.announcement.text;
+                modal.style.display = 'block';
+            }
+
+            saveAnnouncement() {
+                const newText = document.getElementById('announcementTextInput').value;
+                this.announcement.text = newText;
+                this.saveAnnouncementData();
+                this.updateAnnouncement();
+                this.closeModal('announcementModal');
+                this.showToast('Pengumuman berhasil diperbarui!');
+            }
+
+            updateAnnouncement() {
+                const announcementEl = document.getElementById('announcementText');
+                if (announcementEl) {
+                    // Add animation
+                    announcementEl.style.opacity = '0';
+                    setTimeout(() => {
+                        announcementEl.textContent = this.announcement.text;
+                        announcementEl.style.opacity = '1';
+                    }, 300);
+                }
+            }
+
+            exportAttendance() {
+                const date = document.getElementById('attendanceDate').value;
+                const dayRecords = this.attendance.records.filter(record => record.date === date);
+                
+                let csvContent = "data:text/csv;charset=utf-8,";
+                csvContent += "No,Nama Siswa,NIS,Status,Waktu,Keterangan\n";
+                
+                this.students.forEach((student, index) => {
+                    const record = dayRecords.find(r => r.studentId == student.id);
+                    const status = record ? this.getStatusText(record.status) : 'Belum diisi';
+                    const time = record ? record.time : '-';
+                    const notes = record ? (record.notes || '-') : '-';
+                    
+                    csvContent += `${index + 1},${student.name},${student.nis},${status},${time},${notes}\n`;
+                });
+                
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", `absensi_${date}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            getStatusText(status) {
+                const statusMap = {
+                    'present': 'Hadir',
+                    'sick': 'Sakit',
+                    'permission': 'Izin',
+                    'absent': 'Alpha'
+                };
+                return statusMap[status] || status;
+            }
+
+            getAssignmentStatusText(status) {
+                const statusMap = {
+                    'urgent': 'Mendesak',
+                    'active': 'Aktif',
+                    'completed': 'Selesai'
+                };
+                return statusMap[status] || status;
+            }
+
+            getAssignmentTypeText(type) {
+                const typeMap = {
+                    'pr': 'Pekerjaan Rumah',
+                    'ulangan': 'Ulangan',
+                    'proyek': 'Proyek',
+                    'lainnya': 'Lainnya'
+                };
+                return typeMap[type] || type;
+            }
+
+            // NEW: Toast notification
+            showToast(message, type = 'success') {
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.textContent = message;
+                
+                if (type === 'error') {
+                    toast.classList.add('error');
+                }
+                
+                document.body.appendChild(toast);
+                
+                // Show toast
+                setTimeout(() => {
+                    toast.classList.add('show');
+                }, 100);
+                
+                // Hide toast after 3 seconds
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        if (document.body.contains(toast)) {
+                            document.body.removeChild(toast);
+                        }
+                    }, 400);
+                }, 3000);
+            }
+        }
+
+        // Initialize the application
+        const app = new ClassWebsite();
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let modal of modals) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+
+        // Set default date to today
+        window.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('attendanceDate').value = today;
+        });
+    </script>
+</body>
+</html>
