@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelas XI-7 VALLORIX - SMA Negeri 1</title>
+    <title>Kelas XI-7 VALLORIX - SMA Negeri 4 Bojonegoro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,37 +15,164 @@
         }
 
         :root {
-            --primary-color: #4f46e5;
-            --primary-dark: #4338ca;
+            --primary-color: #6366f1;
+            --primary-light: #818cf8;
+            --primary-dark: #4f46e5;
             --secondary-color: #10b981;
+            --secondary-light: #34d399;
+            --secondary-dark: #059669;
             --accent-color: #f59e0b;
+            --accent-light: #fbbf24;
+            --accent-dark: #d97706;
             --danger-color: #ef4444;
+            --danger-light: #f87171;
+            --danger-dark: #dc2626;
             --warning-color: #f59e0b;
             --info-color: #3b82f6;
+            --info-light: #60a5fa;
+            --info-dark: #2563eb;
+            --purple-color: #8b5cf6;
+            --pink-color: #ec4899;
+            --teal-color: #14b8a6;
+            --cyan-color: #06b6d4;
+            --indigo-color: #6366f1;
+            --rose-color: #f43f5e;
+            --amber-color: #f59e0b;
+            --emerald-color: #10b981;
+            --violet-color: #8b5cf6;
             --text-dark: #1f2937;
+            --text-medium: #374151;
             --text-light: #6b7280;
             --bg-light: #f8fafc;
+            --bg-white: #ffffff;
             --border-color: #e5e7eb;
+            --border-light: #f3f4f6;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 6px 10px -1px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --transition: all 0.3s ease;
+            --transition-slow: all 0.5s ease;
         }
 
         body {
-            background: var(--bg-light);
+            background: linear-gradient(135deg, #f0f4ff, #e6f7ff);
             color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--purple-color));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-logo {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-logo::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, var(--primary-light), var(--pink-color), var(--accent-light));
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 10s linear infinite;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            width: 0%;
+            background: white;
+            border-radius: 2px;
+            transition: width 0.5s ease;
         }
 
         .class-website {
             min-height: 100vh;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .class-website.loaded {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Header Styles */
         .class-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            background: linear-gradient(135deg, var(--primary-color), var(--purple-color));
             color: white;
             padding: 30px 0;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .class-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.05"><polygon points="0,0 1000,50 1000,100 0,100"/></svg>');
+            background-size: cover;
         }
 
         .header-content {
@@ -57,6 +184,8 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .class-info {
@@ -66,20 +195,56 @@
         }
 
         .class-avatar {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .class-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .class-avatar::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, var(--primary-light), var(--pink-color), var(--accent-light));
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .class-details h1 {
             font-size: 2.5rem;
             margin-bottom: 5px;
-            font-weight: 700;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #ffffff, #e0f2fe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
         }
 
         .class-details p {
@@ -94,6 +259,24 @@
 
         .stat {
             text-align: center;
+            position: relative;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 3px;
         }
 
         .stat-number {
@@ -123,6 +306,12 @@
             margin: 0 auto;
             display: flex;
             overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+            padding: 0 10px;
+        }
+
+        .nav-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
         }
 
         .nav-item {
@@ -133,10 +322,11 @@
             align-items: center;
             gap: 10px;
             font-weight: 500;
-            transition: all 0.3s;
+            transition: var(--transition);
             border-bottom: 3px solid transparent;
             white-space: nowrap;
             cursor: pointer;
+            position: relative;
         }
 
         .nav-item:hover {
@@ -163,22 +353,28 @@
 
         .tab-content {
             display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
 
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Dashboard Styles */
         .welcome-banner {
-            background: white;
-            border-radius: 15px;
+            background: linear-gradient(135deg, var(--bg-white), #f0f9ff);
+            border-radius: var(--radius-lg);
             padding: 30px;
             margin-bottom: 30px;
             box-shadow: var(--shadow);
@@ -186,12 +382,32 @@
             grid-template-columns: 2fr 1fr;
             gap: 30px;
             align-items: start;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+            border-radius: 0 0 0 100px;
+            opacity: 0.05;
         }
 
         .welcome-text h2 {
             font-size: 2rem;
             margin-bottom: 10px;
             color: var(--text-dark);
+            background: linear-gradient(45deg, var(--primary-color), var(--purple-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
         }
 
         .welcome-text p {
@@ -202,9 +418,10 @@
         .class-announcement {
             background: linear-gradient(135deg, #fff3cd, #ffeaa7);
             border: 1px solid #ffeaa7;
-            border-radius: 10px;
+            border-radius: var(--radius-md);
             padding: 20px;
             position: relative;
+            box-shadow: var(--shadow);
         }
 
         .announcement-header {
@@ -241,10 +458,14 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: var(--radius-sm);
         }
 
         .edit-announcement-btn:hover {
             color: var(--primary-color);
+            background: rgba(79, 70, 229, 0.1);
         }
 
         /* Dashboard Grid */
@@ -256,9 +477,16 @@
 
         .stats-section, .schedule-section, .assignments-section, .activity-section, .absence-alert-section {
             background: white;
-            border-radius: 15px;
+            border-radius: var(--radius-lg);
             padding: 25px;
             box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+        }
+
+        .stats-section:hover, .schedule-section:hover, .assignments-section:hover, .activity-section:hover, .absence-alert-section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
         }
 
         .stats-section {
@@ -273,6 +501,9 @@
             margin-bottom: 20px;
             color: var(--text-dark);
             font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .stats-grid {
@@ -286,15 +517,16 @@
             align-items: center;
             gap: 15px;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: var(--radius-md);
             border-left: 4px solid var(--primary-color);
             background: var(--bg-light);
-            transition: transform 0.3s;
+            transition: var(--transition);
             cursor: pointer;
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
         }
 
         .stat-card.present { border-left-color: var(--secondary-color); }
@@ -305,7 +537,7 @@
         .stat-icon {
             width: 50px;
             height: 50px;
-            border-radius: 10px;
+            border-radius: var(--radius-md);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -342,13 +574,15 @@
             gap: 15px;
             padding: 15px;
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            transition: all 0.3s;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
             cursor: pointer;
+            position: relative;
         }
 
         .schedule-item:hover {
             transform: translateX(5px);
+            box-shadow: var(--shadow);
         }
 
         .schedule-item.current {
@@ -390,6 +624,49 @@
             color: white;
         }
 
+        /* Teacher Status Badge */
+        .teacher-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .teacher-present {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .teacher-absent {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .edit-schedule-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+        }
+
+        .edit-schedule-btn:hover {
+            color: var(--primary-color);
+            background: rgba(79, 70, 229, 0.1);
+        }
+
         /* Assignments */
         .assignments-list {
             display: flex;
@@ -400,14 +677,15 @@
         .assignment-item {
             padding: 15px;
             border: 1px solid var(--border-color);
-            border-radius: 10px;
+            border-radius: var(--radius-md);
             border-left: 4px solid var(--info-color);
-            transition: all 0.3s;
+            transition: var(--transition);
             cursor: pointer;
         }
 
         .assignment-item:hover {
             transform: translateY(-3px);
+            box-shadow: var(--shadow);
         }
 
         .assignment-item.urgent {
@@ -456,20 +734,22 @@
             gap: 15px;
             padding: 15px;
             background: var(--bg-light);
-            border-radius: 10px;
-            transition: all 0.3s;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
             cursor: pointer;
         }
 
         .activity-item:hover {
             transform: translateX(5px);
+            background: white;
+            box-shadow: var(--shadow);
         }
 
         .activity-icon {
             width: 40px;
             height: 40px;
             background: var(--primary-color);
-            border-radius: 10px;
+            border-radius: var(--radius-md);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -503,26 +783,31 @@
         .tab-header h2 {
             color: var(--text-dark);
             font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         /* Buttons */
         .btn-primary {
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
             border: none;
             padding: 12px 24px;
-            border-radius: 8px;
+            border-radius: var(--radius-md);
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 8px;
             font-weight: 500;
-            transition: all 0.3s;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
         }
 
         .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
 
         .btn-secondary {
@@ -530,15 +815,20 @@
             color: var(--text-dark);
             border: 1px solid var(--border-color);
             padding: 10px 20px;
-            border-radius: 6px;
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-secondary:hover, .btn-secondary.active {
             background: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
         }
 
         .full-width {
@@ -559,6 +849,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .date-selector label {
@@ -568,7 +859,14 @@
         .date-selector input {
             padding: 8px 12px;
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .date-selector input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
         }
 
         .view-options {
@@ -578,15 +876,17 @@
 
         .attendance-table-container {
             background: white;
-            border-radius: 10px;
+            border-radius: var(--radius-md);
             overflow: hidden;
             box-shadow: var(--shadow);
             margin-bottom: 20px;
+            overflow-x: auto;
         }
 
         .attendance-table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 800px;
         }
 
         .attendance-table th {
@@ -644,8 +944,8 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: white;
-            border-radius: 15px;
-            box-shadow: var(--shadow-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
             width: 90%;
             max-width: 600px;
             max-height: 90vh;
@@ -673,6 +973,7 @@
             cursor: pointer;
             padding: 5px;
             border-radius: 4px;
+            transition: var(--transition);
         }
 
         .close-btn:hover {
@@ -702,9 +1003,9 @@
             width: 100%;
             padding: 12px 15px;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: var(--transition);
         }
 
         .form-group input:focus,
@@ -727,8 +1028,13 @@
             justify-content: space-between;
             padding: 12px;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .attendance-student-item:hover {
+            background: var(--bg-light);
         }
 
         .student-attendance-info {
@@ -758,11 +1064,11 @@
         .attendance-btn-small {
             padding: 6px 12px;
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: var(--radius-sm);
             background: white;
             cursor: pointer;
             font-size: 0.8rem;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
 
         .attendance-btn-small.active {
@@ -783,16 +1089,17 @@
 
         .student-card {
             background: white;
-            border-radius: 12px;
+            border-radius: var(--radius-md);
             padding: 20px;
             box-shadow: var(--shadow);
             text-align: center;
-            transition: transform 0.3s;
+            transition: var(--transition);
             cursor: pointer;
         }
 
         .student-card:hover {
             transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         .student-avatar-large {
@@ -834,18 +1141,19 @@
 
         .teacher-card {
             background: white;
-            border-radius: 12px;
+            border-radius: var(--radius-md);
             padding: 25px;
             box-shadow: var(--shadow);
             display: flex;
             align-items: center;
             gap: 20px;
-            transition: transform 0.3s;
+            transition: var(--transition);
             cursor: pointer;
         }
 
         .teacher-card:hover {
             transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         .teacher-avatar {
@@ -879,9 +1187,10 @@
         /* Weekly Schedule */
         .weekly-schedule {
             background: white;
-            border-radius: 12px;
+            border-radius: var(--radius-md);
             overflow: hidden;
             box-shadow: var(--shadow);
+            overflow-x: auto;
         }
 
         .schedule-days {
@@ -889,6 +1198,7 @@
             grid-template-columns: 120px repeat(6, 1fr);
             background: var(--primary-color);
             color: white;
+            min-width: 800px;
         }
 
         .day-header {
@@ -904,6 +1214,7 @@
         .schedule-grid {
             display: grid;
             grid-template-columns: 120px repeat(6, 1fr);
+            min-width: 800px;
         }
 
         .schedule-cell {
@@ -924,15 +1235,17 @@
         .schedule-lesson {
             background: rgba(79, 70, 229, 0.1);
             border: 1px solid var(--primary-color);
-            border-radius: 6px;
+            border-radius: var(--radius-sm);
             padding: 10px;
             margin-bottom: 5px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
+            position: relative;
         }
 
         .schedule-lesson:hover {
             transform: scale(1.02);
+            background: rgba(79, 70, 229, 0.15);
         }
 
         .schedule-lesson h5 {
@@ -945,17 +1258,47 @@
             color: var(--text-light);
         }
 
+        .schedule-lesson-actions {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .schedule-edit-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 0.7rem;
+            padding: 2px 5px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .schedule-edit-btn:hover {
+            color: var(--primary-color);
+            background: rgba(79, 70, 229, 0.1);
+        }
+
         /* Search Box */
         .search-box {
             position: relative;
             background: white;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             padding: 10px 15px;
             display: flex;
             align-items: center;
             gap: 10px;
             min-width: 300px;
+            transition: var(--transition);
+        }
+
+        .search-box:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
         }
 
         .search-box i {
@@ -972,17 +1315,18 @@
         /* Assignment Detailed */
         .assignment-item-detailed {
             background: white;
-            border-radius: 10px;
+            border-radius: var(--radius-md);
             padding: 20px;
             margin-bottom: 15px;
             box-shadow: var(--shadow);
             border-left: 4px solid var(--info-color);
-            transition: all 0.3s;
+            transition: var(--transition);
             position: relative;
         }
 
         .assignment-item-detailed:hover {
             transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
         }
 
         .assignment-item-detailed.urgent {
@@ -1037,16 +1381,20 @@
         .btn-small {
             padding: 6px 12px;
             border: 1px solid var(--border-color);
-            border-radius: 4px;
+            border-radius: var(--radius-sm);
             background: white;
             cursor: pointer;
             font-size: 0.8rem;
-            transition: all 0.3s;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .btn-small:hover {
             background: var(--primary-color);
             color: white;
+            transform: translateY(-1px);
         }
 
         /* Assignment Filters */
@@ -1059,36 +1407,43 @@
         .filter-btn {
             padding: 8px 16px;
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: var(--radius-sm);
             background: white;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .filter-btn.active, .filter-btn:hover {
             background: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
         }
 
         /* Export Button */
         .export-btn {
-            background: var(--secondary-color);
+            background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
             color: white;
             border: none;
             padding: 10px 20px;
-            border-radius: 6px;
+            border-radius: var(--radius-sm);
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 8px;
             font-weight: 500;
-            transition: all 0.3s;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
         }
 
         .export-btn:hover {
-            background: #0da271;
-            transform: translateY(-1px);
+            background: linear-gradient(135deg, var(--secondary-dark), var(--secondary-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
 
         /* Toast Notification */
@@ -1099,12 +1454,12 @@
             background: var(--secondary-color);
             color: white;
             padding: 15px 25px;
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             box-shadow: var(--shadow-lg);
             z-index: 2000;
             opacity: 0;
             transform: translateX(100px);
-            transition: all 0.4s ease;
+            transition: var(--transition-slow);
         }
 
         .toast.show {
@@ -1122,7 +1477,7 @@
             padding: 40px;
             color: var(--text-light);
             border: 1px dashed var(--border-color);
-            border-radius: 10px;
+            border-radius: var(--radius-md);
             margin: 20px 0;
         }
 
@@ -1135,7 +1490,7 @@
         /* Attendance Summary */
         .attendance-summary {
             background: white;
-            border-radius: 10px;
+            border-radius: var(--radius-md);
             padding: 20px;
             box-shadow: var(--shadow);
         }
@@ -1183,15 +1538,16 @@
 
         .absence-alert-item {
             background: white;
-            border-radius: 10px;
+            border-radius: var(--radius-md);
             padding: 20px;
             box-shadow: var(--shadow);
             border-left: 4px solid var(--danger-color);
-            transition: all 0.3s;
+            transition: var(--transition);
         }
 
         .absence-alert-item:hover {
             transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
         }
 
         .absence-alert-header {
@@ -1226,7 +1582,7 @@
         .absence-alert-subject {
             background: var(--bg-light);
             padding: 6px 12px;
-            border-radius: 6px;
+            border-radius: var(--radius-sm);
             font-size: 0.8rem;
             display: flex;
             align-items: center;
@@ -1251,7 +1607,7 @@
         /* NEW: Student Absence Report */
         .student-absence-report {
             background: white;
-            border-radius: 10px;
+            border-radius: var(--radius-md);
             padding: 20px;
             box-shadow: var(--shadow);
             margin-bottom: 20px;
@@ -1297,7 +1653,7 @@
         /* NEW: Absence Pattern Styles */
         .absence-pattern-section {
             background: white;
-            border-radius: 15px;
+            border-radius: var(--radius-lg);
             padding: 25px;
             box-shadow: var(--shadow);
             margin-bottom: 25px;
@@ -1305,9 +1661,10 @@
 
         .pattern-filters {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             margin-bottom: 20px;
             flex-wrap: wrap;
+            align-items: end;
         }
 
         .pattern-filter-group {
@@ -1322,10 +1679,23 @@
             color: var(--text-light);
         }
 
+        .pattern-filter-group input, .pattern-filter-group select {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .pattern-filter-group input:focus, .pattern-filter-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
         /* NEW: Group Spinner Styles */
         .group-spinner-section {
             background: white;
-            border-radius: 15px;
+            border-radius: var(--radius-lg);
             padding: 25px;
             box-shadow: var(--shadow);
             margin-bottom: 25px;
@@ -1351,6 +1721,19 @@
             color: var(--text-light);
         }
 
+        .group-control-item input, .group-control-item select {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .group-control-item input:focus, .group-control-item select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
         .groups-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1360,10 +1743,16 @@
 
         .group-card {
             background: white;
-            border-radius: 10px;
+            border-radius: var(--radius-md);
             padding: 20px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .group-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         .group-header {
@@ -1401,8 +1790,13 @@
             align-items: center;
             gap: 10px;
             padding: 8px;
-            border-radius: 6px;
+            border-radius: var(--radius-sm);
             background: var(--bg-light);
+            transition: var(--transition);
+        }
+
+        .group-member:hover {
+            background: var(--border-light);
         }
 
         .group-member-avatar {
@@ -1432,7 +1826,7 @@
             justify-content: center;
             padding: 40px;
             background: white;
-            border-radius: 10px;
+            border-radius: var(--radius-md);
             box-shadow: var(--shadow);
             margin: 20px 0;
         }
@@ -1456,6 +1850,243 @@
             color: var(--text-light);
             font-weight: 500;
         }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--purple-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            z-index: 99;
+            transition: var(--transition);
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Quick Actions Menu */
+        .quick-action-item {
+            position: fixed;
+            background: white;
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            z-index: 98;
+            animation: slideInRight 0.3s ease-out both;
+            transition: var(--transition);
+        }
+
+        .quick-action-item:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* NEW: Color Variants for Enhanced Aesthetics */
+        .color-variant-1 { background: linear-gradient(135deg, var(--primary-color), var(--purple-color)); }
+        .color-variant-2 { background: linear-gradient(135deg, var(--secondary-color), var(--teal-color)); }
+        .color-variant-3 { background: linear-gradient(135deg, var(--warning-color), var(--amber-color)); }
+        .color-variant-4 { background: linear-gradient(135deg, var(--info-color), var(--cyan-color)); }
+        .color-variant-5 { background: linear-gradient(135deg, var(--danger-color), var(--rose-color)); }
+        .color-variant-6 { background: linear-gradient(135deg, var(--purple-color), var(--violet-color)); }
+        .color-variant-7 { background: linear-gradient(135deg, var(--teal-color), var(--emerald-color)); }
+        .color-variant-8 { background: linear-gradient(135deg, var(--amber-color), var(--warning-color)); }
+
+        /* NEW: Enhanced Card Styles */
+        .enhanced-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enhanced-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, var(--primary-color), var(--purple-color));
+        }
+
+        .enhanced-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* NEW: Animated Background Elements */
+        .animated-bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* NEW: Enhanced Schedule Item */
+        .enhanced-schedule-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enhanced-schedule-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .enhanced-schedule-item:hover::before {
+            width: 8px;
+            background: var(--secondary-color);
+        }
+
+        .enhanced-schedule-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow);
+        }
+
+        .enhanced-schedule-item.current {
+            border-color: var(--primary-color);
+            background: rgba(79, 70, 229, 0.05);
+        }
+
+        .enhanced-schedule-item.current::before {
+            background: var(--secondary-color);
+            width: 8px;
+        }
+
+        /* NEW: Enhanced Assignment Item */
+        .enhanced-assignment-item {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--info-color);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enhanced-assignment-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 30px 30px 0;
+            border-color: transparent rgba(79, 70, 229, 0.1) transparent transparent;
+            transition: var(--transition);
+        }
+
+        .enhanced-assignment-item:hover::before {
+            border-width: 0 40px 40px 0;
+        }
+
+        .enhanced-assignment-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .enhanced-assignment-item.urgent {
+            border-left-color: var(--danger-color);
+        }
+
+        .enhanced-assignment-item.completed {
+            border-left-color: var(--secondary-color);
+        }
+
+        /* NEW: Enhanced Stats Cards */
+        .enhanced-stat-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            background: var(--bg-light);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enhanced-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .enhanced-stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .enhanced-stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .enhanced-stat-card.present { border-left: 4px solid var(--secondary-color); }
+        .enhanced-stat-card.sick { border-left: 4px solid var(--warning-color); }
+        .enhanced-stat-card.permission { border-left: 4px solid var(--info-color); }
+        .enhanced-stat-card.absent { border-left: 4px solid var(--danger-color); }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
@@ -1485,6 +2116,12 @@
             
             .header-stats {
                 justify-content: center;
+                width: 100%;
+            }
+            
+            .stat {
+                flex: 1;
+                min-width: 120px;
             }
             
             .nav-container {
@@ -1517,11 +2154,33 @@
                 grid-template-columns: 80px repeat(6, 1fr);
                 font-size: 0.8rem;
             }
+            
+            .pattern-filters, .group-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .pattern-filter-group, .group-control-item {
+                width: 100%;
+            }
+            
+            .search-box {
+                min-width: 100%;
+            }
+            
+            .class-details h1 {
+                font-size: 2rem;
+            }
+            
+            .class-avatar {
+                width: 80px;
+                height: 80px;
+            }
         }
 
         @media (max-width: 480px) {
             .class-details h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .schedule-item {
@@ -1542,21 +2201,73 @@
             .attendance-table td {
                 padding: 10px 8px;
             }
+            
+            .absence-alert-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .group-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .group-actions {
+                flex-direction: column;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .stat {
+                padding: 8px 10px;
+            }
+            
+            .nav-item {
+                padding: 15px 20px;
+            }
+            
+            .class-main {
+                padding: 20px 15px;
+            }
+            
+            .welcome-banner, .stats-section, .schedule-section, .assignments-section, .activity-section, .absence-alert-section {
+                padding: 20px;
+            }
+            
+            .tab-header h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="class-website">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="loading-text">Kelas XI-7 VALLORIX</div>
+        <div class="loading-bar">
+            <div class="loading-progress" id="loadingProgress"></div>
+        </div>
+    </div>
+
+    <div class="class-website" id="classWebsite">
         <!-- Header -->
         <header class="class-header">
             <div class="header-content">
                 <div class="class-info">
                     <div class="class-avatar">
-                        <i class="fas fa-users"></i>
+                        <!-- Logo kelas akan dimuat di sini -->
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
                     <div class="class-details">
                         <h1>Kelas XI-7 VALLORIX</h1>
-                        <p>SMA Negeri 1 Kota Contoh • Tahun Ajaran 2024/2025</p>
+                        <p>SMA Negeri 4 Bojonegoro • Tahun Ajaran 2024/2025</p>
                     </div>
                 </div>
                 <div class="header-stats">
@@ -1641,7 +2352,7 @@
                     <div class="stats-section">
                         <h3>Statistik Hari Ini</h3>
                         <div class="stats-grid">
-                            <div class="stat-card present" onclick="app.showAttendanceDetails('present')">
+                            <div class="enhanced-stat-card present" onclick="app.showAttendanceDetails('present')">
                                 <div class="stat-icon">
                                     <i class="fas fa-user-check"></i>
                                 </div>
@@ -1650,7 +2361,7 @@
                                     <span>Hadir</span>
                                 </div>
                             </div>
-                            <div class="stat-card sick" onclick="app.showAttendanceDetails('sick')">
+                            <div class="enhanced-stat-card sick" onclick="app.showAttendanceDetails('sick')">
                                 <div class="stat-icon">
                                     <i class="fas fa-procedures"></i>
                                 </div>
@@ -1659,7 +2370,7 @@
                                     <span>Sakit</span>
                                 </div>
                             </div>
-                            <div class="stat-card permission" onclick="app.showAttendanceDetails('permission')">
+                            <div class="enhanced-stat-card permission" onclick="app.showAttendanceDetails('permission')">
                                 <div class="stat-icon">
                                     <i class="fas fa-envelope"></i>
                                 </div>
@@ -1668,7 +2379,7 @@
                                     <span>Izin</span>
                                 </div>
                             </div>
-                            <div class="stat-card absent" onclick="app.showAttendanceDetails('absent')">
+                            <div class="enhanced-stat-card absent" onclick="app.showAttendanceDetails('absent')">
                                 <div class="stat-icon">
                                     <i class="fas fa-user-times"></i>
                                 </div>
@@ -1691,31 +2402,8 @@
                     <!-- Today's Schedule -->
                     <div class="schedule-section">
                         <h3>Jadwal Hari Ini</h3>
-                        <div class="today-schedule">
-                            <div class="schedule-item current">
-                                <div class="schedule-time">07:00 - 08:30</div>
-                                <div class="schedule-details">
-                                    <h4>Matematika</h4>
-                                    <p>Bu Sari, S.Pd • Ruang 201</p>
-                                </div>
-                                <div class="schedule-status">Berlangsung</div>
-                            </div>
-                            <div class="schedule-item">
-                                <div class="schedule-time">08:30 - 10:00</div>
-                                <div class="schedule-details">
-                                    <h4>Fisika</h4>
-                                    <p>Pak Budi, M.Pd • Lab Fisika</p>
-                                </div>
-                                <div class="schedule-status">Selanjutnya</div>
-                            </div>
-                            <div class="schedule-item">
-                                <div class="schedule-time">10:00 - 11:30</div>
-                                <div class="schedule-details">
-                                    <h4>Kimia</h4>
-                                    <p>Bu Dewi, S.Pd • Lab Kimia</p>
-                                </div>
-                                <div class="schedule-status">Akan Datang</div>
-                            </div>
+                        <div class="today-schedule" id="todaySchedule">
+                            <!-- Today's schedule will be loaded here -->
                         </div>
                     </div>
                     <!-- Upcoming Assignments -->
@@ -1728,34 +2416,8 @@
                     <!-- Recent Activity -->
                     <div class="activity-section">
                         <h3>Aktivitas Terbaru</h3>
-                        <div class="activity-list">
-                            <div class="activity-item">
-                                <div class="activity-icon">
-                                    <i class="fas fa-clipboard-check"></i>
-                                </div>
-                                <div class="activity-content">
-                                    <p>Absensi pagi telah diinput</p>
-                                    <span class="activity-time">08:00 • 28 siswa hadir</span>
-                                </div>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-icon">
-                                    <i class="fas fa-tasks"></i>
-                                </div>
-                                <div class="activity-content">
-                                    <p>Tugas Matematika dikumpulkan</p>
-                                    <span class="activity-time">Kemarin • 25 siswa mengumpulkan</span>
-                                </div>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-icon">
-                                    <i class="fas fa-comment"></i>
-                                </div>
-                                <div class="activity-content">
-                                    <p>Pengumuman baru dari Wali Kelas</p>
-                                    <span class="activity-time">2 hari lalu</span>
-                                </div>
-                            </div>
+                        <div class="activity-list" id="recentActivityList">
+                            <!-- Recent activity will be loaded here -->
                         </div>
                     </div>
                 </div>
@@ -1842,9 +2504,11 @@
                     <div class="pattern-filters">
                         <div class="pattern-filter-group">
                             <label for="absenceDateRange">Rentang Tanggal:</label>
-                            <input type="date" id="absenceStartDate">
-                            <span>s/d</span>
-                            <input type="date" id="absenceEndDate">
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <input type="date" id="absenceStartDate">
+                                <span>s/d</span>
+                                <input type="date" id="absenceEndDate">
+                            </div>
                         </div>
                         <div class="pattern-filter-group">
                             <label for="absenceTypeFilter">Jenis Ketidakhadiran:</label>
@@ -1960,6 +2624,10 @@
                 <div class="tab-header">
                     <h2>Jadwal Pelajaran XI-7 VALLORIX</h2>
                     <div class="schedule-actions">
+                        <button class="btn-primary" onclick="app.showScheduleModal()">
+                            <i class="fas fa-edit"></i>
+                            Edit Jadwal
+                        </button>
                         <button class="btn-secondary">
                             <i class="fas fa-print"></i>
                             Cetak Jadwal
@@ -2183,6 +2851,93 @@
         </div>
     </div>
 
+    <!-- NEW: Schedule Edit Modal -->
+    <div id="scheduleModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="scheduleModalTitle">Edit Jadwal Pelajaran</h3>
+                <button class="close-btn" onclick="app.closeModal('scheduleModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="scheduleForm">
+                    <input type="hidden" id="scheduleId">
+                    <div class="form-group">
+                        <label for="scheduleDay">Hari</label>
+                        <select id="scheduleDay" required>
+                            <option value="">Pilih Hari</option>
+                            <option value="Senin">Senin</option>
+                            <option value="Selasa">Selasa</option>
+                            <option value="Rabu">Rabu</option>
+                            <option value="Kamis">Kamis</option>
+                            <option value="Jumat">Jumat</option>
+                            <option value="Sabtu">Sabtu</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="scheduleTime">Waktu</label>
+                        <select id="scheduleTime" required>
+                            <option value="">Pilih Waktu</option>
+                            <option value="07:00-08:30">07:00-08:30</option>
+                            <option value="08:30-10:00">08:30-10:00</option>
+                            <option value="10:00-11:30">10:00-11:30</option>
+                            <option value="11:30-13:00">11:30-13:00</option>
+                            <option value="13:00-14:30">13:00-14:30</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="scheduleSubject">Mata Pelajaran</label>
+                        <select id="scheduleSubject" required>
+                            <option value="">Pilih Mapel</option>
+                            <option value="Matematika">Matematika</option>
+                            <option value="Fisika">Fisika</option>
+                            <option value="Kimia">Kimia</option>
+                            <option value="Biologi">Biologi</option>
+                            <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                            <option value="Bahasa Inggris">Bahasa Inggris</option>
+                            <option value="TIK Lanjut">TIK Lanjut</option>
+                            <option value="Sosiologi Lanjut">Sosiologi Lanjut</option>
+                            <option value="Ekonomi Lanjut">Ekonomi Lanjut</option>
+                            <option value="Bahasa Jepang Lanjut">Bahasa Jepang Lanjut</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="scheduleTeacher">Guru</label>
+                        <select id="scheduleTeacher" required>
+                            <option value="">Pilih Guru</option>
+                            <option value="Bu Sari, S.Pd">Bu Sari, S.Pd</option>
+                            <option value="Pak Budi, M.Pd">Pak Budi, M.Pd</option>
+                            <option value="Bu Dewi, S.Pd">Bu Dewi, S.Pd</option>
+                            <option value="Pak Andi, S.Pd">Pak Andi, S.Pd</option>
+                            <option value="Bu Rini, M.Pd">Bu Rini, M.Pd</option>
+                            <option value="Bu Maya, S.Pd">Bu Maya, S.Pd</option>
+                            <option value="Pak Joko, S.Kom">Pak Joko, S.Kom</option>
+                            <option value="Bu Sinta, S.Sos">Bu Sinta, S.Sos</option>
+                            <option value="Pak Rudi, S.E">Pak Rudi, S.E</option>
+                            <option value="Bu Yuki, S.Pd">Bu Yuki, S.Pd</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="scheduleRoom">Ruangan</label>
+                        <input type="text" id="scheduleRoom" placeholder="Masukkan ruangan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacherStatus">Status Guru</label>
+                        <select id="teacherStatus">
+                            <option value="present">Hadir</option>
+                            <option value="absent">Tidak Hadir</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary full-width">
+                        <i class="fas fa-save"></i>
+                        Simpan Jadwal
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
         class ClassWebsite {
             constructor() {
@@ -2194,6 +2949,7 @@
                 this.assignments = this.loadAssignments();
                 this.announcement = this.loadAnnouncement();
                 this.groups = this.loadGroups();
+                this.activities = this.loadActivities();
                 this.init();
             }
 
@@ -2235,6 +2991,12 @@
                 document.getElementById('announcementForm').addEventListener('submit', (e) => {
                     e.preventDefault();
                     this.saveAnnouncement();
+                });
+
+                // Schedule form
+                document.getElementById('scheduleForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.submitSchedule();
                 });
 
                 // Date change for attendance
@@ -2400,36 +3162,43 @@
             }
 
             loadSchedule() {
-                return {
-                    'Senin': [
-                        { time: '07:00-08:30', subject: 'Matematika', teacher: 'Bu Sari, S.Pd', room: 'Ruang 201' },
-                        { time: '08:30-10:00', subject: 'Fisika', teacher: 'Pak Budi, M.Pd', room: 'Lab Fisika' },
-                        { time: '10:00-11:30', subject: 'Kimia', teacher: 'Bu Dewi, S.Pd', room: 'Lab Kimia' },
-                        { time: '13:00-14:30', subject: 'TIK Lanjut', teacher: 'Pak Joko, S.Kom', room: 'Lab Komputer' }
-                    ],
-                    'Selasa': [
-                        { time: '07:00-08:30', subject: 'Biologi', teacher: 'Pak Andi, S.Pd', room: 'Lab Biologi' },
-                        { time: '08:30-10:00', subject: 'Bahasa Indonesia', teacher: 'Bu Rini, M.Pd', room: 'Ruang 201' },
-                        { time: '10:00-11:30', subject: 'Sosiologi Lanjut', teacher: 'Bu Sinta, S.Sos', room: 'Ruang 202' }
-                    ],
-                    'Rabu': [
-                        { time: '07:00-08:30', subject: 'Matematika', teacher: 'Bu Sari, S.Pd', room: 'Ruang 201' },
-                        { time: '08:30-10:00', subject: 'Fisika', teacher: 'Pak Budi, M.Pd', room: 'Lab Fisika' },
-                        { time: '10:00-11:30', subject: 'Bahasa Inggris', teacher: 'Bu Maya, S.Pd', room: 'Ruang 203' }
-                    ],
-                    'Kamis': [
-                        { time: '07:00-08:30', subject: 'Kimia', teacher: 'Bu Dewi, S.Pd', room: 'Lab Kimia' },
-                        { time: '08:30-10:00', subject: 'Biologi', teacher: 'Pak Andi, S.Pd', room: 'Lab Biologi' },
-                        { time: '10:00-11:30', subject: 'Ekonomi Lanjut', teacher: 'Pak Rudi, S.E', room: 'Ruang 204' }
-                    ],
-                    'Jumat': [
-                        { time: '07:00-08:30', subject: 'Bahasa Indonesia', teacher: 'Bu Rini, M.Pd', room: 'Ruang 201' },
-                        { time: '08:30-10:00', subject: 'Bahasa Jepang Lanjut', teacher: 'Bu Yuki, S.Pd', room: 'Ruang 205' }
-                    ],
-                    'Sabtu': [
-                        { time: '07:00-09:00', subject: 'Ekstrakurikuler', teacher: 'Various', room: 'Lapangan' }
-                    ]
-                };
+                const saved = localStorage.getItem('scheduleData');
+                if (saved) {
+                    return JSON.parse(saved);
+                } else {
+                    const defaultSchedule = {
+                        'Senin': [
+                            { time: '07:00-08:30', subject: 'Matematika', teacher: 'Bu Sari, S.Pd', room: 'Ruang 201', teacherStatus: 'present' },
+                            { time: '08:30-10:00', subject: 'Fisika', teacher: 'Pak Budi, M.Pd', room: 'Lab Fisika', teacherStatus: 'present' },
+                            { time: '10:00-11:30', subject: 'Kimia', teacher: 'Bu Dewi, S.Pd', room: 'Lab Kimia', teacherStatus: 'present' },
+                            { time: '13:00-14:30', subject: 'TIK Lanjut', teacher: 'Pak Joko, S.Kom', room: 'Lab Komputer', teacherStatus: 'present' }
+                        ],
+                        'Selasa': [
+                            { time: '07:00-08:30', subject: 'Biologi', teacher: 'Pak Andi, S.Pd', room: 'Lab Biologi', teacherStatus: 'present' },
+                            { time: '08:30-10:00', subject: 'Bahasa Indonesia', teacher: 'Bu Rini, M.Pd', room: 'Ruang 201', teacherStatus: 'present' },
+                            { time: '10:00-11:30', subject: 'Sosiologi Lanjut', teacher: 'Bu Sinta, S.Sos', room: 'Ruang 202', teacherStatus: 'present' }
+                        ],
+                        'Rabu': [
+                            { time: '07:00-08:30', subject: 'Matematika', teacher: 'Bu Sari, S.Pd', room: 'Ruang 201', teacherStatus: 'present' },
+                            { time: '08:30-10:00', subject: 'Fisika', teacher: 'Pak Budi, M.Pd', room: 'Lab Fisika', teacherStatus: 'present' },
+                            { time: '10:00-11:30', subject: 'Bahasa Inggris', teacher: 'Bu Maya, S.Pd', room: 'Ruang 203', teacherStatus: 'present' }
+                        ],
+                        'Kamis': [
+                            { time: '07:00-08:30', subject: 'Kimia', teacher: 'Bu Dewi, S.Pd', room: 'Lab Kimia', teacherStatus: 'present' },
+                            { time: '08:30-10:00', subject: 'Biologi', teacher: 'Pak Andi, S.Pd', room: 'Lab Biologi', teacherStatus: 'present' },
+                            { time: '10:00-11:30', subject: 'Ekonomi Lanjut', teacher: 'Pak Rudi, S.E', room: 'Ruang 204', teacherStatus: 'present' }
+                        ],
+                        'Jumat': [
+                            { time: '07:00-08:30', subject: 'Bahasa Indonesia', teacher: 'Bu Rini, M.Pd', room: 'Ruang 201', teacherStatus: 'present' },
+                            { time: '08:30-10:00', subject: 'Bahasa Jepang Lanjut', teacher: 'Bu Yuki, S.Pd', room: 'Ruang 205', teacherStatus: 'present' }
+                        ],
+                        'Sabtu': [
+                            { time: '07:00-09:00', subject: 'Ekstrakurikuler', teacher: 'Various', room: 'Lapangan', teacherStatus: 'present' }
+                        ]
+                    };
+                    localStorage.setItem('scheduleData', JSON.stringify(defaultSchedule));
+                    return defaultSchedule;
+                }
             }
 
             loadAttendance() {
@@ -2530,6 +3299,55 @@
                 return saved ? JSON.parse(saved) : { groups: [] };
             }
 
+            loadActivities() {
+                const saved = localStorage.getItem('activityData');
+                if (saved) {
+                    return JSON.parse(saved);
+                } else {
+                    // Create sample activities
+                    const sampleActivities = [
+                        {
+                            id: 1,
+                            type: 'attendance',
+                            title: 'Absensi pagi telah diinput',
+                            description: '28 siswa hadir',
+                            time: new Date().toISOString(),
+                            icon: 'clipboard-check'
+                        },
+                        {
+                            id: 2,
+                            type: 'assignment',
+                            title: 'Tugas Matematika dikumpulkan',
+                            description: '25 siswa mengumpulkan',
+                            time: new Date(Date.now() - 86400000).toISOString(),
+                            icon: 'tasks'
+                        },
+                        {
+                            id: 3,
+                            type: 'announcement',
+                            title: 'Pengumuman baru dari Wali Kelas',
+                            description: 'Persiapan UTS',
+                            time: new Date(Date.now() - 172800000).toISOString(),
+                            icon: 'comment'
+                        },
+                        {
+                            id: 4,
+                            type: 'assignment',
+                            title: 'Tugas Fisika ditambahkan',
+                            description: 'Deadline 3 hari lagi',
+                            time: new Date(Date.now() - 259200000).toISOString(),
+                            icon: 'tasks'
+                        }
+                    ];
+                    localStorage.setItem('activityData', JSON.stringify(sampleActivities));
+                    return sampleActivities;
+                }
+            }
+
+            saveSchedule() {
+                localStorage.setItem('scheduleData', JSON.stringify(this.schedule));
+            }
+
             saveAttendance() {
                 localStorage.setItem('attendanceData', JSON.stringify(this.attendance));
             }
@@ -2544,6 +3362,10 @@
 
             saveGroups() {
                 localStorage.setItem('groupData', JSON.stringify(this.groups));
+            }
+
+            saveActivities() {
+                localStorage.setItem('activityData', JSON.stringify(this.activities));
             }
 
             switchTab(tabName) {
@@ -2565,6 +3387,8 @@
                     this.loadAbsenceTrackingTab();
                 } else if (tabName === 'group-spinner') {
                     this.loadGroupSpinnerTab();
+                } else if (tabName === 'schedule') {
+                    this.loadScheduleTab();
                 }
             }
 
@@ -2599,11 +3423,127 @@
                 document.getElementById('permissionCount').textContent = permissionCount;
                 document.getElementById('absentCount').textContent = absentCount;
 
+                // Load today's schedule
+                this.loadTodaySchedule();
+                
                 // Load upcoming assignments for dashboard
                 this.loadUpcomingAssignments();
                 
+                // Load recent activities
+                this.loadRecentActivities();
+                
                 // Load absence alerts for dashboard
                 this.loadAbsenceAlerts();
+            }
+
+            loadTodaySchedule() {
+                const todaySchedule = document.getElementById('todaySchedule');
+                const today = new Date();
+                const dayNames = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+                const todayName = dayNames[today.getDay()];
+                
+                // Get today's schedule
+                const todayLessons = this.schedule[todayName] || [];
+                
+                if (todayLessons.length > 0) {
+                    todaySchedule.innerHTML = todayLessons.map((lesson, index) => {
+                        // Determine if this lesson is current, upcoming, or past
+                        const now = new Date();
+                        const [startTime, endTime] = lesson.time.split('-');
+                        const [startHour, startMinute] = startTime.split(':').map(Number);
+                        const [endHour, endMinute] = endTime.split(':').map(Number);
+                        
+                        const lessonStart = new Date();
+                        lessonStart.setHours(startHour, startMinute, 0, 0);
+                        
+                        const lessonEnd = new Date();
+                        lessonEnd.setHours(endHour, endMinute, 0, 0);
+                        
+                        let status = 'akan-datang';
+                        if (now >= lessonStart && now <= lessonEnd) {
+                            status = 'current';
+                        } else if (now > lessonEnd) {
+                            status = 'selesai';
+                        }
+                        
+                        // Determine teacher status
+                        const teacherStatus = lesson.teacherStatus === 'absent' ? 'Tidak Hadir' : 'Hadir';
+                        const teacherStatusClass = lesson.teacherStatus === 'absent' ? 'teacher-absent' : 'teacher-present';
+                        
+                        return `
+                            <div class="enhanced-schedule-item ${status === 'current' ? 'current' : ''}">
+                                <div class="schedule-time">${lesson.time}</div>
+                                <div class="schedule-details">
+                                    <h4>${lesson.subject}</h4>
+                                    <p>${lesson.teacher} • ${lesson.room}</p>
+                                </div>
+                                <div class="schedule-status">
+                                    ${teacherStatus}
+                                </div>
+                                <div class="teacher-status ${teacherStatusClass}">Guru ${teacherStatus}</div>
+                                <button class="edit-schedule-btn" onclick="app.editTodaySchedule('${todayName}', ${index})">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    todaySchedule.innerHTML = `
+                        <div class="empty-placeholder">
+                            <i class="fas fa-calendar-times"></i>
+                            <p>Tidak ada jadwal untuk hari ini.</p>
+                        </div>
+                    `;
+                }
+            }
+
+            loadRecentActivities() {
+                const recentActivityList = document.getElementById('recentActivityList');
+                
+                // Sort activities by time (newest first) and take the 3 most recent
+                const recentActivities = [...this.activities]
+                    .sort((a, b) => new Date(b.time) - new Date(a.time))
+                    .slice(0, 3);
+                
+                if (recentActivities.length > 0) {
+                    recentActivityList.innerHTML = recentActivities.map(activity => {
+                        const timeAgo = this.getTimeAgo(new Date(activity.time));
+                        
+                        return `
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-${activity.icon}"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p>${activity.title}</p>
+                                    <span class="activity-time">${timeAgo} • ${activity.description}</span>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    recentActivityList.innerHTML = `
+                        <div class="empty-placeholder">
+                            <i class="fas fa-history"></i>
+                            <p>Tidak ada aktivitas terbaru.</p>
+                        </div>
+                    `;
+                }
+            }
+
+            getTimeAgo(date) {
+                const now = new Date();
+                const diffMs = now - date;
+                const diffMins = Math.floor(diffMs / 60000);
+                const diffHours = Math.floor(diffMs / 3600000);
+                const diffDays = Math.floor(diffMs / 86400000);
+                
+                if (diffMins < 1) return 'Baru saja';
+                if (diffMins < 60) return `${diffMins} menit lalu`;
+                if (diffHours < 24) return `${diffHours} jam lalu`;
+                if (diffDays === 1) return 'Kemarin';
+                if (diffDays < 7) return `${diffDays} hari lalu`;
+                return date.toLocaleDateString('id-ID');
             }
 
             loadUpcomingAssignments() {
@@ -2617,11 +3557,11 @@
                         return (assignment.status === 'active' || assignment.status === 'urgent') && deadline >= today;
                     })
                     .sort((a, b) => new Date(a.deadline) - new Date(b.deadline))
-                    .slice(0, 3); // Show only 3 upcoming assignments
+                    .slice(0, 5); // Show 5 upcoming assignments
 
                 if (upcomingAssignments.length > 0) {
                     dashboardAssignmentsList.innerHTML = upcomingAssignments.map(assignment => `
-                        <div class="assignment-item ${assignment.status}">
+                        <div class="enhanced-assignment-item ${assignment.status}">
                             <div class="assignment-subject">${assignment.subject}</div>
                             <div class="assignment-title">${assignment.title}</div>
                             <div class="assignment-deadline">
@@ -3445,11 +4385,20 @@
                         const lessons = this.schedule[day]?.filter(lesson => lesson.time === time) || [];
                         scheduleHTML += `
                             <div class="schedule-cell">
-                                ${lessons.map(lesson => `
+                                ${lessons.map((lesson, index) => `
                                     <div class="schedule-lesson" onclick="app.showLessonDetails('${lesson.subject}', '${lesson.teacher}', '${lesson.room}')">
                                         <h5>${lesson.subject}</h5>
                                         <p>${lesson.teacher}</p>
                                         <small>${lesson.room}</small>
+                                        ${lesson.teacherStatus === 'absent' ? 
+                                            `<div class="teacher-status teacher-absent">Guru Tidak Hadir</div>` : 
+                                            `<div class="teacher-status teacher-present">Guru Hadir</div>`
+                                        }
+                                        <div class="schedule-lesson-actions">
+                                            <button class="schedule-edit-btn" onclick="app.editSchedule('${day}', ${index}, event)">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 `).join('')}
                             </div>
@@ -3461,6 +4410,130 @@
 
             showLessonDetails(subject, teacher, room) {
                 alert(`Detail Pelajaran:\n\nMata Pelajaran: ${subject}\nGuru: ${teacher}\nRuangan: ${room}`);
+            }
+
+            // NEW: Show schedule modal
+            showScheduleModal() {
+                const modal = document.getElementById('scheduleModal');
+                const title = document.getElementById('scheduleModalTitle');
+                const form = document.getElementById('scheduleForm');
+                
+                title.textContent = 'Tambah Jadwal Baru';
+                form.reset();
+                
+                modal.style.display = 'block';
+            }
+
+            // NEW: Edit schedule
+            editSchedule(day, index, event) {
+                event.stopPropagation();
+                
+                const modal = document.getElementById('scheduleModal');
+                const title = document.getElementById('scheduleModalTitle');
+                const form = document.getElementById('scheduleForm');
+                
+                title.textContent = 'Edit Jadwal Pelajaran';
+                
+                const lesson = this.schedule[day][index];
+                
+                document.getElementById('scheduleId').value = `${day}-${index}`;
+                document.getElementById('scheduleDay').value = day;
+                document.getElementById('scheduleTime').value = lesson.time;
+                document.getElementById('scheduleSubject').value = lesson.subject;
+                document.getElementById('scheduleTeacher').value = lesson.teacher;
+                document.getElementById('scheduleRoom').value = lesson.room;
+                document.getElementById('teacherStatus').value = lesson.teacherStatus || 'present';
+                
+                modal.style.display = 'block';
+            }
+
+            // NEW: Edit today's schedule
+            editTodaySchedule(day, index) {
+                const modal = document.getElementById('scheduleModal');
+                const title = document.getElementById('scheduleModalTitle');
+                const form = document.getElementById('scheduleForm');
+                
+                title.textContent = 'Edit Jadwal Hari Ini';
+                
+                const lesson = this.schedule[day][index];
+                
+                document.getElementById('scheduleId').value = `${day}-${index}`;
+                document.getElementById('scheduleDay').value = day;
+                document.getElementById('scheduleTime').value = lesson.time;
+                document.getElementById('scheduleSubject').value = lesson.subject;
+                document.getElementById('scheduleTeacher').value = lesson.teacher;
+                document.getElementById('scheduleRoom').value = lesson.room;
+                document.getElementById('teacherStatus').value = lesson.teacherStatus || 'present';
+                
+                modal.style.display = 'block';
+            }
+
+            // NEW: Submit schedule
+            submitSchedule() {
+                const id = document.getElementById('scheduleId').value;
+                const day = document.getElementById('scheduleDay').value;
+                const time = document.getElementById('scheduleTime').value;
+                const subject = document.getElementById('scheduleSubject').value;
+                const teacher = document.getElementById('scheduleTeacher').value;
+                const room = document.getElementById('scheduleRoom').value;
+                const teacherStatus = document.getElementById('teacherStatus').value;
+                
+                if (id) {
+                    // Edit existing schedule
+                    const [scheduleDay, scheduleIndex] = id.split('-');
+                    if (this.schedule[scheduleDay] && this.schedule[scheduleDay][scheduleIndex]) {
+                        // If day changed, remove from old day and add to new day
+                        if (scheduleDay !== day) {
+                            this.schedule[scheduleDay].splice(scheduleIndex, 1);
+                            if (!this.schedule[day]) {
+                                this.schedule[day] = [];
+                            }
+                            this.schedule[day].push({
+                                time,
+                                subject,
+                                teacher,
+                                room,
+                                teacherStatus
+                            });
+                        } else {
+                            // Update in same day
+                            this.schedule[day][scheduleIndex] = {
+                                time,
+                                subject,
+                                teacher,
+                                room,
+                                teacherStatus
+                            };
+                        }
+                    }
+                } else {
+                    // Add new schedule
+                    if (!this.schedule[day]) {
+                        this.schedule[day] = [];
+                    }
+                    this.schedule[day].push({
+                        time,
+                        subject,
+                        teacher,
+                        room,
+                        teacherStatus
+                    });
+                }
+                
+                // Sort schedule by time
+                Object.keys(this.schedule).forEach(day => {
+                    this.schedule[day].sort((a, b) => {
+                        const aTime = a.time.split('-')[0];
+                        const bTime = b.time.split('-')[0];
+                        return aTime.localeCompare(bTime);
+                    });
+                });
+                
+                this.saveSchedule();
+                this.closeModal('scheduleModal');
+                this.loadScheduleTab();
+                this.loadTodaySchedule();
+                this.showToast('Jadwal berhasil disimpan!');
             }
 
             loadStudentsTab() {
@@ -3545,6 +4618,24 @@
                             status: 'completed',
                             description: 'Hafalkan 20 unsur pertama tabel periodik',
                             type: 'ulangan'
+                        },
+                        {
+                            id: 4,
+                            subject: 'Bahasa Indonesia',
+                            title: 'Analisis Puisi Chairil Anwar',
+                            deadline: '2024-10-18',
+                            status: 'active',
+                            description: 'Analisis 3 puisi karya Chairil Anwar',
+                            type: 'pr'
+                        },
+                        {
+                            id: 5,
+                            subject: 'Biologi',
+                            title: 'Laporan Sistem Pencernaan',
+                            deadline: '2024-10-20',
+                            status: 'active',
+                            description: 'Buat laporan tentang sistem pencernaan manusia',
+                            type: 'proyek'
                         }
                     ];
                 
@@ -3552,7 +4643,7 @@
                 this.saveAssignments();
                 
                 assignmentsList.innerHTML = assignments.map(assignment => `
-                    <div class="assignment-item-detailed ${assignment.status}">
+                    <div class="enhanced-assignment-item ${assignment.status}">
                         <div class="assignment-header">
                             <div class="assignment-subject">${assignment.subject}</div>
                             <div class="assignment-status ${assignment.status}">
@@ -3730,11 +4821,38 @@
                     });
                 });
 
+                // Add activity
+                this.addActivity('attendance', 'Absensi harian diinput', `${this.getSubjectDisplayName(subject)} - ${date}`);
+
                 this.saveAttendance();
                 this.closeModal('attendanceModal');
                 this.loadAttendanceData(date);
                 this.loadDashboard(); // Update dashboard stats
                 this.showToast('Absensi berhasil disimpan!');
+            }
+
+            addActivity(type, title, description) {
+                const newActivity = {
+                    id: Date.now(),
+                    type: type,
+                    title: title,
+                    description: description,
+                    time: new Date().toISOString(),
+                    icon: this.getActivityIcon(type)
+                };
+                
+                this.activities.unshift(newActivity);
+                this.saveActivities();
+            }
+
+            getActivityIcon(type) {
+                const iconMap = {
+                    'attendance': 'clipboard-check',
+                    'assignment': 'tasks',
+                    'announcement': 'comment',
+                    'group': 'users'
+                };
+                return iconMap[type] || 'info-circle';
             }
 
             submitAssignment() {
@@ -3779,6 +4897,9 @@
                     }
                     
                     this.assignments.assignments.push(newAssignment);
+                    
+                    // Add activity
+                    this.addActivity('assignment', 'Tugas baru ditambahkan', `${subject} - ${title}`);
                 }
                 
                 this.saveAssignments();
@@ -3818,7 +4939,7 @@
                 }
                 
                 assignmentsList.innerHTML = filteredAssignments.map(assignment => `
-                    <div class="assignment-item-detailed ${assignment.status}">
+                    <div class="enhanced-assignment-item ${assignment.status}">
                         <div class="assignment-header">
                             <div class="assignment-subject">${assignment.subject}</div>
                             <div class="assignment-status ${assignment.status}">
@@ -3961,6 +5082,30 @@
 
         // Initialize the application
         const app = new ClassWebsite();
+
+        // Loading screen animation
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const loadingProgress = document.getElementById('loadingProgress');
+            const classWebsite = document.getElementById('classWebsite');
+            
+            // Simulate loading progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    // Hide loading screen and show website
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                        classWebsite.classList.add('loaded');
+                    }, 500);
+                }
+                loadingProgress.style.width = `${progress}%`;
+            }, 200);
+        });
 
         // Close modal when clicking outside
         window.onclick = function(event) {
