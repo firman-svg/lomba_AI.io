@@ -59,52 +59,11 @@
             --transition-slow: all 0.5s ease;
         }
 
-        /* Dark Theme Variables */
-        .dark-theme {
-            --primary-color: #818cf8;
-            --primary-light: #a5b4fc;
-            --primary-dark: #6366f1;
-            --secondary-color: #34d399;
-            --secondary-light: #6ee7b7;
-            --secondary-dark: #10b981;
-            --accent-color: #fbbf24;
-            --accent-light: #fcd34d;
-            --accent-dark: #f59e0b;
-            --danger-color: #f87171;
-            --danger-light: #fca5a5;
-            --danger-dark: #ef4444;
-            --warning-color: #fbbf24;
-            --info-color: #60a5fa;
-            --info-light: #93c5fd;
-            --info-dark: #3b82f6;
-            --purple-color: #a78bfa;
-            --pink-color: #f472b6;
-            --teal-color: #2dd4bf;
-            --cyan-color: #22d3ee;
-            --indigo-color: #818cf8;
-            --rose-color: #fb7185;
-            --amber-color: #fbbf24;
-            --emerald-color: #34d399;
-            --violet-color: #a78bfa;
-            --text-dark: #f9fafb;
-            --text-medium: #e5e7eb;
-            --text-light: #d1d5db;
-            --bg-light: #111827;
-            --bg-white: #1f2937;
-            --border-color: #374151;
-            --border-light: #4b5563;
-        }
-
         body {
             background: linear-gradient(135deg, #f0f4ff, #e6f7ff);
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
-            transition: var(--transition-slow);
-        }
-
-        .dark-theme body {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
         }
 
         /* Loading Screen */
@@ -144,7 +103,6 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
-            animation: pulse 2s infinite;
         }
 
         .loading-logo::after {
@@ -184,17 +142,6 @@
             transition: width 0.5s ease;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         .class-website {
             min-height: 100vh;
             opacity: 0;
@@ -207,7 +154,7 @@
             transform: translateY(0);
         }
 
-        /* Enhanced Header Styles */
+        /* Header Styles */
         .class-header {
             background: linear-gradient(135deg, var(--primary-color), var(--purple-color));
             color: white;
@@ -283,6 +230,11 @@
             animation: rotate 10s linear infinite;
         }
 
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .class-details h1 {
             font-size: 2.5rem;
             margin-bottom: 5px;
@@ -339,70 +291,7 @@
             opacity: 0.8;
         }
 
-        /* Header Actions */
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .theme-toggle {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-        }
-
-        .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(30deg);
-        }
-
-        .notification-bell {
-            position: relative;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-        }
-
-        .notification-bell:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .notification-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: var(--danger-color);
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-
-        /* Enhanced Navigation */
+        /* Navigation */
         .class-nav {
             background: white;
             border-bottom: 1px solid var(--border-color);
@@ -410,12 +299,6 @@
             top: 0;
             z-index: 100;
             box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .dark-theme .class-nav {
-            background: var(--bg-white);
-            border-bottom-color: var(--border-color);
         }
 
         .nav-container {
@@ -457,140 +340,8 @@
             background: rgba(79, 70, 229, 0.05);
         }
 
-        .dark-theme .nav-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .dark-theme .nav-item.active {
-            background: rgba(79, 70, 229, 0.1);
-        }
-
         .nav-item i {
             font-size: 1.1rem;
-        }
-
-        /* Burger Menu */
-        .burger-menu {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            cursor: pointer;
-            margin-left: auto;
-        }
-
-        .burger-menu span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background-color: var(--text-dark);
-            border-radius: 3px;
-            transition: var(--transition);
-        }
-
-        .burger-menu.active span:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-
-        .burger-menu.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .burger-menu.active span:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-
-        /* Mobile Navigation */
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 200;
-            backdrop-filter: blur(5px);
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-
-        .mobile-nav.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-nav-content {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 280px;
-            height: 100%;
-            background: white;
-            padding: 20px;
-            overflow-y: auto;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .dark-theme .mobile-nav-content {
-            background: var(--bg-white);
-        }
-
-        .mobile-nav.active .mobile-nav-content {
-            transform: translateX(0);
-        }
-
-        .mobile-nav-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .mobile-nav-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .mobile-close-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-light);
-            cursor: pointer;
-        }
-
-        .mobile-nav-items {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .mobile-nav-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            border-radius: var(--radius-md);
-            color: var(--text-dark);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .mobile-nav-item:hover, .mobile-nav-item.active {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .mobile-nav-item i {
-            font-size: 1.2rem;
-            width: 20px;
         }
 
         /* Main Content */
@@ -636,10 +387,6 @@
             border: 1px solid var(--border-light);
         }
 
-        .dark-theme .welcome-banner {
-            background: linear-gradient(135deg, var(--bg-white), #1e293b);
-        }
-
         .welcome-banner::before {
             content: '';
             position: absolute;
@@ -675,11 +422,6 @@
             padding: 20px;
             position: relative;
             box-shadow: var(--shadow);
-        }
-
-        .dark-theme .class-announcement {
-            background: linear-gradient(135deg, #4a3c1a, #5c4a1e);
-            border-color: #5c4a1e;
         }
 
         .announcement-header {
@@ -742,14 +484,6 @@
             border: 1px solid var(--border-light);
         }
 
-        .dark-theme .stats-section, 
-        .dark-theme .schedule-section, 
-        .dark-theme .assignments-section, 
-        .dark-theme .activity-section, 
-        .dark-theme .absence-alert-section {
-            background: var(--bg-white);
-        }
-
         .stats-section:hover, .schedule-section:hover, .assignments-section:hover, .activity-section:hover, .absence-alert-section:hover {
             box-shadow: var(--shadow-lg);
             transform: translateY(-5px);
@@ -788,10 +522,6 @@
             background: var(--bg-light);
             transition: var(--transition);
             cursor: pointer;
-        }
-
-        .dark-theme .stat-card {
-            background: var(--bg-light);
         }
 
         .stat-card:hover {
@@ -858,10 +588,6 @@
         .schedule-item.current {
             border-color: var(--primary-color);
             background: rgba(79, 70, 229, 0.05);
-        }
-
-        .dark-theme .schedule-item.current {
-            background: rgba(79, 70, 229, 0.1);
         }
 
         .schedule-time {
@@ -972,14 +698,6 @@
             background: rgba(16, 185, 129, 0.05);
         }
 
-        .dark-theme .assignment-item.urgent {
-            background: rgba(239, 68, 68, 0.1);
-        }
-
-        .dark-theme .assignment-item.completed {
-            background: rgba(16, 185, 129, 0.1);
-        }
-
         .assignment-subject {
             font-weight: 600;
             color: var(--primary-color);
@@ -1021,18 +739,10 @@
             cursor: pointer;
         }
 
-        .dark-theme .activity-item {
-            background: var(--bg-light);
-        }
-
         .activity-item:hover {
             transform: translateX(5px);
             background: white;
             box-shadow: var(--shadow);
-        }
-
-        .dark-theme .activity-item:hover {
-            background: var(--bg-white);
         }
 
         .activity-icon {
@@ -1113,12 +823,6 @@
             gap: 8px;
         }
 
-        .dark-theme .btn-secondary {
-            background: var(--bg-white);
-            color: var(--text-dark);
-            border-color: var(--border-color);
-        }
-
         .btn-secondary:hover, .btn-secondary.active {
             background: var(--primary-color);
             color: white;
@@ -1157,14 +861,6 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius-sm);
             transition: var(--transition);
-            background: white;
-            color: var(--text-dark);
-        }
-
-        .dark-theme .date-selector input {
-            background: var(--bg-white);
-            border-color: var(--border-color);
-            color: var(--text-dark);
         }
 
         .date-selector input:focus {
@@ -1187,10 +883,6 @@
             overflow-x: auto;
         }
 
-        .dark-theme .attendance-table-container {
-            background: var(--bg-white);
-        }
-
         .attendance-table {
             width: 100%;
             border-collapse: collapse;
@@ -1206,10 +898,6 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .dark-theme .attendance-table th {
-            background: var(--bg-light);
-        }
-
         .attendance-table td {
             padding: 15px;
             border-bottom: 1px solid var(--border-color);
@@ -1220,10 +908,6 @@
         }
 
         .attendance-table tr:hover {
-            background: var(--bg-light);
-        }
-
-        .dark-theme .attendance-table tr:hover {
             background: var(--bg-light);
         }
 
@@ -1240,12 +924,6 @@
         .status-permission { background: #dbeafe; color: #1e40af; }
         .status-absent { background: #fee2e2; color: #991b1b; }
         .status-not-filled { background: #f3f4f6; color: #6b7280; }
-
-        .dark-theme .status-present { background: #064e3b; color: #a7f3d0; }
-        .dark-theme .status-sick { background: #78350f; color: #fcd34d; }
-        .dark-theme .status-permission { background: #1e3a8a; color: #93c5fd; }
-        .dark-theme .status-absent { background: #7f1d1d; color: #fca5a5; }
-        .dark-theme .status-not-filled { background: #374151; color: #d1d5db; }
 
         /* Modal Styles */
         .modal {
@@ -1272,10 +950,6 @@
             max-width: 600px;
             max-height: 90vh;
             overflow-y: auto;
-        }
-
-        .dark-theme .modal-content {
-            background: var(--bg-white);
         }
 
         .modal-header {
@@ -1332,16 +1006,6 @@
             border-radius: var(--radius-sm);
             font-size: 1rem;
             transition: var(--transition);
-            background: white;
-            color: var(--text-dark);
-        }
-
-        .dark-theme .form-group input,
-        .dark-theme .form-group select,
-        .dark-theme .form-group textarea {
-            background: var(--bg-white);
-            border-color: var(--border-color);
-            color: var(--text-dark);
         }
 
         .form-group input:focus,
@@ -1370,10 +1034,6 @@
         }
 
         .attendance-student-item:hover {
-            background: var(--bg-light);
-        }
-
-        .dark-theme .attendance-student-item:hover {
             background: var(--bg-light);
         }
 
@@ -1411,11 +1071,6 @@
             transition: var(--transition);
         }
 
-        .dark-theme .attendance-btn-small {
-            background: var(--bg-white);
-            border-color: var(--border-color);
-        }
-
         .attendance-btn-small.active {
             color: white;
         }
@@ -1440,10 +1095,6 @@
             text-align: center;
             transition: var(--transition);
             cursor: pointer;
-        }
-
-        .dark-theme .student-card {
-            background: var(--bg-white);
         }
 
         .student-card:hover {
@@ -1500,10 +1151,6 @@
             cursor: pointer;
         }
 
-        .dark-theme .teacher-card {
-            background: var(--bg-white);
-        }
-
         .teacher-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
@@ -1546,10 +1193,6 @@
             overflow-x: auto;
         }
 
-        .dark-theme .weekly-schedule {
-            background: var(--bg-white);
-        }
-
         .schedule-days {
             display: grid;
             grid-template-columns: 120px repeat(6, 1fr);
@@ -1589,10 +1232,6 @@
             justify-content: center;
         }
 
-        .dark-theme .schedule-cell.time {
-            background: var(--bg-light);
-        }
-
         .schedule-lesson {
             background: rgba(79, 70, 229, 0.1);
             border: 1px solid var(--primary-color);
@@ -1604,17 +1243,9 @@
             position: relative;
         }
 
-        .dark-theme .schedule-lesson {
-            background: rgba(79, 70, 229, 0.15);
-        }
-
         .schedule-lesson:hover {
             transform: scale(1.02);
             background: rgba(79, 70, 229, 0.15);
-        }
-
-        .dark-theme .schedule-lesson:hover {
-            background: rgba(79, 70, 229, 0.2);
         }
 
         .schedule-lesson h5 {
@@ -1665,11 +1296,6 @@
             transition: var(--transition);
         }
 
-        .dark-theme .search-box {
-            background: var(--bg-white);
-            border-color: var(--border-color);
-        }
-
         .search-box:focus-within {
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
@@ -1684,8 +1310,6 @@
             outline: none;
             flex: 1;
             font-size: 1rem;
-            background: transparent;
-            color: var(--text-dark);
         }
 
         /* Assignment Detailed */
@@ -1698,10 +1322,6 @@
             border-left: 4px solid var(--info-color);
             transition: var(--transition);
             position: relative;
-        }
-
-        .dark-theme .assignment-item-detailed {
-            background: var(--bg-white);
         }
 
         .assignment-item-detailed:hover {
@@ -1746,21 +1366,6 @@
             color: #065f46;
         }
 
-        .dark-theme .assignment-status.urgent {
-            background: #7f1d1d;
-            color: #fca5a5;
-        }
-
-        .dark-theme .assignment-status.active {
-            background: #1e3a8a;
-            color: #93c5fd;
-        }
-
-        .dark-theme .assignment-status.completed {
-            background: #064e3b;
-            color: #a7f3d0;
-        }
-
         .assignment-footer {
             display: flex;
             justify-content: space-between;
@@ -1786,11 +1391,6 @@
             gap: 5px;
         }
 
-        .dark-theme .btn-small {
-            background: var(--bg-white);
-            border-color: var(--border-color);
-        }
-
         .btn-small:hover {
             background: var(--primary-color);
             color: white;
@@ -1814,11 +1414,6 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-        }
-
-        .dark-theme .filter-btn {
-            background: var(--bg-white);
-            border-color: var(--border-color);
         }
 
         .filter-btn.active, .filter-btn:hover {
@@ -1865,9 +1460,6 @@
             opacity: 0;
             transform: translateX(100px);
             transition: var(--transition-slow);
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .toast.show {
@@ -1877,14 +1469,6 @@
 
         .toast.error {
             background: var(--danger-color);
-        }
-
-        .toast.warning {
-            background: var(--warning-color);
-        }
-
-        .toast.info {
-            background: var(--info-color);
         }
 
         /* Empty State */
@@ -1909,10 +1493,6 @@
             border-radius: var(--radius-md);
             padding: 20px;
             box-shadow: var(--shadow);
-        }
-
-        .dark-theme .attendance-summary {
-            background: var(--bg-white);
         }
 
         .summary-card h4 {
@@ -1965,10 +1545,6 @@
             transition: var(--transition);
         }
 
-        .dark-theme .absence-alert-item {
-            background: var(--bg-white);
-        }
-
         .absence-alert-item:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
@@ -2013,10 +1589,6 @@
             gap: 5px;
         }
 
-        .dark-theme .absence-alert-subject {
-            background: var(--bg-light);
-        }
-
         .absence-alert-subject.absent {
             background: #fee2e2;
             color: #991b1b;
@@ -2032,21 +1604,6 @@
             color: #1e40af;
         }
 
-        .dark-theme .absence-alert-subject.absent {
-            background: #7f1d1d;
-            color: #fca5a5;
-        }
-
-        .dark-theme .absence-alert-subject.sick {
-            background: #78350f;
-            color: #fcd34d;
-        }
-
-        .dark-theme .absence-alert-subject.permission {
-            background: #1e3a8a;
-            color: #93c5fd;
-        }
-
         /* NEW: Student Absence Report */
         .student-absence-report {
             background: white;
@@ -2054,10 +1611,6 @@
             padding: 20px;
             box-shadow: var(--shadow);
             margin-bottom: 20px;
-        }
-
-        .dark-theme .student-absence-report {
-            background: var(--bg-white);
         }
 
         .student-absence-report h3 {
@@ -2079,10 +1632,6 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .dark-theme .absence-report-table th {
-            background: var(--bg-light);
-        }
-
         .absence-report-table td {
             padding: 12px 15px;
             border-bottom: 1px solid var(--border-color);
@@ -2093,10 +1642,6 @@
         }
 
         .absence-report-table tr:hover {
-            background: var(--bg-light);
-        }
-
-        .dark-theme .absence-report-table tr:hover {
             background: var(--bg-light);
         }
 
@@ -2112,10 +1657,6 @@
             padding: 25px;
             box-shadow: var(--shadow);
             margin-bottom: 25px;
-        }
-
-        .dark-theme .absence-pattern-section {
-            background: var(--bg-white);
         }
 
         .pattern-filters {
@@ -2143,15 +1684,6 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius-sm);
             transition: var(--transition);
-            background: white;
-            color: var(--text-dark);
-        }
-
-        .dark-theme .pattern-filter-group input, 
-        .dark-theme .pattern-filter-group select {
-            background: var(--bg-white);
-            border-color: var(--border-color);
-            color: var(--text-dark);
         }
 
         .pattern-filter-group input:focus, .pattern-filter-group select:focus {
@@ -2167,10 +1699,6 @@
             padding: 25px;
             box-shadow: var(--shadow);
             margin-bottom: 25px;
-        }
-
-        .dark-theme .group-spinner-section {
-            background: var(--bg-white);
         }
 
         .group-controls {
@@ -2198,15 +1726,6 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius-sm);
             transition: var(--transition);
-            background: white;
-            color: var(--text-dark);
-        }
-
-        .dark-theme .group-control-item input, 
-        .dark-theme .group-control-item select {
-            background: var(--bg-white);
-            border-color: var(--border-color);
-            color: var(--text-dark);
         }
 
         .group-control-item input:focus, .group-control-item select:focus {
@@ -2229,10 +1748,6 @@
             box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
             transition: var(--transition);
-        }
-
-        .dark-theme .group-card {
-            background: var(--bg-white);
         }
 
         .group-card:hover {
@@ -2280,16 +1795,8 @@
             transition: var(--transition);
         }
 
-        .dark-theme .group-member {
-            background: var(--bg-light);
-        }
-
         .group-member:hover {
             background: var(--border-light);
-        }
-
-        .dark-theme .group-member:hover {
-            background: var(--border-color);
         }
 
         .group-member-avatar {
@@ -2322,10 +1829,6 @@
             border-radius: var(--radius-md);
             box-shadow: var(--shadow);
             margin: 20px 0;
-        }
-
-        .dark-theme .spinner-container {
-            background: var(--bg-white);
         }
 
         .spinner {
@@ -2374,17 +1877,8 @@
         }
 
         /* Quick Actions Menu */
-        .quick-actions {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 98;
-        }
-
         .quick-action-item {
+            position: fixed;
             background: white;
             padding: 12px 16px;
             border-radius: var(--radius-md);
@@ -2396,17 +1890,6 @@
             z-index: 98;
             animation: slideInRight 0.3s ease-out both;
             transition: var(--transition);
-            opacity: 0;
-            transform: translateX(50px);
-        }
-
-        .dark-theme .quick-action-item {
-            background: var(--bg-white);
-        }
-
-        .quick-actions.active .quick-action-item {
-            opacity: 1;
-            transform: translateX(0);
         }
 
         .quick-action-item:hover {
@@ -2446,10 +1929,6 @@
             border: 1px solid var(--border-light);
             position: relative;
             overflow: hidden;
-        }
-
-        .dark-theme .enhanced-card {
-            background: var(--bg-white);
         }
 
         .enhanced-card::before {
@@ -2521,10 +2000,6 @@
             background: rgba(79, 70, 229, 0.05);
         }
 
-        .dark-theme .enhanced-schedule-item.current {
-            background: rgba(79, 70, 229, 0.1);
-        }
-
         .enhanced-schedule-item.current::before {
             background: var(--secondary-color);
             width: 8px;
@@ -2541,10 +2016,6 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-        }
-
-        .dark-theme .enhanced-assignment-item {
-            background: var(--bg-white);
         }
 
         .enhanced-assignment-item::before {
@@ -2591,10 +2062,6 @@
             overflow: hidden;
         }
 
-        .dark-theme .enhanced-stat-card {
-            background: var(--bg-light);
-        }
-
         .enhanced-stat-card::before {
             content: '';
             position: absolute;
@@ -2620,199 +2087,6 @@
         .enhanced-stat-card.sick { border-left: 4px solid var(--warning-color); }
         .enhanced-stat-card.permission { border-left: 4px solid var(--info-color); }
         .enhanced-stat-card.absent { border-left: 4px solid var(--danger-color); }
-
-        /* NEW: Notification Panel */
-        .notification-panel {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 380px;
-            height: 100%;
-            background: white;
-            box-shadow: var(--shadow-xl);
-            z-index: 1000;
-            transition: var(--transition-slow);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .dark-theme .notification-panel {
-            background: var(--bg-white);
-        }
-
-        .notification-panel.active {
-            right: 0;
-        }
-
-        .notification-header {
-            padding: 20px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .notification-header h3 {
-            color: var(--text-dark);
-            font-size: 1.3rem;
-        }
-
-        .notification-close {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            color: var(--text-light);
-            cursor: pointer;
-        }
-
-        .notification-list {
-            flex: 1;
-            overflow-y: auto;
-            padding: 10px;
-        }
-
-        .notification-item {
-            padding: 15px;
-            border-radius: var(--radius-md);
-            margin-bottom: 10px;
-            background: var(--bg-light);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .dark-theme .notification-item {
-            background: var(--bg-light);
-        }
-
-        .notification-item:hover {
-            background: var(--border-light);
-        }
-
-        .notification-item.unread {
-            background: rgba(79, 70, 229, 0.1);
-            border-left: 3px solid var(--primary-color);
-        }
-
-        .notification-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: var(--text-dark);
-        }
-
-        .notification-message {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 8px;
-        }
-
-        .notification-time {
-            font-size: 0.8rem;
-            color: var(--text-light);
-        }
-
-        /* NEW: Global Search */
-        .global-search-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            display: none;
-            align-items: flex-start;
-            justify-content: center;
-            padding-top: 100px;
-            backdrop-filter: blur(5px);
-        }
-
-        .global-search-container.active {
-            display: flex;
-        }
-
-        .global-search-box {
-            background: white;
-            border-radius: var(--radius-lg);
-            width: 90%;
-            max-width: 600px;
-            box-shadow: var(--shadow-xl);
-            overflow: hidden;
-        }
-
-        .dark-theme .global-search-box {
-            background: var(--bg-white);
-        }
-
-        .global-search-header {
-            padding: 20px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .global-search-header i {
-            color: var(--text-light);
-            font-size: 1.2rem;
-        }
-
-        .global-search-input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 1.1rem;
-            background: transparent;
-            color: var(--text-dark);
-        }
-
-        .global-search-close {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            color: var(--text-light);
-            cursor: pointer;
-        }
-
-        .global-search-results {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .search-result-item {
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--border-color);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .search-result-item:hover {
-            background: var(--bg-light);
-        }
-
-        .dark-theme .search-result-item:hover {
-            background: var(--bg-light);
-        }
-
-        .search-result-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: var(--text-dark);
-        }
-
-        .search-result-description {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        .search-result-type {
-            display: inline-block;
-            padding: 3px 8px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            margin-top: 5px;
-        }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
@@ -2852,25 +2126,6 @@
             
             .nav-container {
                 justify-content: flex-start;
-                display: none;
-            }
-            
-            .burger-menu {
-                display: flex;
-            }
-            
-            .mobile-nav {
-                display: block;
-            }
-            
-            .header-actions {
-                display: none;
-            }
-            
-            .mobile-header-actions {
-                display: flex;
-                gap: 15px;
-                margin-top: 20px;
             }
             
             .tab-header {
@@ -2920,15 +2175,6 @@
             .class-avatar {
                 width: 80px;
                 height: 80px;
-            }
-            
-            .notification-panel {
-                width: 100%;
-                right: -100%;
-            }
-            
-            .global-search-box {
-                width: 95%;
             }
         }
 
@@ -2995,19 +2241,6 @@
             .tab-header h2 {
                 font-size: 1.5rem;
             }
-            
-            .quick-actions {
-                bottom: 80px;
-                right: 20px;
-            }
-            
-            .fab {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
         }
     </style>
 </head>
@@ -3051,81 +2284,8 @@
                         <span class="stat-label">Guru</span>
                     </div>
                 </div>
-                <div class="header-actions">
-                    <div class="search-box" onclick="app.showGlobalSearch()">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Cari..." readonly>
-                    </div>
-                    <div class="notification-bell" onclick="app.toggleNotificationPanel()">
-                        <i class="fas fa-bell"></i>
-                        <div class="notification-count">3</div>
-                    </div>
-                    <div class="theme-toggle" onclick="app.toggleTheme()">
-                        <i class="fas fa-moon"></i>
-                    </div>
-                </div>
-                <div class="burger-menu" id="burgerMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
             </div>
         </header>
-        
-        <!-- Mobile Navigation -->
-        <div class="mobile-nav" id="mobileNav">
-            <div class="mobile-nav-content">
-                <div class="mobile-nav-header">
-                    <div class="mobile-nav-title">Menu Navigasi</div>
-                    <button class="mobile-close-btn" onclick="app.closeMobileNav()">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="mobile-nav-items">
-                    <a href="#dashboard" class="mobile-nav-item active" data-tab="dashboard" onclick="app.switchTab('dashboard'); app.closeMobileNav()">
-                        <i class="fas fa-home"></i>
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="#attendance" class="mobile-nav-item" data-tab="attendance" onclick="app.switchTab('attendance'); app.closeMobileNav()">
-                        <i class="fas fa-clipboard-check"></i>
-                        <span>Absensi</span>
-                    </a>
-                    <a href="#absence-tracking" class="mobile-nav-item" data-tab="absence-tracking" onclick="app.switchTab('absence-tracking'); app.closeMobileNav()">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <span>Pelacakan Bolos</span>
-                    </a>
-                    <a href="#group-spinner" class="mobile-nav-item" data-tab="group-spinner" onclick="app.switchTab('group-spinner'); app.closeMobileNav()">
-                        <i class="fas fa-random"></i>
-                        <span>Pembagian Kelompok</span>
-                    </a>
-                    <a href="#schedule" class="mobile-nav-item" data-tab="schedule" onclick="app.switchTab('schedule'); app.closeMobileNav()">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>Jadwal</span>
-                    </a>
-                    <a href="#students" class="mobile-nav-item" data-tab="students" onclick="app.switchTab('students'); app.closeMobileNav()">
-                        <i class="fas fa-user-graduate"></i>
-                        <span>Siswa</span>
-                    </a>
-                    <a href="#teachers" class="mobile-nav-item" data-tab="teachers" onclick="app.switchTab('teachers'); app.closeMobileNav()">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <span>Guru</span>
-                    </a>
-                    <a href="#assignments" class="mobile-nav-item" data-tab="assignments" onclick="app.switchTab('assignments'); app.closeMobileNav()">
-                        <i class="fas fa-tasks"></i>
-                        <span>Tugas</span>
-                    </a>
-                </div>
-                <div class="mobile-header-actions">
-                    <div class="notification-bell" onclick="app.toggleNotificationPanel()">
-                        <i class="fas fa-bell"></i>
-                        <div class="notification-count">3</div>
-                    </div>
-                    <div class="theme-toggle" onclick="app.toggleTheme()">
-                        <i class="fas fa-moon"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
         
         <!-- Navigation -->
         <nav class="class-nav">
@@ -3538,60 +2698,6 @@
         </main>
     </div>
     
-    <!-- NEW: Notification Panel -->
-    <div class="notification-panel" id="notificationPanel">
-        <div class="notification-header">
-            <h3>Notifikasi</h3>
-            <button class="notification-close" onclick="app.toggleNotificationPanel()">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="notification-list" id="notificationList">
-            <!-- Notifications will be loaded here -->
-        </div>
-    </div>
-    
-    <!-- NEW: Global Search -->
-    <div class="global-search-container" id="globalSearchContainer">
-        <div class="global-search-box">
-            <div class="global-search-header">
-                <i class="fas fa-search"></i>
-                <input type="text" class="global-search-input" placeholder="Cari siswa, guru, tugas, jadwal...">
-                <button class="global-search-close" onclick="app.hideGlobalSearch()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="global-search-results" id="globalSearchResults">
-                <!-- Search results will be loaded here -->
-            </div>
-        </div>
-    </div>
-    
-    <!-- Floating Action Button -->
-    <div class="fab" id="fab">
-        <i class="fas fa-plus"></i>
-    </div>
-    
-    <!-- Quick Actions Menu -->
-    <div class="quick-actions" id="quickActions">
-        <div class="quick-action-item" onclick="app.showAttendanceModal()">
-            <i class="fas fa-clipboard-check"></i>
-            <span>Input Absensi</span>
-        </div>
-        <div class="quick-action-item" onclick="app.showAssignmentModal()">
-            <i class="fas fa-tasks"></i>
-            <span>Tambah Tugas</span>
-        </div>
-        <div class="quick-action-item" onclick="app.showScheduleModal()">
-            <i class="fas fa-calendar-plus"></i>
-            <span>Tambah Jadwal</span>
-        </div>
-        <div class="quick-action-item" onclick="app.editAnnouncement()">
-            <i class="fas fa-bullhorn"></i>
-            <span>Edit Pengumuman</span>
-        </div>
-    </div>
-    
     <!-- Attendance Modal -->
     <div id="attendanceModal" class="modal">
         <div class="modal-content">
@@ -3844,7 +2950,6 @@
                 this.announcement = this.loadAnnouncement();
                 this.groups = this.loadGroups();
                 this.activities = this.loadActivities();
-                this.notifications = this.loadNotifications();
                 this.init();
             }
 
@@ -3858,9 +2963,7 @@
                 this.loadStudentsTab();
                 this.loadTeachersTab();
                 this.loadAssignmentsTab();
-                this.loadNotificationsPanel();
                 this.updateAnnouncement();
-                this.applySavedTheme();
             }
 
             bindEvents() {
@@ -3870,11 +2973,6 @@
                         e.preventDefault();
                         this.switchTab(item.dataset.tab);
                     });
-                });
-
-                // Burger menu
-                document.getElementById('burgerMenu').addEventListener('click', () => {
-                    this.toggleMobileNav();
                 });
 
                 // Attendance form
@@ -3935,33 +3033,6 @@
                 
                 document.getElementById('absenceStartDate').value = oneWeekAgo.toISOString().split('T')[0];
                 document.getElementById('absenceEndDate').value = today.toISOString().split('T')[0];
-
-                // FAB and Quick Actions
-                document.getElementById('fab').addEventListener('click', () => {
-                    this.toggleQuickActions();
-                });
-
-                // Global Search
-                document.querySelector('.global-search-input').addEventListener('input', (e) => {
-                    this.performGlobalSearch(e.target.value);
-                });
-
-                // Close modals when clicking outside
-                window.addEventListener('click', (e) => {
-                    const modals = document.getElementsByClassName('modal');
-                    for (let modal of modals) {
-                        if (e.target === modal) {
-                            modal.style.display = 'none';
-                        }
-                    }
-                    
-                    // Close quick actions when clicking outside
-                    const quickActions = document.getElementById('quickActions');
-                    const fab = document.getElementById('fab');
-                    if (!quickActions.contains(e.target) && !fab.contains(e.target) && quickActions.classList.contains('active')) {
-                        this.toggleQuickActions();
-                    }
-                });
             }
 
             loadStudents() {
@@ -4273,51 +3344,6 @@
                 }
             }
 
-            loadNotifications() {
-                const saved = localStorage.getItem('notificationData');
-                if (saved) {
-                    return JSON.parse(saved);
-                } else {
-                    // Create sample notifications
-                    const sampleNotifications = [
-                        {
-                            id: 1,
-                            title: 'Tugas Matematika Deadline Besok',
-                            message: 'Tugas Bab 5 Trigonometri akan berakhir besok',
-                            time: new Date().toISOString(),
-                            type: 'assignment',
-                            read: false
-                        },
-                        {
-                            id: 2,
-                            title: '3 Siswa Tidak Hadir Hari Ini',
-                            message: 'Sari, Budi, dan Maya tidak hadir hari ini',
-                            time: new Date(Date.now() - 3600000).toISOString(),
-                            type: 'attendance',
-                            read: false
-                        },
-                        {
-                            id: 3,
-                            title: 'Pengumuman Baru',
-                            message: 'Wali kelas telah memposting pengumuman baru',
-                            time: new Date(Date.now() - 7200000).toISOString(),
-                            type: 'announcement',
-                            read: true
-                        },
-                        {
-                            id: 4,
-                            title: 'Jadwal Berubah',
-                            message: 'Jadwal pelajaran Kimia pindah ke ruang 205',
-                            time: new Date(Date.now() - 86400000).toISOString(),
-                            type: 'schedule',
-                            read: true
-                        }
-                    ];
-                    localStorage.setItem('notificationData', JSON.stringify(sampleNotifications));
-                    return sampleNotifications;
-                }
-            }
-
             saveSchedule() {
                 localStorage.setItem('scheduleData', JSON.stringify(this.schedule));
             }
@@ -4342,22 +3368,6 @@
                 localStorage.setItem('activityData', JSON.stringify(this.activities));
             }
 
-            saveNotifications() {
-                localStorage.setItem('notificationData', JSON.stringify(this.notifications));
-            }
-
-            saveThemePreference(isDark) {
-                localStorage.setItem('darkTheme', isDark);
-            }
-
-            applySavedTheme() {
-                const isDark = localStorage.getItem('darkTheme') === 'true';
-                if (isDark) {
-                    document.body.classList.add('dark-theme');
-                    document.querySelector('.theme-toggle i').className = 'fas fa-sun';
-                }
-            }
-
             switchTab(tabName) {
                 // Hide all tab contents
                 document.querySelectorAll('.tab-content').forEach(tab => {
@@ -4367,14 +3377,10 @@
                 document.querySelectorAll('.nav-item').forEach(item => {
                     item.classList.remove('active');
                 });
-                document.querySelectorAll('.mobile-nav-item').forEach(item => {
-                    item.classList.remove('active');
-                });
                 // Show selected tab
                 document.getElementById(tabName).classList.add('active');
                 // Activate corresponding nav item
                 document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
-                document.querySelector(`.mobile-nav-item[data-tab="${tabName}"]`).classList.add('active');
                 
                 // Load specific tab data if needed
                 if (tabName === 'absence-tracking') {
@@ -4383,171 +3389,6 @@
                     this.loadGroupSpinnerTab();
                 } else if (tabName === 'schedule') {
                     this.loadScheduleTab();
-                }
-            }
-
-            toggleMobileNav() {
-                const mobileNav = document.getElementById('mobileNav');
-                const burgerMenu = document.getElementById('burgerMenu');
-                
-                mobileNav.classList.toggle('active');
-                burgerMenu.classList.toggle('active');
-            }
-
-            closeMobileNav() {
-                const mobileNav = document.getElementById('mobileNav');
-                const burgerMenu = document.getElementById('burgerMenu');
-                
-                mobileNav.classList.remove('active');
-                burgerMenu.classList.remove('active');
-            }
-
-            toggleTheme() {
-                const isDark = document.body.classList.toggle('dark-theme');
-                const themeIcon = document.querySelector('.theme-toggle i');
-                
-                if (isDark) {
-                    themeIcon.className = 'fas fa-sun';
-                } else {
-                    themeIcon.className = 'fas fa-moon';
-                }
-                
-                this.saveThemePreference(isDark);
-            }
-
-            toggleNotificationPanel() {
-                const panel = document.getElementById('notificationPanel');
-                panel.classList.toggle('active');
-            }
-
-            loadNotificationsPanel() {
-                const notificationList = document.getElementById('notificationList');
-                const unreadCount = this.notifications.filter(n => !n.read).length;
-                
-                // Update notification count
-                document.querySelectorAll('.notification-count').forEach(el => {
-                    el.textContent = unreadCount;
-                });
-                
-                // Render notifications
-                notificationList.innerHTML = this.notifications.map(notification => `
-                    <div class="notification-item ${notification.read ? '' : 'unread'}" onclick="app.markNotificationAsRead(${notification.id})">
-                        <div class="notification-title">${notification.title}</div>
-                        <div class="notification-message">${notification.message}</div>
-                        <div class="notification-time">${this.getTimeAgo(new Date(notification.time))}</div>
-                    </div>
-                `).join('');
-            }
-
-            markNotificationAsRead(id) {
-                const notification = this.notifications.find(n => n.id === id);
-                if (notification && !notification.read) {
-                    notification.read = true;
-                    this.saveNotifications();
-                    this.loadNotificationsPanel();
-                }
-            }
-
-            toggleQuickActions() {
-                const quickActions = document.getElementById('quickActions');
-                quickActions.classList.toggle('active');
-            }
-
-            showGlobalSearch() {
-                const container = document.getElementById('globalSearchContainer');
-                container.classList.add('active');
-                
-                // Focus on input
-                setTimeout(() => {
-                    document.querySelector('.global-search-input').focus();
-                }, 100);
-            }
-
-            hideGlobalSearch() {
-                const container = document.getElementById('globalSearchContainer');
-                container.classList.remove('active');
-                
-                // Clear input
-                document.querySelector('.global-search-input').value = '';
-                document.getElementById('globalSearchResults').innerHTML = '';
-            }
-
-            performGlobalSearch(query) {
-                const resultsContainer = document.getElementById('globalSearchResults');
-                
-                if (query.length < 2) {
-                    resultsContainer.innerHTML = '';
-                    return;
-                }
-                
-                const lowerQuery = query.toLowerCase();
-                let results = [];
-                
-                // Search students
-                this.students.forEach(student => {
-                    if (student.name.toLowerCase().includes(lowerQuery) || 
-                        student.nis.includes(query)) {
-                        results.push({
-                            type: 'student',
-                            title: student.name,
-                            description: `NIS: ${student.nis}`,
-                            action: () => {
-                                this.switchTab('students');
-                                this.hideGlobalSearch();
-                                // In a real app, you might want to highlight the student
-                            }
-                        });
-                    }
-                });
-                
-                // Search teachers
-                this.teachers.forEach(teacher => {
-                    if (teacher.name.toLowerCase().includes(lowerQuery) || 
-                        teacher.subject.toLowerCase().includes(lowerQuery)) {
-                        results.push({
-                            type: 'teacher',
-                            title: teacher.name,
-                            description: `Mata Pelajaran: ${teacher.subject}`,
-                            action: () => {
-                                this.switchTab('teachers');
-                                this.hideGlobalSearch();
-                            }
-                        });
-                    }
-                });
-                
-                // Search assignments
-                this.assignments.assignments.forEach(assignment => {
-                    if (assignment.title.toLowerCase().includes(lowerQuery) || 
-                        assignment.subject.toLowerCase().includes(lowerQuery)) {
-                        results.push({
-                            type: 'assignment',
-                            title: assignment.title,
-                            description: `Mata Pelajaran: ${assignment.subject}`,
-                            action: () => {
-                                this.switchTab('assignments');
-                                this.hideGlobalSearch();
-                            }
-                        });
-                    }
-                });
-                
-                // Render results
-                if (results.length > 0) {
-                    resultsContainer.innerHTML = results.map(result => `
-                        <div class="search-result-item" onclick="${result.action}">
-                            <div class="search-result-title">${result.title}</div>
-                            <div class="search-result-description">${result.description}</div>
-                            <span class="search-result-type">${result.type}</span>
-                        </div>
-                    `).join('');
-                } else {
-                    resultsContainer.innerHTML = `
-                        <div class="empty-placeholder">
-                            <i class="fas fa-search"></i>
-                            <p>Tidak ada hasil untuk "${query}"</p>
-                        </div>
-                    `;
                 }
             }
 
@@ -5983,18 +4824,10 @@
                 // Add activity
                 this.addActivity('attendance', 'Absensi harian diinput', `${this.getSubjectDisplayName(subject)} - ${date}`);
 
-                // Add notification
-                this.addNotification(
-                    'Absensi Diinput',
-                    `Absensi ${this.getSubjectDisplayName(subject)} untuk tanggal ${date} telah diinput`,
-                    'attendance'
-                );
-
                 this.saveAttendance();
                 this.closeModal('attendanceModal');
                 this.loadAttendanceData(date);
                 this.loadDashboard(); // Update dashboard stats
-                this.loadNotificationsPanel(); // Update notifications
                 this.showToast('Absensi berhasil disimpan!');
             }
 
@@ -6010,20 +4843,6 @@
                 
                 this.activities.unshift(newActivity);
                 this.saveActivities();
-            }
-
-            addNotification(title, message, type) {
-                const newNotification = {
-                    id: Date.now(),
-                    title: title,
-                    message: message,
-                    time: new Date().toISOString(),
-                    type: type,
-                    read: false
-                };
-                
-                this.notifications.unshift(newNotification);
-                this.saveNotifications();
             }
 
             getActivityIcon(type) {
@@ -6081,20 +4900,12 @@
                     
                     // Add activity
                     this.addActivity('assignment', 'Tugas baru ditambahkan', `${subject} - ${title}`);
-                    
-                    // Add notification
-                    this.addNotification(
-                        'Tugas Baru Ditambahkan',
-                        `${title} untuk mata pelajaran ${subject}`,
-                        'assignment'
-                    );
                 }
                 
                 this.saveAssignments();
                 this.closeModal('assignmentModal');
                 this.loadAssignmentsTab();
                 this.loadUpcomingAssignments(); // Update dashboard assignments
-                this.loadNotificationsPanel(); // Update notifications
                 this.showToast('Tugas berhasil disimpan!');
             }
 
@@ -6171,17 +4982,6 @@
                 this.saveAnnouncementData();
                 this.updateAnnouncement();
                 this.closeModal('announcementModal');
-                
-                // Add activity
-                this.addActivity('announcement', 'Pengumuman diperbarui', 'Pengumuman kelas telah diupdate');
-                
-                // Add notification
-                this.addNotification(
-                    'Pengumuman Diperbarui',
-                    'Pengumuman kelas telah diperbarui oleh wali kelas',
-                    'announcement'
-                );
-                
                 this.showToast('Pengumuman berhasil diperbarui!');
             }
 
@@ -6259,10 +5059,6 @@
                 
                 if (type === 'error') {
                     toast.classList.add('error');
-                } else if (type === 'warning') {
-                    toast.classList.add('warning');
-                } else if (type === 'info') {
-                    toast.classList.add('info');
                 }
                 
                 document.body.appendChild(toast);
@@ -6310,6 +5106,16 @@
                 loadingProgress.style.width = `${progress}%`;
             }, 200);
         });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let modal of modals) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
 
         // Set default date to today
         window.addEventListener('DOMContentLoaded', function() {
