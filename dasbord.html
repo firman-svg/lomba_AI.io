@@ -15,27 +15,27 @@
         }
 
         :root {
-            --primary-color: #6366f1;
-            --primary-light: #818cf8;
-            --primary-dark: #4f46e5;
-            --secondary-color: #10b981;
-            --secondary-light: #34d399;
-            --secondary-dark: #059669;
-            --accent-color: #f59e0b;
-            --accent-light: #fbbf24;
-            --accent-dark: #d97706;
-            --danger-color: #ef4444;
-            --danger-light: #f87171;
-            --danger-dark: #dc2626;
-            --warning-color: #f59e0b;
-            --info-color: #3b82f6;
-            --info-light: #60a5fa;
-            --info-dark: #2563eb;
+            --primary-color: #8b5cf6;
+            --primary-light: #a78bfa;
+            --primary-dark: #7c3aed;
+            --secondary-color: #06d6a0;
+            --secondary-light: #34e3b9;
+            --secondary-dark: #05b888;
+            --accent-color: #ff9e00;
+            --accent-light: #ffb143;
+            --accent-dark: #e68a00;
+            --danger-color: #ef476f;
+            --danger-light: #f56c8d;
+            --danger-dark: #e63946;
+            --warning-color: #ffd166;
+            --info-color: #118ab2;
+            --info-light: #3da0c9;
+            --info-dark: #0a6a8a;
             --purple-color: #8b5cf6;
-            --pink-color: #ec4899;
-            --teal-color: #14b8a6;
+            --pink-color: #f72585;
+            --teal-color: #06d6a0;
             --cyan-color: #06b6d4;
-            --indigo-color: #6366f1;
+            --indigo-color: #5a67d8;
             --rose-color: #f43f5e;
             --amber-color: #f59e0b;
             --emerald-color: #10b981;
@@ -59,11 +59,31 @@
             --transition-slow: all 0.5s ease;
         }
 
+        /* DARK MODE VARIABLES */
+        .dark-mode {
+            --text-dark: #f9fafb;
+            --text-medium: #e5e7eb;
+            --text-light: #9ca3af;
+            --bg-light: #111827;
+            --bg-white: #1f2937;
+            --border-color: #374151;
+            --border-light: #4b5563;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 6px 10px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
         body {
             background: linear-gradient(135deg, #f0f4ff, #e6f7ff);
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: var(--transition-slow);
+        }
+
+        .dark-mode body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
         }
 
         /* Loading Screen */
@@ -175,6 +195,41 @@
             background-size: cover;
         }
 
+        /* Header Decoration Elements */
+        .header-decoration {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .decoration-1 {
+            width: 150px;
+            height: 150px;
+            background: white;
+            top: -50px;
+            left: -50px;
+            animation-delay: 0s;
+        }
+
+        .decoration-2 {
+            width: 100px;
+            height: 100px;
+            background: var(--accent-color);
+            bottom: -30px;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .decoration-3 {
+            width: 80px;
+            height: 80px;
+            background: var(--secondary-color);
+            top: 20%;
+            right: -30px;
+            animation-delay: 4s;
+        }
+
         .header-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -252,6 +307,7 @@
             font-size: 1.1rem;
         }
 
+        /* Enhanced Header Stats */
         .header-stats {
             display: flex;
             gap: 30px;
@@ -260,11 +316,19 @@
         .stat {
             text-align: center;
             position: relative;
-            padding: 10px 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-md);
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-lg);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+            min-width: 120px;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .stat::after {
@@ -279,6 +343,12 @@
             border-radius: 3px;
         }
 
+        .stat-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
         .stat-number {
             display: block;
             font-size: 2rem;
@@ -288,17 +358,44 @@
 
         .stat-label {
             font-size: 0.9rem;
-            opacity: 0.8;
+            opacity: 0.9;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
 
         /* Navigation */
         .class-nav {
-            background: white;
+            background: var(--bg-white);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: var(--shadow);
+            transition: var(--transition-slow);
         }
 
         .nav-container {
@@ -337,7 +434,7 @@
         .nav-item.active {
             color: var(--primary-color);
             border-bottom-color: var(--primary-color);
-            background: rgba(79, 70, 229, 0.05);
+            background: rgba(139, 92, 246, 0.05);
         }
 
         .nav-item i {
@@ -349,6 +446,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 30px 20px;
+            transition: var(--transition-slow);
         }
 
         .tab-content {
@@ -371,9 +469,9 @@
             display: block;
         }
 
-        /* Dashboard Styles */
+        /* Halaman Utama Styles */
         .welcome-banner {
-            background: linear-gradient(135deg, var(--bg-white), #f0f9ff);
+            background: linear-gradient(135deg, var(--bg-white), var(--bg-light));
             border-radius: var(--radius-lg);
             padding: 30px;
             margin-bottom: 30px;
@@ -385,6 +483,7 @@
             position: relative;
             overflow: hidden;
             border: 1px solid var(--border-light);
+            transition: var(--transition-slow);
         }
 
         .welcome-banner::before {
@@ -416,12 +515,13 @@
         }
 
         .class-announcement {
-            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
-            border: 1px solid #ffeaa7;
+            background: linear-gradient(135deg, var(--warning-color), var(--amber-color));
+            border: 1px solid var(--warning-color);
             border-radius: var(--radius-md);
             padding: 20px;
             position: relative;
             box-shadow: var(--shadow);
+            color: white;
         }
 
         .announcement-header {
@@ -432,17 +532,17 @@
         }
 
         .announcement-header i {
-            color: var(--warning-color);
+            color: white;
             font-size: 1.2rem;
         }
 
         .announcement-header h3 {
-            color: var(--text-dark);
+            color: white;
             font-size: 1.2rem;
         }
 
         .announcement-content p {
-            color: var(--text-dark);
+            color: white;
             line-height: 1.5;
         }
 
@@ -450,9 +550,9 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            background: none;
+            background: rgba(255, 255, 255, 0.2);
             border: none;
-            color: var(--text-light);
+            color: white;
             cursor: pointer;
             font-size: 0.9rem;
             display: flex;
@@ -464,40 +564,224 @@
         }
 
         .edit-announcement-btn:hover {
-            color: var(--primary-color);
-            background: rgba(79, 70, 229, 0.1);
+            background: rgba(255, 255, 255, 0.3);
         }
 
-        /* Dashboard Grid */
-        .dashboard-grid {
+        /* Moto Kelas */
+        .class-motto {
+            background: linear-gradient(135deg, var(--primary-color), var(--purple-color));
+            color: white;
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .class-motto::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.1"><polygon points="0,0 1000,50 1000,100 0,100"/></svg>');
+            background-size: cover;
+        }
+
+        .class-motto p {
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Struktur Kelas */
+        .class-structure {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .class-structure h3 {
+            margin-bottom: 25px;
+            color: var(--text-dark);
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .structure-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 25px;
         }
 
-        .stats-section, .schedule-section, .assignments-section, .activity-section, .absence-alert-section {
-            background: white;
+        .structure-card {
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .structure-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, var(--primary-color), var(--purple-color));
+        }
+
+        .structure-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .structure-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 auto 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .structure-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .structure-role {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .structure-contact {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Galeri Kenangan */
+        .class-gallery {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .class-gallery h3 {
+            margin-bottom: 25px;
+            color: var(--text-dark);
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            aspect-ratio: 1;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 214, 160, 0.1));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .gallery-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+
+        .gallery-item-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-item-title {
+            transform: translateY(0);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--bg-white);
             border-radius: var(--radius-lg);
             padding: 25px;
             box-shadow: var(--shadow);
             transition: var(--transition);
             border: 1px solid var(--border-light);
+            margin-bottom: 30px;
         }
 
-        .stats-section:hover, .schedule-section:hover, .assignments-section:hover, .activity-section:hover, .absence-alert-section:hover {
+        .stats-section:hover {
             box-shadow: var(--shadow-lg);
             transform: translateY(-5px);
         }
 
-        .stats-section {
-            grid-column: 1 / -1;
-        }
-
-        .absence-alert-section {
-            grid-column: 1 / -1;
-        }
-
-        .stats-section h3, .schedule-section h3, .assignments-section h3, .activity-section h3, .absence-alert-section h3 {
+        .stats-section h3 {
             margin-bottom: 20px;
             color: var(--text-dark);
             font-size: 1.3rem;
@@ -512,27 +796,44 @@
             gap: 15px;
         }
 
-        .stat-card {
+        .enhanced-stat-card {
             display: flex;
             align-items: center;
             gap: 15px;
             padding: 20px;
             border-radius: var(--radius-md);
-            border-left: 4px solid var(--primary-color);
             background: var(--bg-light);
             transition: var(--transition);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
-        .stat-card:hover {
+        .enhanced-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .enhanced-stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .enhanced-stat-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-md);
         }
 
-        .stat-card.present { border-left-color: var(--secondary-color); }
-        .stat-card.sick { border-left-color: var(--warning-color); }
-        .stat-card.permission { border-left-color: var(--info-color); }
-        .stat-card.absent { border-left-color: var(--danger-color); }
+        .enhanced-stat-card.present { border-left: 4px solid var(--secondary-color); }
+        .enhanced-stat-card.sick { border-left: 4px solid var(--warning-color); }
+        .enhanced-stat-card.permission { border-left: 4px solid var(--info-color); }
+        .enhanced-stat-card.absent { border-left: 4px solid var(--danger-color); }
 
         .stat-icon {
             width: 50px;
@@ -545,10 +846,10 @@
             color: white;
         }
 
-        .stat-card.present .stat-icon { background: var(--secondary-color); }
-        .stat-card.sick .stat-icon { background: var(--warning-color); }
-        .stat-card.permission .stat-icon { background: var(--info-color); }
-        .stat-card.absent .stat-icon { background: var(--danger-color); }
+        .enhanced-stat-card.present .stat-icon { background: var(--secondary-color); }
+        .enhanced-stat-card.sick .stat-icon { background: var(--warning-color); }
+        .enhanced-stat-card.permission .stat-icon { background: var(--info-color); }
+        .enhanced-stat-card.absent .stat-icon { background: var(--danger-color); }
 
         .stat-info h4 {
             font-size: 1.8rem;
@@ -561,14 +862,38 @@
             font-size: 0.9rem;
         }
 
-        /* Schedule Items */
+        /* Today's Schedule */
+        .schedule-section {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+            margin-bottom: 30px;
+        }
+
+        .schedule-section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .schedule-section h3 {
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .today-schedule {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
 
-        .schedule-item {
+        .enhanced-schedule-item {
             display: flex;
             align-items: center;
             gap: 15px;
@@ -578,16 +903,38 @@
             transition: var(--transition);
             cursor: pointer;
             position: relative;
+            overflow: hidden;
         }
 
-        .schedule-item:hover {
+        .enhanced-schedule-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .enhanced-schedule-item:hover::before {
+            width: 8px;
+            background: var(--secondary-color);
+        }
+
+        .enhanced-schedule-item:hover {
             transform: translateX(5px);
             box-shadow: var(--shadow);
         }
 
-        .schedule-item.current {
+        .enhanced-schedule-item.current {
             border-color: var(--primary-color);
-            background: rgba(79, 70, 229, 0.05);
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .enhanced-schedule-item.current::before {
+            background: var(--secondary-color);
+            width: 8px;
         }
 
         .schedule-time {
@@ -619,7 +966,7 @@
             color: var(--text-light);
         }
 
-        .schedule-item.current .schedule-status {
+        .enhanced-schedule-item.current .schedule-status {
             background: var(--primary-color);
             color: white;
         }
@@ -664,38 +1011,80 @@
 
         .edit-schedule-btn:hover {
             color: var(--primary-color);
-            background: rgba(79, 70, 229, 0.1);
+            background: rgba(139, 92, 246, 0.1);
         }
 
-        /* Assignments */
+        /* Upcoming Assignments */
+        .assignments-section {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+            margin-bottom: 30px;
+        }
+
+        .assignments-section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .assignments-section h3 {
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .assignments-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        .assignment-item {
-            padding: 15px;
-            border: 1px solid var(--border-color);
+        .enhanced-assignment-item {
+            background: var(--bg-white);
             border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
             border-left: 4px solid var(--info-color);
             transition: var(--transition);
-            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
-        .assignment-item:hover {
+        .enhanced-assignment-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 30px 30px 0;
+            border-color: transparent rgba(139, 92, 246, 0.1) transparent transparent;
+            transition: var(--transition);
+        }
+
+        .enhanced-assignment-item:hover::before {
+            border-width: 0 40px 40px 0;
+        }
+
+        .enhanced-assignment-item:hover {
             transform: translateY(-3px);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
         }
 
-        .assignment-item.urgent {
+        .enhanced-assignment-item.urgent {
             border-left-color: var(--danger-color);
-            background: rgba(239, 68, 68, 0.05);
         }
 
-        .assignment-item.completed {
+        .enhanced-assignment-item.completed {
             border-left-color: var(--secondary-color);
-            background: rgba(16, 185, 129, 0.05);
         }
 
         .assignment-subject {
@@ -717,11 +1106,35 @@
             font-size: 0.9rem;
         }
 
-        .assignment-item.urgent .assignment-deadline {
+        .enhanced-assignment-item.urgent .assignment-deadline {
             color: var(--danger-color);
         }
 
-        /* Activity List */
+        /* Recent Activity */
+        .activity-section {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+            margin-bottom: 30px;
+        }
+
+        .activity-section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .activity-section h3 {
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .activity-list {
             display: flex;
             flex-direction: column;
@@ -741,7 +1154,7 @@
 
         .activity-item:hover {
             transform: translateX(5px);
-            background: white;
+            background: var(--bg-white);
             box-shadow: var(--shadow);
         }
 
@@ -768,6 +1181,31 @@
         .activity-time {
             font-size: 0.8rem;
             color: var(--text-light);
+        }
+
+        /* Today's Duty */
+        .duty-section {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+            margin-bottom: 30px;
+        }
+
+        .duty-section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .duty-section h3 {
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         /* Tab Header */
@@ -811,7 +1249,7 @@
         }
 
         .btn-secondary {
-            background: white;
+            background: var(--bg-white);
             color: var(--text-dark);
             border: 1px solid var(--border-color);
             padding: 10px 20px;
@@ -861,12 +1299,14 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius-sm);
             transition: var(--transition);
+            background: var(--bg-white);
+            color: var(--text-dark);
         }
 
         .date-selector input:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
         }
 
         .view-options {
@@ -875,7 +1315,7 @@
         }
 
         .attendance-table-container {
-            background: white;
+            background: var(--bg-white);
             border-radius: var(--radius-md);
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -943,7 +1383,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: white;
+            background: var(--bg-white);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-xl);
             width: 90%;
@@ -1006,6 +1446,8 @@
             border-radius: var(--radius-sm);
             font-size: 1rem;
             transition: var(--transition);
+            background: var(--bg-white);
+            color: var(--text-dark);
         }
 
         .form-group input:focus,
@@ -1013,7 +1455,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
         }
 
         /* Students Attendance List */
@@ -1065,7 +1507,7 @@
             padding: 6px 12px;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-sm);
-            background: white;
+            background: var(--bg-white);
             cursor: pointer;
             font-size: 0.8rem;
             transition: var(--transition);
@@ -1088,7 +1530,7 @@
         }
 
         .student-card {
-            background: white;
+            background: var(--bg-white);
             border-radius: var(--radius-md);
             padding: 20px;
             box-shadow: var(--shadow);
@@ -1140,7 +1582,7 @@
         }
 
         .teacher-card {
-            background: white;
+            background: var(--bg-white);
             border-radius: var(--radius-md);
             padding: 25px;
             box-shadow: var(--shadow);
@@ -1186,7 +1628,7 @@
 
         /* Weekly Schedule */
         .weekly-schedule {
-            background: white;
+            background: var(--bg-white);
             border-radius: var(--radius-md);
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -1233,7 +1675,7 @@
         }
 
         .schedule-lesson {
-            background: rgba(79, 70, 229, 0.1);
+            background: rgba(139, 92, 246, 0.1);
             border: 1px solid var(--primary-color);
             border-radius: var(--radius-sm);
             padding: 10px;
@@ -1245,7 +1687,7 @@
 
         .schedule-lesson:hover {
             transform: scale(1.02);
-            background: rgba(79, 70, 229, 0.15);
+            background: rgba(139, 92, 246, 0.15);
         }
 
         .schedule-lesson h5 {
@@ -1279,13 +1721,13 @@
 
         .schedule-edit-btn:hover {
             color: var(--primary-color);
-            background: rgba(79, 70, 229, 0.1);
+            background: rgba(139, 92, 246, 0.1);
         }
 
         /* Search Box */
         .search-box {
             position: relative;
-            background: white;
+            background: var(--bg-white);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-sm);
             padding: 10px 15px;
@@ -1298,7 +1740,7 @@
 
         .search-box:focus-within {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
         }
 
         .search-box i {
@@ -1310,11 +1752,13 @@
             outline: none;
             flex: 1;
             font-size: 1rem;
+            background: transparent;
+            color: var(--text-dark);
         }
 
         /* Assignment Detailed */
         .assignment-item-detailed {
-            background: white;
+            background: var(--bg-white);
             border-radius: var(--radius-md);
             padding: 20px;
             margin-bottom: 15px;
@@ -1382,7 +1826,7 @@
             padding: 6px 12px;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-sm);
-            background: white;
+            background: var(--bg-white);
             cursor: pointer;
             font-size: 0.8rem;
             transition: var(--transition);
@@ -1408,7 +1852,7 @@
             padding: 8px 16px;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-sm);
-            background: white;
+            background: var(--bg-white);
             cursor: pointer;
             transition: var(--transition);
             display: inline-flex;
@@ -1489,7 +1933,7 @@
 
         /* Attendance Summary */
         .attendance-summary {
-            background: white;
+            background: var(--bg-white);
             border-radius: var(--radius-md);
             padding: 20px;
             box-shadow: var(--shadow);
@@ -1529,172 +1973,9 @@
             color: var(--danger-color);
         }
 
-        /* NEW: Absence Alert Styles */
-        .absence-alert-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .absence-alert-item {
-            background: white;
-            border-radius: var(--radius-md);
-            padding: 20px;
-            box-shadow: var(--shadow);
-            border-left: 4px solid var(--danger-color);
-            transition: var(--transition);
-        }
-
-        .absence-alert-item:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .absence-alert-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .absence-alert-student {
-            font-weight: 600;
-            color: var(--text-dark);
-            font-size: 1.1rem;
-        }
-
-        .absence-alert-count {
-            background: var(--danger-color);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .absence-alert-subjects {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .absence-alert-subject {
-            background: var(--bg-light);
-            padding: 6px 12px;
-            border-radius: var(--radius-sm);
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .absence-alert-subject.absent {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-
-        .absence-alert-subject.sick {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .absence-alert-subject.permission {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-
-        /* NEW: Student Absence Report */
-        .student-absence-report {
-            background: white;
-            border-radius: var(--radius-md);
-            padding: 20px;
-            box-shadow: var(--shadow);
-            margin-bottom: 20px;
-        }
-
-        .student-absence-report h3 {
-            margin-bottom: 15px;
-            color: var(--text-dark);
-        }
-
-        .absence-report-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .absence-report-table th {
-            background: var(--bg-light);
-            padding: 12px 15px;
-            text-align: left;
-            font-weight: 600;
-            color: var(--text-dark);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .absence-report-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .absence-report-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .absence-report-table tr:hover {
-            background: var(--bg-light);
-        }
-
-        .absence-report-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        /* NEW: Absence Pattern Styles */
-        .absence-pattern-section {
-            background: white;
-            border-radius: var(--radius-lg);
-            padding: 25px;
-            box-shadow: var(--shadow);
-            margin-bottom: 25px;
-        }
-
-        .pattern-filters {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            align-items: end;
-        }
-
-        .pattern-filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .pattern-filter-group label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-light);
-        }
-
-        .pattern-filter-group input, .pattern-filter-group select {
-            padding: 8px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            transition: var(--transition);
-        }
-
-        .pattern-filter-group input:focus, .pattern-filter-group select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-        }
-
-        /* NEW: Group Spinner Styles */
+        /* Group Spinner Styles */
         .group-spinner-section {
-            background: white;
+            background: var(--bg-white);
             border-radius: var(--radius-lg);
             padding: 25px;
             box-shadow: var(--shadow);
@@ -1726,12 +2007,14 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius-sm);
             transition: var(--transition);
+            background: var(--bg-white);
+            color: var(--text-dark);
         }
 
         .group-control-item input:focus, .group-control-item select:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
         }
 
         .groups-container {
@@ -1742,7 +2025,7 @@
         }
 
         .group-card {
-            background: white;
+            background: var(--bg-white);
             border-radius: var(--radius-md);
             padding: 20px;
             box-shadow: var(--shadow);
@@ -1818,14 +2101,14 @@
             margin-top: 20px;
         }
 
-        /* NEW: Spinner Animation */
+        /* Spinner Animation */
         .spinner-container {
             display: none;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 40px;
-            background: white;
+            background: var(--bg-white);
             border-radius: var(--radius-md);
             box-shadow: var(--shadow);
             margin: 20px 0;
@@ -1879,7 +2162,7 @@
         /* Quick Actions Menu */
         .quick-action-item {
             position: fixed;
-            background: white;
+            background: var(--bg-white);
             padding: 12px 16px;
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-lg);
@@ -1909,44 +2192,7 @@
             }
         }
 
-        /* NEW: Color Variants for Enhanced Aesthetics */
-        .color-variant-1 { background: linear-gradient(135deg, var(--primary-color), var(--purple-color)); }
-        .color-variant-2 { background: linear-gradient(135deg, var(--secondary-color), var(--teal-color)); }
-        .color-variant-3 { background: linear-gradient(135deg, var(--warning-color), var(--amber-color)); }
-        .color-variant-4 { background: linear-gradient(135deg, var(--info-color), var(--cyan-color)); }
-        .color-variant-5 { background: linear-gradient(135deg, var(--danger-color), var(--rose-color)); }
-        .color-variant-6 { background: linear-gradient(135deg, var(--purple-color), var(--violet-color)); }
-        .color-variant-7 { background: linear-gradient(135deg, var(--teal-color), var(--emerald-color)); }
-        .color-variant-8 { background: linear-gradient(135deg, var(--amber-color), var(--warning-color)); }
-
-        /* NEW: Enhanced Card Styles */
-        .enhanced-card {
-            background: white;
-            border-radius: var(--radius-lg);
-            padding: 25px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid var(--border-light);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .enhanced-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(135deg, var(--primary-color), var(--purple-color));
-        }
-
-        .enhanced-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* NEW: Animated Background Elements */
+        /* Animated Background Elements */
         .animated-bg-element {
             position: absolute;
             border-radius: 50%;
@@ -1960,140 +2206,119 @@
             50% { transform: translateY(-20px) rotate(180deg); }
         }
 
-        /* NEW: Enhanced Schedule Item */
-        .enhanced-schedule-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .enhanced-schedule-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .enhanced-schedule-item:hover::before {
-            width: 8px;
-            background: var(--secondary-color);
-        }
-
-        .enhanced-schedule-item:hover {
-            transform: translateX(5px);
+        /* NEW: Classroom Layout Styles */
+        .classroom-layout {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 25px;
             box-shadow: var(--shadow);
+            margin-bottom: 25px;
+            overflow-x: auto;
         }
 
-        .enhanced-schedule-item.current {
-            border-color: var(--primary-color);
-            background: rgba(79, 70, 229, 0.05);
-        }
-
-        .enhanced-schedule-item.current::before {
-            background: var(--secondary-color);
-            width: 8px;
-        }
-
-        /* NEW: Enhanced Assignment Item */
-        .enhanced-assignment-item {
-            background: white;
-            border-radius: var(--radius-md);
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: var(--shadow);
-            border-left: 4px solid var(--info-color);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .enhanced-assignment-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 0 30px 30px 0;
-            border-color: transparent rgba(79, 70, 229, 0.1) transparent transparent;
-            transition: var(--transition);
-        }
-
-        .enhanced-assignment-item:hover::before {
-            border-width: 0 40px 40px 0;
-        }
-
-        .enhanced-assignment-item:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .enhanced-assignment-item.urgent {
-            border-left-color: var(--danger-color);
-        }
-
-        .enhanced-assignment-item.completed {
-            border-left-color: var(--secondary-color);
-        }
-
-        /* NEW: Enhanced Stats Cards */
-        .enhanced-stat-card {
-            display: flex;
-            align-items: center;
+        .classroom-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
             gap: 15px;
-            padding: 20px;
-            border-radius: var(--radius-md);
+            margin-bottom: 20px;
+            min-width: 800px;
+        }
+
+        .classroom-desk {
             background: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
             transition: var(--transition);
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
+            border: 2px solid transparent;
         }
 
-        .enhanced-stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .enhanced-stat-card:hover::before {
-            opacity: 1;
-        }
-
-        .enhanced-stat-card:hover {
-            transform: translateY(-5px);
+        .classroom-desk:hover {
+            transform: translateY(-3px);
             box-shadow: var(--shadow-md);
         }
 
-        .enhanced-stat-card.present { border-left: 4px solid var(--secondary-color); }
-        .enhanced-stat-card.sick { border-left: 4px solid var(--warning-color); }
-        .enhanced-stat-card.permission { border-left: 4px solid var(--info-color); }
-        .enhanced-stat-card.absent { border-left: 4px solid var(--danger-color); }
+        .classroom-desk.empty {
+            background: var(--border-light);
+            color: var(--text-light);
+        }
+
+        .classroom-desk.teacher {
+            background: linear-gradient(135deg, var(--primary-color), var(--purple-color));
+            color: white;
+            grid-column: 3 / 5;
+        }
+
+        .desk-number {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .classroom-desk.teacher .desk-number {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .desk-student {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .classroom-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* NEW: Duty Schedule Styles */
+        .duty-schedule {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+        }
+
+        .duty-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .duty-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .duty-table th {
+            background: var(--bg-light);
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .duty-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .duty-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .duty-table tr:hover {
+            background: var(--bg-light);
+        }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -2155,12 +2380,12 @@
                 font-size: 0.8rem;
             }
             
-            .pattern-filters, .group-controls {
+            .group-controls, .duty-controls, .classroom-controls {
                 flex-direction: column;
                 align-items: stretch;
             }
             
-            .pattern-filter-group, .group-control-item {
+            .group-control-item {
                 width: 100%;
             }
             
@@ -2176,6 +2401,15 @@
                 width: 80px;
                 height: 80px;
             }
+            
+            .classroom-grid {
+                grid-template-columns: repeat(4, 1fr);
+                min-width: 600px;
+            }
+            
+            .structure-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -2183,7 +2417,7 @@
                 font-size: 1.8rem;
             }
             
-            .schedule-item {
+            .enhanced-schedule-item {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 10px;
@@ -2200,12 +2434,6 @@
             .attendance-table th,
             .attendance-table td {
                 padding: 10px 8px;
-            }
-            
-            .absence-alert-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
             }
             
             .group-header {
@@ -2234,12 +2462,17 @@
                 padding: 20px 15px;
             }
             
-            .welcome-banner, .stats-section, .schedule-section, .assignments-section, .activity-section, .absence-alert-section {
+            .welcome-banner, .stats-section, .schedule-section, .assignments-section, .activity-section, .duty-section {
                 padding: 20px;
             }
             
             .tab-header h2 {
                 font-size: 1.5rem;
+            }
+            
+            .classroom-grid {
+                grid-template-columns: repeat(3, 1fr);
+                min-width: 450px;
             }
         }
     </style>
@@ -2259,6 +2492,16 @@
     <div class="class-website" id="classWebsite">
         <!-- Header -->
         <header class="class-header">
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            
+            <!-- Header Decoration Elements -->
+            <div class="header-decoration decoration-1"></div>
+            <div class="header-decoration decoration-2"></div>
+            <div class="header-decoration decoration-3"></div>
+            
             <div class="header-content">
                 <div class="class-info">
                     <div class="class-avatar">
@@ -2271,17 +2514,21 @@
                     </div>
                 </div>
                 <div class="header-stats">
+                    <!-- Enhanced Stats with Icons -->
                     <div class="stat">
+                        <i class="fas fa-user-graduate stat-icon"></i>
                         <span class="stat-number">36</span>
-                        <span class="stat-label">Siswa</span>
+                        <span class="stat-label">Siswa Aktif</span>
                     </div>
                     <div class="stat">
+                        <i class="fas fa-book-open stat-icon"></i>
                         <span class="stat-number">12</span>
-                        <span class="stat-label">Mapel</span>
+                        <span class="stat-label">Mata Pelajaran</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">5</span>
-                        <span class="stat-label">Guru</span>
+                        <i class="fas fa-chalkboard-teacher stat-icon"></i>
+                        <span class="stat-number">10</span>
+                        <span class="stat-label">Guru Pengajar</span>
                     </div>
                 </div>
             </div>
@@ -2290,21 +2537,25 @@
         <!-- Navigation -->
         <nav class="class-nav">
             <div class="nav-container">
-                <a href="#dashboard" class="nav-item active" data-tab="dashboard">
+                <a href="#home" class="nav-item active" data-tab="home">
                     <i class="fas fa-home"></i>
-                    <span>Dashboard</span>
+                    <span>Halaman Utama</span>
                 </a>
                 <a href="#attendance" class="nav-item" data-tab="attendance">
                     <i class="fas fa-clipboard-check"></i>
                     <span>Absensi</span>
                 </a>
-                <a href="#absence-tracking" class="nav-item" data-tab="absence-tracking">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span>Pelacakan Bolos</span>
-                </a>
                 <a href="#group-spinner" class="nav-item" data-tab="group-spinner">
                     <i class="fas fa-random"></i>
                     <span>Pembagian Kelompok</span>
+                </a>
+                <a href="#classroom" class="nav-item" data-tab="classroom">
+                    <i class="fas fa-chair"></i>
+                    <span>Tata Letak Kelas</span>
+                </a>
+                <a href="#duty" class="nav-item" data-tab="duty">
+                    <i class="fas fa-broom"></i>
+                    <span>Jadwal Piket</span>
                 </a>
                 <a href="#schedule" class="nav-item" data-tab="schedule">
                     <i class="fas fa-calendar-alt"></i>
@@ -2327,8 +2578,8 @@
         
         <!-- Main Content -->
         <main class="class-main">
-            <!-- Dashboard Tab -->
-            <div id="dashboard" class="tab-content active">
+            <!-- Halaman Utama Tab -->
+            <div id="home" class="tab-content active">
                 <div class="welcome-banner">
                     <div class="welcome-text">
                         <h2>Selamat Datang di Kelas XI-7 VALLORIX! 🎓</h2>
@@ -2347,78 +2598,100 @@
                         </div>
                     </div>
                 </div>
-                <div class="dashboard-grid">
-                    <!-- Quick Stats -->
-                    <div class="stats-section">
-                        <h3>Statistik Hari Ini</h3>
-                        <div class="stats-grid">
-                            <div class="enhanced-stat-card present" onclick="app.showAttendanceDetails('present')">
-                                <div class="stat-icon">
-                                    <i class="fas fa-user-check"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h4 id="presentCount">0</h4>
-                                    <span>Hadir</span>
-                                </div>
+                
+                <!-- Moto Kelas -->
+                <div class="class-motto">
+                    <p>"Bersatu dalam Perbedaan, Berprestasi dalam Kebersamaan"</p>
+                </div>
+                
+                <!-- Struktur Kelas -->
+                <div class="class-structure">
+                    <h3><i class="fas fa-users"></i> Struktur Kelas XI-7 VALLORIX</h3>
+                    <div class="structure-grid" id="structureGrid">
+                        <!-- Struktur kelas akan dimuat di sini -->
+                    </div>
+                </div>
+                
+                <!-- Galeri Kenangan -->
+                <div class="class-gallery">
+                    <h3><i class="fas fa-images"></i> Galeri Kenangan</h3>
+                    <div class="gallery-grid" id="galleryGrid">
+                        <!-- Galeri akan dimuat di sini -->
+                    </div>
+                </div>
+                
+                <!-- Statistik Hari Ini -->
+                <div class="stats-section">
+                    <h3><i class="fas fa-chart-bar"></i> Statistik Hari Ini</h3>
+                    <div class="stats-grid">
+                        <div class="enhanced-stat-card present" onclick="app.showAttendanceDetails('present')">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-check" style="color: white;"></i>
                             </div>
-                            <div class="enhanced-stat-card sick" onclick="app.showAttendanceDetails('sick')">
-                                <div class="stat-icon">
-                                    <i class="fas fa-procedures"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h4 id="sickCount">0</h4>
-                                    <span>Sakit</span>
-                                </div>
+                            <div class="stat-info">
+                                <h4 id="presentCount">0</h4>
+                                <span>Hadir</span>
                             </div>
-                            <div class="enhanced-stat-card permission" onclick="app.showAttendanceDetails('permission')">
-                                <div class="stat-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h4 id="permissionCount">0</h4>
-                                    <span>Izin</span>
-                                </div>
+                        </div>
+                        <div class="enhanced-stat-card sick" onclick="app.showAttendanceDetails('sick')">
+                            <div class="stat-icon">
+                                <i class="fas fa-procedures" style="color: white;"></i>
                             </div>
-                            <div class="enhanced-stat-card absent" onclick="app.showAttendanceDetails('absent')">
-                                <div class="stat-icon">
-                                    <i class="fas fa-user-times"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h4 id="absentCount">36</h4>
-                                    <span>Alpha</span>
-                                </div>
+                            <div class="stat-info">
+                                <h4 id="sickCount">0</h4>
+                                <span>Sakit</span>
+                            </div>
+                        </div>
+                        <div class="enhanced-stat-card permission" onclick="app.showAttendanceDetails('permission')">
+                            <div class="stat-icon">
+                                <i class="fas fa-envelope" style="color: white;"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4 id="permissionCount">0</h4>
+                                <span>Izin</span>
+                            </div>
+                        </div>
+                        <div class="enhanced-stat-card absent" onclick="app.showAttendanceDetails('absent')">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-times" style="color: white;"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4 id="absentCount">36</h4>
+                                <span>Alpha</span>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- NEW: Absence Alert Section -->
-                    <div class="absence-alert-section">
-                        <h3><i class="fas fa-exclamation-triangle"></i> Peringatan Ketidakhadiran</h3>
-                        <div class="absence-alert-list" id="absenceAlertList">
-                            <!-- Alert items will be loaded here -->
-                        </div>
+                </div>
+                
+                <!-- Jadwal Hari Ini -->
+                <div class="schedule-section">
+                    <h3><i class="fas fa-calendar-day"></i> Jadwal Hari Ini</h3>
+                    <div class="today-schedule" id="todaySchedule">
+                        <!-- Jadwal hari ini akan dimuat di sini -->
                     </div>
-                    
-                    <!-- Today's Schedule -->
-                    <div class="schedule-section">
-                        <h3>Jadwal Hari Ini</h3>
-                        <div class="today-schedule" id="todaySchedule">
-                            <!-- Today's schedule will be loaded here -->
-                        </div>
+                </div>
+                
+                <!-- Tugas Mendatang -->
+                <div class="assignments-section">
+                    <h3><i class="fas fa-tasks"></i> Tugas Mendatang</h3>
+                    <div class="assignments-list" id="dashboardAssignmentsList">
+                        <!-- Tugas akan dimuat secara dinamis -->
                     </div>
-                    <!-- Upcoming Assignments -->
-                    <div class="assignments-section">
-                        <h3>Tugas Mendatang</h3>
-                        <div class="assignments-list" id="dashboardAssignmentsList">
-                            <!-- Tugas akan dimuat secara dinamis -->
-                        </div>
+                </div>
+                
+                <!-- Aktivitas Terbaru -->
+                <div class="activity-section">
+                    <h3><i class="fas fa-history"></i> Aktivitas Terbaru</h3>
+                    <div class="activity-list" id="recentActivityList">
+                        <!-- Aktivitas terbaru akan dimuat di sini -->
                     </div>
-                    <!-- Recent Activity -->
-                    <div class="activity-section">
-                        <h3>Aktivitas Terbaru</h3>
-                        <div class="activity-list" id="recentActivityList">
-                            <!-- Recent activity will be loaded here -->
-                        </div>
+                </div>
+                
+                <!-- Piket Hari Ini -->
+                <div class="duty-section">
+                    <h3><i class="fas fa-broom"></i> Piket Hari Ini</h3>
+                    <div id="todayDutyList">
+                        <!-- Piket hari ini akan dimuat di sini -->
                     </div>
                 </div>
             </div>
@@ -2487,83 +2760,7 @@
                 </div>
             </div>
             
-            <!-- NEW: Absence Tracking Tab -->
-            <div id="absence-tracking" class="tab-content">
-                <div class="tab-header">
-                    <h2><i class="fas fa-exclamation-triangle"></i> Pelacakan Ketidakhadiran Siswa</h2>
-                    <div>
-                        <button class="export-btn" onclick="app.exportAbsenceReport()">
-                            <i class="fas fa-file-export"></i>
-                            Ekspor Laporan
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="absence-pattern-section">
-                    <h3>Pola Ketidakhadiran</h3>
-                    <div class="pattern-filters">
-                        <div class="pattern-filter-group">
-                            <label for="absenceDateRange">Rentang Tanggal:</label>
-                            <div style="display: flex; gap: 10px; align-items: center;">
-                                <input type="date" id="absenceStartDate">
-                                <span>s/d</span>
-                                <input type="date" id="absenceEndDate">
-                            </div>
-                        </div>
-                        <div class="pattern-filter-group">
-                            <label for="absenceTypeFilter">Jenis Ketidakhadiran:</label>
-                            <select id="absenceTypeFilter">
-                                <option value="all">Semua</option>
-                                <option value="absent">Alpha</option>
-                                <option value="sick">Sakit</option>
-                                <option value="permission">Izin</option>
-                            </select>
-                        </div>
-                        <div class="pattern-filter-group">
-                            <label for="absenceThreshold">Ambang Batas:</label>
-                            <select id="absenceThreshold">
-                                <option value="1">1+ ketidakhadiran</option>
-                                <option value="2">2+ ketidakhadiran</option>
-                                <option value="3" selected>3+ ketidakhadiran</option>
-                                <option value="5">5+ ketidakhadiran</option>
-                            </select>
-                        </div>
-                        <button class="btn-primary" onclick="app.loadAbsencePatterns()">
-                            <i class="fas fa-filter"></i> Terapkan Filter
-                        </button>
-                    </div>
-                    
-                    <div class="student-absence-report">
-                        <h3>Laporan Ketidakhadiran per Siswa</h3>
-                        <div class="attendance-table-container">
-                            <table class="absence-report-table">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama Siswa</th>
-                                        <th>NIS</th>
-                                        <th>Total Ketidakhadiran</th>
-                                        <th>Mata Pelajaran yang Ditinggalkan</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="absenceReportTableBody">
-                                    <!-- Absence report data will be loaded here -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="absence-alert-section">
-                    <h3><i class="fas fa-bell"></i> Siswa dengan Ketidakhadiran Tinggi</h3>
-                    <div class="absence-alert-list" id="detailedAbsenceAlertList">
-                        <!-- Detailed alert items will be loaded here -->
-                    </div>
-                </div>
-            </div>
-            
-            <!-- NEW: Group Spinner Tab -->
+            <!-- Group Spinner Tab -->
             <div id="group-spinner" class="tab-content">
                 <div class="tab-header">
                     <h2><i class="fas fa-random"></i> Pembagian Kelompok Acak</h2>
@@ -2615,6 +2812,86 @@
                         <button class="btn-secondary" onclick="app.saveGroups()">
                             <i class="fas fa-save"></i> Simpan Kelompok
                         </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Classroom Layout Tab -->
+            <div id="classroom" class="tab-content">
+                <div class="tab-header">
+                    <h2><i class="fas fa-chair"></i> Tata Letak Kelas XI-7 VALLORIX</h2>
+                    <div>
+                        <button class="btn-primary" onclick="app.randomizeSeats()">
+                            <i class="fas fa-random"></i> Acak Tempat Duduk
+                        </button>
+                        <button class="btn-secondary" onclick="app.resetSeats()">
+                            <i class="fas fa-undo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="classroom-layout">
+                    <h3>Denah Kelas</h3>
+                    <div class="classroom-controls">
+                        <div class="group-control-item">
+                            <label for="layoutType">Tipe Tata Letak:</label>
+                            <select id="layoutType">
+                                <option value="grid">Grid (6x6)</option>
+                                <option value="u-shape">U-Shape</option>
+                                <option value="groups">Kelompok</option>
+                            </select>
+                        </div>
+                        <button class="btn-secondary" onclick="app.changeLayout()">
+                            <i class="fas fa-sync"></i> Ubah Tata Letak
+                        </button>
+                    </div>
+                    
+                    <div class="classroom-grid" id="classroomGrid">
+                        <!-- Classroom layout will be loaded here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Duty Schedule Tab -->
+            <div id="duty" class="tab-content">
+                <div class="tab-header">
+                    <h2><i class="fas fa-broom"></i> Jadwal Piket Kelas XI-7 VALLORIX</h2>
+                    <div>
+                        <button class="btn-primary" onclick="app.showDutyModal()">
+                            <i class="fas fa-plus"></i> Tambah Jadwal
+                        </button>
+                        <button class="btn-secondary" onclick="app.generateDutySchedule()">
+                            <i class="fas fa-random"></i> Buat Jadwal Otomatis
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="duty-schedule">
+                    <h3>Jadwal Piket Minggu Ini</h3>
+                    <div class="duty-controls">
+                        <div class="group-control-item">
+                            <label for="dutyWeek">Pilih Minggu:</label>
+                            <input type="week" id="dutyWeek">
+                        </div>
+                        <button class="btn-secondary" onclick="app.loadDutySchedule()">
+                            <i class="fas fa-search"></i> Muat Jadwal
+                        </button>
+                    </div>
+                    
+                    <div class="attendance-table-container">
+                        <table class="duty-table">
+                            <thead>
+                                <tr>
+                                    <th>Hari</th>
+                                    <th>Petugas Piket</th>
+                                    <th>Tugas</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dutyTableBody">
+                                <!-- Duty schedule will be loaded here -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -2834,24 +3111,7 @@
         </div>
     </div>
 
-    <!-- NEW: Student Absence Detail Modal -->
-    <div id="studentAbsenceModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="studentAbsenceModalTitle">Detail Ketidakhadiran Siswa</h3>
-                <button class="close-btn" onclick="app.closeModal('studentAbsenceModal')">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div id="studentAbsenceDetails">
-                    <!-- Student absence details will be loaded here -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- NEW: Schedule Edit Modal -->
+    <!-- Schedule Edit Modal -->
     <div id="scheduleModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -2938,6 +3198,48 @@
         </div>
     </div>
 
+    <!-- Duty Modal -->
+    <div id="dutyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="dutyModalTitle">Tambah Jadwal Piket</h3>
+                <button class="close-btn" onclick="app.closeModal('dutyModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="dutyForm">
+                    <input type="hidden" id="dutyId">
+                    <div class="form-group">
+                        <label for="dutyDay">Hari</label>
+                        <select id="dutyDay" required>
+                            <option value="">Pilih Hari</option>
+                            <option value="Senin">Senin</option>
+                            <option value="Selasa">Selasa</option>
+                            <option value="Rabu">Rabu</option>
+                            <option value="Kamis">Kamis</option>
+                            <option value="Jumat">Jumat</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dutyStudents">Petugas Piket</label>
+                        <select id="dutyStudents" multiple required>
+                            <!-- Students will be loaded here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dutyTasks">Tugas</label>
+                        <textarea id="dutyTasks" rows="3" placeholder="Masukkan tugas piket"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary full-width">
+                        <i class="fas fa-save"></i>
+                        Simpan Jadwal Piket
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
         class ClassWebsite {
             constructor() {
@@ -2950,20 +3252,61 @@
                 this.announcement = this.loadAnnouncement();
                 this.groups = this.loadGroups();
                 this.activities = this.loadActivities();
+                this.classroom = this.loadClassroom();
+                this.duty = this.loadDuty();
+                this.structure = this.loadStructure();
                 this.init();
             }
 
             init() {
                 this.bindEvents();
-                this.loadDashboard();
+                this.loadHomePage();
                 this.loadAttendanceTab();
-                this.loadAbsenceTrackingTab();
                 this.loadGroupSpinnerTab();
+                this.loadClassroomTab();
+                this.loadDutyTab();
                 this.loadScheduleTab();
                 this.loadStudentsTab();
                 this.loadTeachersTab();
                 this.loadAssignmentsTab();
                 this.updateAnnouncement();
+                
+                // Initialize theme
+                this.initTheme();
+            }
+
+            // Initialize theme
+            initTheme() {
+                const savedTheme = localStorage.getItem('theme');
+                const themeToggle = document.getElementById('themeToggle');
+                
+                if (savedTheme === 'dark') {
+                    document.body.classList.add('dark-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                }
+                
+                // Add event listener for theme toggle
+                themeToggle.addEventListener('click', () => {
+                    this.toggleTheme();
+                });
+            }
+
+            // Toggle theme
+            toggleTheme() {
+                const themeToggle = document.getElementById('themeToggle');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    document.body.classList.remove('dark-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.body.classList.add('dark-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('theme', 'dark');
+                }
             }
 
             bindEvents() {
@@ -2999,6 +3342,12 @@
                     this.submitSchedule();
                 });
 
+                // Duty form
+                document.getElementById('dutyForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.submitDuty();
+                });
+
                 // Date change for attendance
                 document.getElementById('attendanceDate').addEventListener('change', (e) => {
                     this.loadAttendanceData(e.target.value);
@@ -3026,13 +3375,10 @@
                     this.loadAttendanceStudents();
                 });
 
-                // Set default dates for absence tracking
+                // Set default week for duty schedule
                 const today = new Date();
-                const oneWeekAgo = new Date();
-                oneWeekAgo.setDate(today.getDate() - 7);
-                
-                document.getElementById('absenceStartDate').value = oneWeekAgo.toISOString().split('T')[0];
-                document.getElementById('absenceEndDate').value = today.toISOString().split('T')[0];
+                const currentWeek = this.getWeekNumber(today);
+                document.getElementById('dutyWeek').value = `${today.getFullYear()}-W${currentWeek.toString().padStart(2, '0')}`;
             }
 
             loadStudents() {
@@ -3344,6 +3690,110 @@
                 }
             }
 
+            // Load classroom data
+            loadClassroom() {
+                const saved = localStorage.getItem('classroomData');
+                if (saved) {
+                    return JSON.parse(saved);
+                } else {
+                    // Create default classroom layout
+                    const defaultClassroom = {
+                        layout: 'grid',
+                        seats: []
+                    };
+                    
+                    // Initialize with empty seats
+                    for (let i = 1; i <= 36; i++) {
+                        defaultClassroom.seats.push({
+                            deskNumber: i,
+                            studentId: null,
+                            studentName: null
+                        });
+                    }
+                    
+                    localStorage.setItem('classroomData', JSON.stringify(defaultClassroom));
+                    return defaultClassroom;
+                }
+            }
+
+            // Load duty schedule
+            loadDuty() {
+                const saved = localStorage.getItem('dutyData');
+                if (saved) {
+                    return JSON.parse(saved);
+                } else {
+                    // Create sample duty schedule
+                    const sampleDuty = {
+                        schedule: [
+                            {
+                                id: 1,
+                                day: 'Senin',
+                                students: [1, 2, 3],
+                                tasks: 'Menyapu lantai, membersihkan papan tulis'
+                            },
+                            {
+                                id: 2,
+                                day: 'Selasa',
+                                students: [4, 5, 6],
+                                tasks: 'Mengepel lantai, merapikan buku'
+                            },
+                            {
+                                id: 3,
+                                day: 'Rabu',
+                                students: [7, 8, 9],
+                                tasks: 'Membersihkan jendela, menyiram tanaman'
+                            },
+                            {
+                                id: 4,
+                                day: 'Kamis',
+                                students: [10, 11, 12],
+                                tasks: 'Menyapu halaman, merapikan meja guru'
+                            },
+                            {
+                                id: 5,
+                                day: 'Jumat',
+                                students: [13, 14, 15],
+                                tasks: 'Membersihkan rak buku, menata kursi'
+                            }
+                        ]
+                    };
+                    localStorage.setItem('dutyData', JSON.stringify(sampleDuty));
+                    return sampleDuty;
+                }
+            }
+
+            // Load class structure
+            loadStructure() {
+                const saved = localStorage.getItem('structureData');
+                if (saved) {
+                    return JSON.parse(saved);
+                } else {
+                    // Create sample class structure
+                    const sampleStructure = {
+                        motto: "Bersatu dalam Perbedaan, Berprestasi dalam Kebersamaan",
+                        members: [
+                            { id: 1, name: 'Bu Sari, S.Pd', role: 'Wali Kelas', contact: 'sari@sekolah.sch.id' },
+                            { id: 2, name: 'Ahmad Rizki', role: 'Ketua Kelas', contact: 'ahmad1@email.com' },
+                            { id: 3, name: 'Sari Dewi', role: 'Wakil Ketua', contact: 'sari2@email.com' },
+                            { id: 4, name: 'Budi Santoso', role: 'Sekretaris 1', contact: 'budi3@email.com' },
+                            { id: 5, name: 'Maya Sari', role: 'Sekretaris 2', contact: 'maya4@email.com' },
+                            { id: 6, name: 'Rizki Pratama', role: 'Bendahara 1', contact: 'rizki5@email.com' },
+                            { id: 7, name: 'Dewi Lestari', role: 'Bendahara 2', contact: 'dewi6@email.com' }
+                        ],
+                        gallery: [
+                            { id: 1, title: 'Foto Kelas' },
+                            { id: 2, title: 'Kegiatan Belajar' },
+                            { id: 3, title: 'Ekstrakurikuler' },
+                            { id: 4, title: 'Perlombaan' },
+                            { id: 5, title: 'Karya Siswa' },
+                            { id: 6, title: 'Kegiatan Sosial' }
+                        ]
+                    };
+                    localStorage.setItem('structureData', JSON.stringify(sampleStructure));
+                    return sampleStructure;
+                }
+            }
+
             saveSchedule() {
                 localStorage.setItem('scheduleData', JSON.stringify(this.schedule));
             }
@@ -3368,6 +3818,21 @@
                 localStorage.setItem('activityData', JSON.stringify(this.activities));
             }
 
+            // Save classroom data
+            saveClassroom() {
+                localStorage.setItem('classroomData', JSON.stringify(this.classroom));
+            }
+
+            // Save duty schedule
+            saveDuty() {
+                localStorage.setItem('dutyData', JSON.stringify(this.duty));
+            }
+
+            // Save class structure
+            saveStructure() {
+                localStorage.setItem('structureData', JSON.stringify(this.structure));
+            }
+
             switchTab(tabName) {
                 // Hide all tab contents
                 document.querySelectorAll('.tab-content').forEach(tab => {
@@ -3383,16 +3848,18 @@
                 document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
                 
                 // Load specific tab data if needed
-                if (tabName === 'absence-tracking') {
-                    this.loadAbsenceTrackingTab();
-                } else if (tabName === 'group-spinner') {
+                if (tabName === 'group-spinner') {
                     this.loadGroupSpinnerTab();
+                } else if (tabName === 'classroom') {
+                    this.loadClassroomTab();
+                } else if (tabName === 'duty') {
+                    this.loadDutyTab();
                 } else if (tabName === 'schedule') {
                     this.loadScheduleTab();
                 }
             }
 
-            loadDashboard() {
+            loadHomePage() {
                 // Update stats based on today's attendance
                 const today = new Date().toISOString().split('T')[0];
                 const todayAttendance = this.attendance.records.filter(record => record.date === today);
@@ -3432,8 +3899,58 @@
                 // Load recent activities
                 this.loadRecentActivities();
                 
-                // Load absence alerts for dashboard
-                this.loadAbsenceAlerts();
+                // Load today's duty
+                this.loadTodayDuty();
+                
+                // Load class structure
+                this.loadClassStructure();
+                
+                // Load class gallery
+                this.loadClassGallery();
+            }
+
+            loadClassStructure() {
+                const structureGrid = document.getElementById('structureGrid');
+                
+                if (this.structure.members.length > 0) {
+                    structureGrid.innerHTML = this.structure.members.map(member => `
+                        <div class="structure-card">
+                            <div class="structure-avatar">
+                                ${member.name.split(' ').map(n => n[0]).join('')}
+                            </div>
+                            <div class="structure-name">${member.name}</div>
+                            <div class="structure-role">${member.role}</div>
+                            <div class="structure-contact">${member.contact}</div>
+                        </div>
+                    `).join('');
+                } else {
+                    structureGrid.innerHTML = `
+                        <div class="empty-placeholder">
+                            <i class="fas fa-users"></i>
+                            <p>Belum ada data struktur kelas.</p>
+                        </div>
+                    `;
+                }
+            }
+
+            loadClassGallery() {
+                const galleryGrid = document.getElementById('galleryGrid');
+                
+                if (this.structure.gallery.length > 0) {
+                    galleryGrid.innerHTML = this.structure.gallery.map(item => `
+                        <div class="gallery-item">
+                            <i class="fas fa-image"></i>
+                            <div class="gallery-item-title">${item.title}</div>
+                        </div>
+                    `).join('');
+                } else {
+                    galleryGrid.innerHTML = `
+                        <div class="empty-placeholder">
+                            <i class="fas fa-images"></i>
+                            <p>Belum ada galeri foto.</p>
+                        </div>
+                    `;
+                }
             }
 
             loadTodaySchedule() {
@@ -3580,76 +4097,38 @@
                 }
             }
 
-            // NEW: Load absence alerts for dashboard
-            loadAbsenceAlerts() {
-                const absenceAlertList = document.getElementById('absenceAlertList');
+            // Load today's duty
+            loadTodayDuty() {
+                const todayDutyList = document.getElementById('todayDutyList');
+                const today = new Date();
+                const dayNames = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+                const todayName = dayNames[today.getDay()];
                 
-                // Get students with multiple absences in the last 7 days
-                const oneWeekAgo = new Date();
-                oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+                // Get today's duty
+                const todayDuty = this.duty.schedule.find(duty => duty.day === todayName);
                 
-                const recentAbsences = this.attendance.records.filter(record => {
-                    const recordDate = new Date(record.date);
-                    return recordDate >= oneWeekAgo && 
-                          (record.status === 'absent' || record.status === 'sick' || record.status === 'permission');
-                });
-                
-                // Group by student and count absences
-                const studentAbsenceCount = {};
-                const studentAbsenceSubjects = {};
-                
-                recentAbsences.forEach(record => {
-                    if (!studentAbsenceCount[record.studentId]) {
-                        studentAbsenceCount[record.studentId] = 0;
-                        studentAbsenceSubjects[record.studentId] = [];
-                    }
-                    studentAbsenceCount[record.studentId]++;
+                if (todayDuty) {
+                    const dutyStudents = todayDuty.students.map(studentId => {
+                        const student = this.students.find(s => s.id === studentId);
+                        return student ? student.name : 'Tidak diketahui';
+                    }).join(', ');
                     
-                    // Add subject if not already in the list
-                    if (!studentAbsenceSubjects[record.studentId].includes(record.subject)) {
-                        studentAbsenceSubjects[record.studentId].push({
-                            subject: record.subject,
-                            status: record.status
-                        });
-                    }
-                });
-                
-                // Filter students with 2 or more absences
-                const studentsWithMultipleAbsences = Object.keys(studentAbsenceCount)
-                    .filter(studentId => studentAbsenceCount[studentId] >= 2)
-                    .map(studentId => {
-                        const student = this.students.find(s => s.id == studentId);
-                        return {
-                            student,
-                            absenceCount: studentAbsenceCount[studentId],
-                            subjects: studentAbsenceSubjects[studentId]
-                        };
-                    })
-                    .sort((a, b) => b.absenceCount - a.absenceCount)
-                    .slice(0, 5); // Show top 5
-                
-                if (studentsWithMultipleAbsences.length > 0) {
-                    absenceAlertList.innerHTML = studentsWithMultipleAbsences.map(item => `
-                        <div class="absence-alert-item">
-                            <div class="absence-alert-header">
-                                <div class="absence-alert-student">${item.student.name} (${item.student.nis})</div>
-                                <div class="absence-alert-count">${item.absenceCount} ketidakhadiran</div>
+                    todayDutyList.innerHTML = `
+                        <div class="enhanced-schedule-item">
+                            <div class="schedule-details">
+                                <h4>Petugas Piket: ${dutyStudents}</h4>
+                                <p>${todayDuty.tasks}</p>
                             </div>
-                            <div class="absence-alert-subjects">
-                                ${item.subjects.map(subject => `
-                                    <div class="absence-alert-subject ${subject.status}">
-                                        <i class="fas fa-book"></i>
-                                        ${this.getSubjectDisplayName(subject.subject)} (${this.getStatusText(subject.status)})
-                                    </div>
-                                `).join('')}
-                            </div>
+                            <button class="edit-schedule-btn" onclick="app.editDuty(${todayDuty.id})">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
                         </div>
-                    `).join('');
+                    `;
                 } else {
-                    absenceAlertList.innerHTML = `
+                    todayDutyList.innerHTML = `
                         <div class="empty-placeholder">
-                            <i class="fas fa-check-circle"></i>
-                            <p>Tidak ada peringatan ketidakhadiran.</p>
+                            <i class="fas fa-broom"></i>
+                            <p>Tidak ada jadwal piket untuk hari ini.</p>
                         </div>
                     `;
                 }
@@ -3769,367 +4248,7 @@
                 tableBody.innerHTML = tableRows;
             }
 
-            // NEW: Load absence tracking tab
-            loadAbsenceTrackingTab() {
-                this.loadAbsencePatterns();
-            }
-
-            // NEW: Load absence patterns based on filters
-            loadAbsencePatterns() {
-                const startDate = document.getElementById('absenceStartDate').value;
-                const endDate = document.getElementById('absenceEndDate').value;
-                const absenceType = document.getElementById('absenceTypeFilter').value;
-                const threshold = parseInt(document.getElementById('absenceThreshold').value);
-                
-                // Filter records based on date range and type
-                const filteredRecords = this.attendance.records.filter(record => {
-                    const recordDate = new Date(record.date);
-                    const start = new Date(startDate);
-                    const end = new Date(endDate);
-                    
-                    const dateInRange = recordDate >= start && recordDate <= end;
-                    const typeMatches = absenceType === 'all' || record.status === absenceType;
-                    
-                    return dateInRange && typeMatches && 
-                          (record.status === 'absent' || record.status === 'sick' || record.status === 'permission');
-                });
-                
-                // Group by student
-                const studentAbsences = {};
-                
-                filteredRecords.forEach(record => {
-                    if (!studentAbsences[record.studentId]) {
-                        studentAbsences[record.studentId] = {
-                            student: this.students.find(s => s.id == record.studentId),
-                            absences: [],
-                            subjects: new Set(),
-                            total: 0
-                        };
-                    }
-                    
-                    studentAbsences[record.studentId].absences.push(record);
-                    studentAbsences[record.studentId].subjects.add(record.subject);
-                    studentAbsences[record.studentId].total++;
-                });
-                
-                // Convert to array and filter by threshold
-                const studentsWithAbsences = Object.values(studentAbsences)
-                    .filter(item => item.total >= threshold)
-                    .sort((a, b) => b.total - a.total);
-                
-                // Update the absence report table
-                this.updateAbsenceReportTable(studentsWithAbsences);
-                
-                // Update the detailed absence alert list
-                this.updateDetailedAbsenceAlerts(studentsWithAbsences);
-            }
-
-            // NEW: Update absence report table
-            updateAbsenceReportTable(studentsWithAbsences) {
-                const tableBody = document.getElementById('absenceReportTableBody');
-                
-                if (studentsWithAbsences.length > 0) {
-                    tableBody.innerHTML = studentsWithAbsences.map((item, index) => `
-                        <tr>
-                            <td>${index + 1}</td>
-                            <td>${item.student.name}</td>
-                            <td>${item.student.nis}</td>
-                            <td>
-                                <span class="absence-alert-count">${item.total}</span>
-                            </td>
-                            <td>
-                                <div class="absence-alert-subjects">
-                                    ${Array.from(item.subjects).map(subject => `
-                                        <div class="absence-alert-subject">
-                                            <i class="fas fa-book"></i>
-                                            ${this.getSubjectDisplayName(subject)}
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </td>
-                            <td>
-                                <div class="absence-report-actions">
-                                    <button class="btn-small" onclick="app.viewStudentAbsenceDetails(${item.student.id})">
-                                        <i class="fas fa-eye"></i> Detail
-                                    </button>
-                                    <button class="btn-small" onclick="app.contactStudent(${item.student.id})">
-                                        <i class="fas fa-phone"></i> Hubungi
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    `).join('');
-                } else {
-                    tableBody.innerHTML = `
-                        <tr>
-                            <td colspan="6" style="text-align: center; padding: 40px;">
-                                <div class="empty-placeholder">
-                                    <i class="fas fa-check-circle"></i>
-                                    <p>Tidak ada siswa dengan ketidakhadiran yang memenuhi kriteria.</p>
-                                </div>
-                            </td>
-                        </tr>
-                    `;
-                }
-            }
-
-            // NEW: Update detailed absence alerts
-            updateDetailedAbsenceAlerts(studentsWithAbsences) {
-                const detailedAlertList = document.getElementById('detailedAbsenceAlertList');
-                
-                if (studentsWithAbsences.length > 0) {
-                    detailedAlertList.innerHTML = studentsWithAbsences.map(item => {
-                        // Group absences by subject and status
-                        const subjectStatusCount = {};
-                        
-                        item.absences.forEach(absence => {
-                            const key = `${absence.subject}-${absence.status}`;
-                            if (!subjectStatusCount[key]) {
-                                subjectStatusCount[key] = {
-                                    subject: absence.subject,
-                                    status: absence.status,
-                                    count: 0,
-                                    dates: []
-                                };
-                            }
-                            subjectStatusCount[key].count++;
-                            subjectStatusCount[key].dates.push(absence.date);
-                        });
-                        
-                        const subjectDetails = Object.values(subjectStatusCount);
-                        
-                        return `
-                            <div class="absence-alert-item">
-                                <div class="absence-alert-header">
-                                    <div class="absence-alert-student">${item.student.name} (${item.student.nis})</div>
-                                    <div class="absence-alert-count">${item.total} total ketidakhadiran</div>
-                                </div>
-                                <div class="absence-alert-subjects">
-                                    ${subjectDetails.map(detail => `
-                                        <div class="absence-alert-subject ${detail.status}">
-                                            <i class="fas fa-book"></i>
-                                            ${this.getSubjectDisplayName(detail.subject)} 
-                                            (${this.getStatusText(detail.status)}): ${detail.count}x
-                                        </div>
-                                    `).join('')}
-                                </div>
-                                <div class="absence-report-actions" style="margin-top: 10px;">
-                                    <button class="btn-small" onclick="app.viewStudentAbsenceDetails(${item.student.id})">
-                                        <i class="fas fa-eye"></i> Lihat Detail Lengkap
-                                    </button>
-                                    <button class="btn-small" onclick="app.contactParent(${item.student.id})">
-                                        <i class="fas fa-user-friends"></i> Hubungi Orang Tua
-                                    </button>
-                                </div>
-                            </div>
-                        `;
-                    }).join('');
-                } else {
-                    detailedAlertList.innerHTML = `
-                        <div class="empty-placeholder">
-                            <i class="fas fa-check-circle"></i>
-                            <p>Tidak ada siswa dengan ketidakhadiran tinggi.</p>
-                        </div>
-                    `;
-                }
-            }
-
-            // NEW: View student absence details
-            viewStudentAbsenceDetails(studentId) {
-                const student = this.students.find(s => s.id === studentId);
-                const studentAbsences = this.attendance.records.filter(record => 
-                    record.studentId == studentId && 
-                    (record.status === 'absent' || record.status === 'sick' || record.status === 'permission')
-                );
-                
-                // Group by subject
-                const absencesBySubject = {};
-                studentAbsences.forEach(absence => {
-                    if (!absencesBySubject[absence.subject]) {
-                        absencesBySubject[absence.subject] = [];
-                    }
-                    absencesBySubject[absence.subject].push(absence);
-                });
-                
-                const modal = document.getElementById('studentAbsenceModal');
-                const title = document.getElementById('studentAbsenceModalTitle');
-                const content = document.getElementById('studentAbsenceDetails');
-                
-                title.textContent = `Detail Ketidakhadiran - ${student.name}`;
-                
-                content.innerHTML = `
-                    <div class="form-group">
-                        <label>Nama Siswa:</label>
-                        <p><strong>${student.name}</strong></p>
-                    </div>
-                    <div class="form-group">
-                        <label>NIS:</label>
-                        <p>${student.nis}</p>
-                    </div>
-                    <div class="form-group">
-                        <label>Kontak:</label>
-                        <p>${student.phone} | ${student.email}</p>
-                    </div>
-                    <div class="form-group">
-                        <label>Total Ketidakhadiran:</label>
-                        <p><strong>${studentAbsences.length} kali</strong></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Detail per Mata Pelajaran:</label>
-                        ${Object.keys(absencesBySubject).map(subject => {
-                            const subjectAbsences = absencesBySubject[subject];
-                            const statusCount = {
-                                absent: 0,
-                                sick: 0,
-                                permission: 0
-                            };
-                            
-                            subjectAbsences.forEach(absence => {
-                                statusCount[absence.status]++;
-                            });
-                            
-                            return `
-                                <div style="margin-bottom: 15px; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px;">
-                                    <h4 style="margin-bottom: 8px;">${this.getSubjectDisplayName(subject)}</h4>
-                                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                                        ${statusCount.absent > 0 ? `
-                                            <span class="status-badge status-absent">Alpha: ${statusCount.absent}</span>
-                                        ` : ''}
-                                        ${statusCount.sick > 0 ? `
-                                            <span class="status-badge status-sick">Sakit: ${statusCount.sick}</span>
-                                        ` : ''}
-                                        ${statusCount.permission > 0 ? `
-                                            <span class="status-badge status-permission">Izin: ${statusCount.permission}</span>
-                                        ` : ''}
-                                    </div>
-                                    <div style="margin-top: 8px; font-size: 0.8rem;">
-                                        <strong>Tanggal:</strong> ${subjectAbsences.map(a => new Date(a.date).toLocaleDateString('id-ID')).join(', ')}
-                                    </div>
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
-                    <div class="form-group">
-                        <button class="btn-primary" onclick="app.contactParent(${studentId})">
-                            <i class="fas fa-user-friends"></i> Hubungi Orang Tua
-                        </button>
-                        <button class="btn-secondary" onclick="app.closeModal('studentAbsenceModal')">
-                            <i class="fas fa-times"></i> Tutup
-                        </button>
-                    </div>
-                `;
-                
-                modal.style.display = 'block';
-            }
-
-            // NEW: Contact student/parent
-            contactStudent(studentId) {
-                const student = this.students.find(s => s.id === studentId);
-                if (student && confirm(`Hubungi ${student.name} di ${student.phone}?`)) {
-                    window.open(`tel:${student.phone}`);
-                }
-            }
-
-            contactParent(studentId) {
-                const student = this.students.find(s => s.id === studentId);
-                if (student) {
-                    const message = `Halo, saya dari SMA Negeri 1. Kami ingin memberitahukan bahwa ${student.name} memiliki beberapa ketidakhadiran di sekolah. Apakah Bapak/Ibu dapat memberikan konfirmasi?`;
-                    
-                    if (confirm(`Hubungi orang tua ${student.name} di ${student.phone}?\n\nPesan: ${message}`)) {
-                        window.open(`https://wa.me/${student.phone.replace(/^0/, '62')}?text=${encodeURIComponent(message)}`);
-                    }
-                }
-            }
-
-            // NEW: Export absence report
-            exportAbsenceReport() {
-                const startDate = document.getElementById('absenceStartDate').value;
-                const endDate = document.getElementById('absenceEndDate').value;
-                const absenceType = document.getElementById('absenceTypeFilter').value;
-                const threshold = parseInt(document.getElementById('absenceThreshold').value);
-                
-                // Filter records based on date range and type (same as loadAbsencePatterns)
-                const filteredRecords = this.attendance.records.filter(record => {
-                    const recordDate = new Date(record.date);
-                    const start = new Date(startDate);
-                    const end = new Date(endDate);
-                    
-                    const dateInRange = recordDate >= start && recordDate <= end;
-                    const typeMatches = absenceType === 'all' || record.status === absenceType;
-                    
-                    return dateInRange && typeMatches && 
-                          (record.status === 'absent' || record.status === 'sick' || record.status === 'permission');
-                });
-                
-                // Group by student
-                const studentAbsences = {};
-                
-                filteredRecords.forEach(record => {
-                    if (!studentAbsences[record.studentId]) {
-                        studentAbsences[record.studentId] = {
-                            student: this.students.find(s => s.id == record.studentId),
-                            absences: [],
-                            subjects: new Set(),
-                            total: 0
-                        };
-                    }
-                    
-                    studentAbsences[record.studentId].absences.push(record);
-                    studentAbsences[record.studentId].subjects.add(record.subject);
-                    studentAbsences[record.studentId].total++;
-                });
-                
-                // Convert to array and filter by threshold
-                const studentsWithAbsences = Object.values(studentAbsences)
-                    .filter(item => item.total >= threshold)
-                    .sort((a, b) => b.total - a.total);
-                
-                // Create CSV content
-                let csvContent = "data:text/csv;charset=utf-8,";
-                csvContent += "LAPORAN KETIDAKHADIRAN SISWA\n";
-                csvContent += `Periode: ${new Date(startDate).toLocaleDateString('id-ID')} - ${new Date(endDate).toLocaleDateString('id-ID')}\n`;
-                csvContent += `Jenis: ${absenceType === 'all' ? 'Semua' : this.getStatusText(absenceType)}\n`;
-                csvContent += `Ambang Batas: ${threshold}+ ketidakhadiran\n\n`;
-                
-                csvContent += "No,Nama Siswa,NIS,Total Ketidakhadiran,Mata Pelajaran\n";
-                
-                studentsWithAbsences.forEach((item, index) => {
-                    const subjects = Array.from(item.subjects).map(subject => 
-                        this.getSubjectDisplayName(subject)
-                    ).join('; ');
-                    
-                    csvContent += `${index + 1},${item.student.name},${item.student.nis},${item.total},"${subjects}"\n`;
-                });
-                
-                const encodedUri = encodeURI(csvContent);
-                const link = document.createElement("a");
-                link.setAttribute("href", encodedUri);
-                link.setAttribute("download", `laporan_ketidakhadiran_${startDate}_${endDate}.csv`);
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                this.showToast('Laporan ketidakhadiran berhasil diekspor!');
-            }
-
-            // NEW: Get subject display name
-            getSubjectDisplayName(subjectKey) {
-                const subjectMap = {
-                    'matematika': 'Matematika',
-                    'fisika': 'Fisika',
-                    'kimia': 'Kimia',
-                    'biologi': 'Biologi',
-                    'bindo': 'Bahasa Indonesia',
-                    'bing': 'Bahasa Inggris',
-                    'tik': 'TIK Lanjut',
-                    'sosiologi': 'Sosiologi Lanjut',
-                    'ekonomi': 'Ekonomi Lanjut',
-                    'bahasa_jepang': 'Bahasa Jepang Lanjut'
-                };
-                return subjectMap[subjectKey] || subjectKey;
-            }
-
-            // NEW: Load group spinner tab
+            // Load group spinner tab
             loadGroupSpinnerTab() {
                 // Display saved groups if available
                 if (this.groups.groups && this.groups.groups.length > 0) {
@@ -4137,7 +4256,7 @@
                 }
             }
 
-            // NEW: Generate random groups
+            // Generate random groups
             generateGroups() {
                 const groupCount = parseInt(document.getElementById('groupCount').value);
                 const method = document.getElementById('groupMethod').value;
@@ -4190,7 +4309,7 @@
                 }, 1500);
             }
 
-            // NEW: Create random groups
+            // Create random groups
             createRandomGroups(students, groupCount) {
                 // Shuffle students array
                 const shuffled = [...students].sort(() => 0.5 - Math.random());
@@ -4216,7 +4335,7 @@
                 return groups;
             }
 
-            // NEW: Create balanced groups (by gender)
+            // Create balanced groups (by gender)
             createBalancedGroups(students, groupCount) {
                 // Separate by gender
                 const maleStudents = students.filter(s => s.gender === 'L');
@@ -4244,7 +4363,7 @@
                 return groups;
             }
 
-            // NEW: Create groups with leaders
+            // Create groups with leaders
             createGroupsWithLeaders(students, groupCount) {
                 // Get potential leaders (students with good attendance)
                 const today = new Date().toISOString().split('T')[0];
@@ -4293,7 +4412,7 @@
                 return groups;
             }
 
-            // NEW: Display groups
+            // Display groups
             displayGroups(groups) {
                 const container = document.getElementById('groupsContainer');
                 
@@ -4334,12 +4453,12 @@
                 }
             }
 
-            // NEW: Regenerate groups
+            // Regenerate groups
             regenerateGroups() {
                 this.generateGroups();
             }
 
-            // NEW: Export groups
+            // Export groups
             exportGroups() {
                 if (!this.groups.groups || this.groups.groups.length === 0) {
                     this.showToast('Tidak ada kelompok untuk diekspor!', 'error');
@@ -4371,6 +4490,351 @@
                 document.body.removeChild(link);
                 
                 this.showToast('Kelompok berhasil diekspor!');
+            }
+
+            // Load classroom tab
+            loadClassroomTab() {
+                this.displayClassroom();
+            }
+
+            // Display classroom layout
+            displayClassroom() {
+                const classroomGrid = document.getElementById('classroomGrid');
+                const layoutType = document.getElementById('layoutType').value;
+                
+                // Update classroom layout type
+                this.classroom.layout = layoutType;
+                this.saveClassroom();
+                
+                let gridHTML = '';
+                
+                if (layoutType === 'grid') {
+                    // 6x6 grid layout
+                    for (let i = 1; i <= 36; i++) {
+                        const seat = this.classroom.seats.find(s => s.deskNumber === i);
+                        const student = seat && seat.studentId ? this.students.find(s => s.id === seat.studentId) : null;
+                        
+                        gridHTML += `
+                            <div class="classroom-desk ${student ? '' : 'empty'}" onclick="app.selectStudentForSeat(${i})">
+                                <div class="desk-number">${i}</div>
+                                ${student ? `
+                                    <div class="desk-student">${student.name}</div>
+                                ` : `
+                                    <div class="desk-student">Kosong</div>
+                                `}
+                            </div>
+                        `;
+                    }
+                } else if (layoutType === 'u-shape') {
+                    // U-shape layout (simplified)
+                    for (let i = 1; i <= 30; i++) {
+                        const seat = this.classroom.seats.find(s => s.deskNumber === i);
+                        const student = seat && seat.studentId ? this.students.find(s => s.id === seat.studentId) : null;
+                        
+                        gridHTML += `
+                            <div class="classroom-desk ${student ? '' : 'empty'}" onclick="app.selectStudentForSeat(${i})">
+                                <div class="desk-number">${i}</div>
+                                ${student ? `
+                                    <div class="desk-student">${student.name}</div>
+                                ` : `
+                                    <div class="desk-student">Kosong</div>
+                                `}
+                            </div>
+                        `;
+                    }
+                    
+                    // Teacher's desk
+                    gridHTML += `
+                        <div class="classroom-desk teacher">
+                            <div class="desk-number">Guru</div>
+                            <div class="desk-student">Bu Sari, S.Pd</div>
+                        </div>
+                    `;
+                } else if (layoutType === 'groups') {
+                    // Group layout (4 groups of 9)
+                    for (let group = 1; group <= 4; group++) {
+                        for (let i = 1; i <= 9; i++) {
+                            const deskNumber = (group - 1) * 9 + i;
+                            const seat = this.classroom.seats.find(s => s.deskNumber === deskNumber);
+                            const student = seat && seat.studentId ? this.students.find(s => s.id === seat.studentId) : null;
+                            
+                            gridHTML += `
+                                <div class="classroom-desk ${student ? '' : 'empty'}" onclick="app.selectStudentForSeat(${deskNumber})">
+                                    <div class="desk-number">${deskNumber}</div>
+                                    ${student ? `
+                                        <div class="desk-student">${student.name}</div>
+                                    ` : `
+                                        <div class="desk-student">Kosong</div>
+                                    `}
+                                </div>
+                            `;
+                        }
+                    }
+                }
+                
+                classroomGrid.innerHTML = gridHTML;
+            }
+
+            // Select student for seat
+            selectStudentForSeat(deskNumber) {
+                const availableStudents = this.students.filter(student => {
+                    // Check if student is already assigned to a seat
+                    const assignedSeat = this.classroom.seats.find(seat => seat.studentId === student.id);
+                    return !assignedSeat || assignedSeat.deskNumber === deskNumber;
+                });
+                
+                if (availableStudents.length === 0) {
+                    this.showToast('Tidak ada siswa yang tersedia!', 'error');
+                    return;
+                }
+                
+                const studentNames = availableStudents.map(s => s.name).join('\n');
+                const studentId = prompt(`Pilih siswa untuk kursi ${deskNumber}:\n\n${studentNames}`);
+                
+                if (studentId) {
+                    const student = availableStudents.find(s => s.name === studentId);
+                    if (student) {
+                        // Remove student from previous seat if any
+                        const previousSeat = this.classroom.seats.find(seat => seat.studentId === student.id);
+                        if (previousSeat) {
+                            previousSeat.studentId = null;
+                            previousSeat.studentName = null;
+                        }
+                        
+                        // Assign student to new seat
+                        const seat = this.classroom.seats.find(s => s.deskNumber === deskNumber);
+                        if (seat) {
+                            seat.studentId = student.id;
+                            seat.studentName = student.name;
+                        }
+                        
+                        this.saveClassroom();
+                        this.displayClassroom();
+                        this.showToast(`Siswa ${student.name} ditempatkan di kursi ${deskNumber}`);
+                    }
+                }
+            }
+
+            // Randomize seats
+            randomizeSeats() {
+                if (confirm('Apakah Anda yakin ingin mengacak tempat duduk?')) {
+                    // Reset all seats
+                    this.classroom.seats.forEach(seat => {
+                        seat.studentId = null;
+                        seat.studentName = null;
+                    });
+                    
+                    // Shuffle students
+                    const shuffledStudents = [...this.students].sort(() => 0.5 - Math.random());
+                    
+                    // Assign students to seats
+                    shuffledStudents.forEach((student, index) => {
+                        if (index < this.classroom.seats.length) {
+                            this.classroom.seats[index].studentId = student.id;
+                            this.classroom.seats[index].studentName = student.name;
+                        }
+                    });
+                    
+                    this.saveClassroom();
+                    this.displayClassroom();
+                    this.showToast('Tempat duduk berhasil diacak!');
+                }
+            }
+
+            // Reset seats
+            resetSeats() {
+                if (confirm('Apakah Anda yakin ingin mereset semua tempat duduk?')) {
+                    this.classroom.seats.forEach(seat => {
+                        seat.studentId = null;
+                        seat.studentName = null;
+                    });
+                    
+                    this.saveClassroom();
+                    this.displayClassroom();
+                    this.showToast('Tempat duduk berhasil direset!');
+                }
+            }
+
+            // Change layout
+            changeLayout() {
+                this.displayClassroom();
+            }
+
+            // Load duty tab
+            loadDutyTab() {
+                this.loadDutySchedule();
+            }
+
+            // Load duty schedule
+            loadDutySchedule() {
+                const dutyTableBody = document.getElementById('dutyTableBody');
+                const weekValue = document.getElementById('dutyWeek').value;
+                
+                if (this.duty.schedule.length > 0) {
+                    dutyTableBody.innerHTML = this.duty.schedule.map(duty => {
+                        const dutyStudents = duty.students.map(studentId => {
+                            const student = this.students.find(s => s.id === studentId);
+                            return student ? student.name : 'Tidak diketahui';
+                        }).join(', ');
+                        
+                        return `
+                            <tr>
+                                <td>${duty.day}</td>
+                                <td>${dutyStudents}</td>
+                                <td>${duty.tasks}</td>
+                                <td>
+                                    <div class="assignment-actions">
+                                        <button class="btn-small" onclick="app.editDuty(${duty.id})">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </button>
+                                        <button class="btn-small" onclick="app.deleteDuty(${duty.id})">
+                                            <i class="fas fa-trash"></i> Hapus
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+                } else {
+                    dutyTableBody.innerHTML = `
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 40px;">
+                                <div class="empty-placeholder">
+                                    <i class="fas fa-broom"></i>
+                                    <p>Belum ada jadwal piket.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                }
+            }
+
+            // Show duty modal
+            showDutyModal(dutyId = null) {
+                const modal = document.getElementById('dutyModal');
+                const title = document.getElementById('dutyModalTitle');
+                const form = document.getElementById('dutyForm');
+                
+                // Populate students dropdown
+                const dutyStudentsSelect = document.getElementById('dutyStudents');
+                dutyStudentsSelect.innerHTML = this.students.map(student => 
+                    `<option value="${student.id}">${student.name}</option>`
+                ).join('');
+                
+                if (dutyId) {
+                    // Edit mode
+                    title.textContent = 'Edit Jadwal Piket';
+                    const duty = this.duty.schedule.find(d => d.id === dutyId);
+                    if (duty) {
+                        document.getElementById('dutyId').value = duty.id;
+                        document.getElementById('dutyDay').value = duty.day;
+                        
+                        // Select students
+                        duty.students.forEach(studentId => {
+                            const option = dutyStudentsSelect.querySelector(`option[value="${studentId}"]`);
+                            if (option) option.selected = true;
+                        });
+                        
+                        document.getElementById('dutyTasks').value = duty.tasks;
+                    }
+                } else {
+                    // Add mode
+                    title.textContent = 'Tambah Jadwal Piket';
+                    form.reset();
+                }
+                
+                modal.style.display = 'block';
+            }
+
+            // Edit duty
+            editDuty(dutyId) {
+                this.showDutyModal(dutyId);
+            }
+
+            // Delete duty
+            deleteDuty(dutyId) {
+                if (confirm('Apakah Anda yakin ingin menghapus jadwal piket ini?')) {
+                    this.duty.schedule = this.duty.schedule.filter(d => d.id !== dutyId);
+                    this.saveDuty();
+                    this.loadDutySchedule();
+                    this.loadTodayDuty();
+                    this.showToast('Jadwal piket berhasil dihapus!');
+                }
+            }
+
+            // Submit duty
+            submitDuty() {
+                const id = document.getElementById('dutyId').value;
+                const day = document.getElementById('dutyDay').value;
+                const students = Array.from(document.getElementById('dutyStudents').selectedOptions).map(option => parseInt(option.value));
+                const tasks = document.getElementById('dutyTasks').value;
+                
+                if (id) {
+                    // Edit existing duty
+                    const dutyIndex = this.duty.schedule.findIndex(d => d.id == id);
+                    if (dutyIndex !== -1) {
+                        this.duty.schedule[dutyIndex] = {
+                            id: parseInt(id),
+                            day,
+                            students,
+                            tasks
+                        };
+                    }
+                } else {
+                    // Add new duty
+                    const newDuty = {
+                        id: Date.now(),
+                        day,
+                        students,
+                        tasks
+                    };
+                    
+                    this.duty.schedule.push(newDuty);
+                }
+                
+                this.saveDuty();
+                this.closeModal('dutyModal');
+                this.loadDutySchedule();
+                this.loadTodayDuty();
+                this.showToast('Jadwal piket berhasil disimpan!');
+            }
+
+            // Generate duty schedule automatically
+            generateDutySchedule() {
+                if (confirm('Apakah Anda yakin ingin membuat jadwal piket otomatis?')) {
+                    // Clear existing schedule
+                    this.duty.schedule = [];
+                    
+                    const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
+                    const tasks = [
+                        'Menyapu lantai, membersihkan papan tulis',
+                        'Mengepel lantai, merapikan buku',
+                        'Membersihkan jendela, menyiram tanaman',
+                        'Menyapu halaman, merapikan meja guru',
+                        'Membersihkan rak buku, menata kursi'
+                    ];
+                    
+                    // Shuffle students
+                    const shuffledStudents = [...this.students].sort(() => 0.5 - Math.random());
+                    
+                    // Assign 3 students per day
+                    days.forEach((day, index) => {
+                        const startIndex = index * 3;
+                        const dayStudents = shuffledStudents.slice(startIndex, startIndex + 3).map(s => s.id);
+                        
+                        this.duty.schedule.push({
+                            id: Date.now() + index,
+                            day,
+                            students: dayStudents,
+                            tasks: tasks[index]
+                        });
+                    });
+                    
+                    this.saveDuty();
+                    this.loadDutySchedule();
+                    this.loadTodayDuty();
+                    this.showToast('Jadwal piket otomatis berhasil dibuat!');
+                }
             }
 
             loadScheduleTab() {
@@ -4412,7 +4876,7 @@
                 alert(`Detail Pelajaran:\n\nMata Pelajaran: ${subject}\nGuru: ${teacher}\nRuangan: ${room}`);
             }
 
-            // NEW: Show schedule modal
+            // Show schedule modal
             showScheduleModal() {
                 const modal = document.getElementById('scheduleModal');
                 const title = document.getElementById('scheduleModalTitle');
@@ -4424,7 +4888,7 @@
                 modal.style.display = 'block';
             }
 
-            // NEW: Edit schedule
+            // Edit schedule
             editSchedule(day, index, event) {
                 event.stopPropagation();
                 
@@ -4447,7 +4911,7 @@
                 modal.style.display = 'block';
             }
 
-            // NEW: Edit today's schedule
+            // Edit today's schedule
             editTodaySchedule(day, index) {
                 const modal = document.getElementById('scheduleModal');
                 const title = document.getElementById('scheduleModalTitle');
@@ -4468,7 +4932,7 @@
                 modal.style.display = 'block';
             }
 
-            // NEW: Submit schedule
+            // Submit schedule
             submitSchedule() {
                 const id = document.getElementById('scheduleId').value;
                 const day = document.getElementById('scheduleDay').value;
@@ -4643,7 +5107,7 @@
                 this.saveAssignments();
                 
                 assignmentsList.innerHTML = assignments.map(assignment => `
-                    <div class="enhanced-assignment-item ${assignment.status}">
+                    <div class="assignment-item-detailed ${assignment.status}">
                         <div class="assignment-header">
                             <div class="assignment-subject">${assignment.subject}</div>
                             <div class="assignment-status ${assignment.status}">
@@ -4827,7 +5291,7 @@
                 this.saveAttendance();
                 this.closeModal('attendanceModal');
                 this.loadAttendanceData(date);
-                this.loadDashboard(); // Update dashboard stats
+                this.loadHomePage(); // Update dashboard stats
                 this.showToast('Absensi berhasil disimpan!');
             }
 
@@ -4939,7 +5403,7 @@
                 }
                 
                 assignmentsList.innerHTML = filteredAssignments.map(assignment => `
-                    <div class="enhanced-assignment-item ${assignment.status}">
+                    <div class="assignment-item-detailed ${assignment.status}">
                         <div class="assignment-header">
                             <div class="assignment-subject">${assignment.subject}</div>
                             <div class="assignment-status ${assignment.status}">
@@ -5051,7 +5515,31 @@
                 return typeMap[type] || type;
             }
 
-            // NEW: Toast notification
+            // Get subject display name
+            getSubjectDisplayName(subjectKey) {
+                const subjectMap = {
+                    'matematika': 'Matematika',
+                    'fisika': 'Fisika',
+                    'kimia': 'Kimia',
+                    'biologi': 'Biologi',
+                    'bindo': 'Bahasa Indonesia',
+                    'bing': 'Bahasa Inggris',
+                    'tik': 'TIK Lanjut',
+                    'sosiologi': 'Sosiologi Lanjut',
+                    'ekonomi': 'Ekonomi Lanjut',
+                    'bahasa_jepang': 'Bahasa Jepang Lanjut'
+                };
+                return subjectMap[subjectKey] || subjectKey;
+            }
+
+            // Get week number
+            getWeekNumber(date) {
+                const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+                const pastDaysOfYear = (date - firstDayOfYear) / 86400000;
+                return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+            }
+
+            // Toast notification
             showToast(message, type = 'success') {
                 const toast = document.createElement('div');
                 toast.className = 'toast';
