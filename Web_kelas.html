@@ -6,7 +6,7 @@
     <title>Kelas XI-7 VALLORIX - SMA Negeri 4 Bojonegoro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-   <style>
+  <style>
         * {
             margin: 0;
             padding: 0;
@@ -640,12 +640,12 @@
     
     .header-search {
         padding: 8px 12px;
-        transform: translateY(0);
-        margin-top: -5px; /* Posisi lebih ke atas di mobile */
+        transform: translateY(-5px); /* Posisi lebih ke atas di mobile */
+        margin-top: -5px;
     }
     
     .header-search:focus-within {
-        transform: translateY(0) scale(1.02);
+        transform: translateY(-5px) scale(1.02);
     }
     
     .class-details h1 {
@@ -674,6 +674,11 @@
     .search-suggestions {
         top: calc(100% + 5px);
         max-height: 250px;
+        z-index: 1002; /* Pastikan di atas konten lain */
+        position: fixed; /* Untuk mobile agar tidak terpotong */
+        left: 10px;
+        right: 10px;
+        width: auto;
     }
 }
 
